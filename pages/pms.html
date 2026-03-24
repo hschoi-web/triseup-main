@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 /* ===== Reset ===== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -255,6 +256,9 @@ img { max-width: 100%; display: block; }
   justify-content: center;
 }
 .tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 12px 24px;
   font-family: var(--font-head);
   font-size: 14px;
@@ -597,10 +601,10 @@ img { max-width: 100%; display: block; }
       <p>4개의 전용 채널로 모든 이해관계자를 연결합니다.</p>
     </div>
     <div class="tab-nav">
-      <button class="tab-btn active" onclick="showTab(0)">DISPATCH</button>
-      <button class="tab-btn" onclick="showTab(1)">CONCIERGE</button>
-      <button class="tab-btn" onclick="showTab(2)">PARTNERS</button>
-      <button class="tab-btn" onclick="showTab(3)">BOOKING</button>
+      <button class="tab-btn active" onclick="showTab(0)"><i class="fas fa-desktop"></i> DISPATCH</button>
+      <button class="tab-btn" onclick="showTab(1)"><i class="fas fa-handshake"></i> CONCIERGE</button>
+      <button class="tab-btn" onclick="showTab(2)"><i class="fas fa-mobile-screen"></i> PARTNERS</button>
+      <button class="tab-btn" onclick="showTab(3)"><i class="fas fa-globe"></i> BOOKING</button>
     </div>
 
     <!-- DISPATCH -->
@@ -624,13 +628,12 @@ img { max-width: 100%; display: block; }
     <div class="tab-panel" id="tab-1" style="display:none">
       <div class="tab-content">
         <div class="tab-info">
-          <h3>CONCIERGE — 기사 전용 앱</h3>
-          <p>기사가 모바일에서 배차를 확인하고 운행을 관리합니다.</p>
+          <h3>CONCIERGE — 거래처 B2B 전용 예약</h3>
+          <p>호텔·여행사·기업 고객이 직접 예약하고, 운행 현황을 실시간으로 확인합니다.</p>
           <ul class="tab-features">
-            <li>배차 알림 · 수락/거절</li>
-            <li>내비게이션 연동 · 경로 안내</li>
-            <li>운행 일지 자동 기록</li>
-            <li>고객 정보 · 특이사항 확인</li>
+            <li>거래처 전용 예약 포탈</li>
+            <li>운행 현황 실시간 공유</li>
+            <li>월별 자동 정산 리포트</li>
           </ul>
         </div>
         <div class="tab-mockup">컨시어지 앱 화면</div>

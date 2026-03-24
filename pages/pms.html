@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-RiseUp PMS | 의전·수송 통합 관리 시스템</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Reset ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #1A1A2E;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+img { max-width: 100%; display: block; }
+
+:root {
+  --max-w: 1060px;
+  --primary: #0066CC;
+  --primary-dark: #004C99;
+  --text-dark: #1A1A2E;
+  --text-body: #4A4A68;
+  --text-light: #8888A0;
+  --bg-white: #ffffff;
+  --bg-light: #F7F8FC;
+  --bg-dark: #111827;
+  --border: #E2E4EA;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,0.10);
+  --font-head: 'Inter', 'Noto Sans KR', sans-serif;
+  --font-body: 'Noto Sans KR', 'Inter', sans-serif;
+}
+
+/* ===== Layout ===== */
+.container {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ===== GNB ===== */
+.gnb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gnb-inner {
+  width: 100%;
+  max-width: 1060px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gnb-logo img { height: 28px; }
+.gnb-nav { display: flex; gap: 28px; align-items: center; }
+.gnb-nav > a:not(.btn-demo) {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-body);
+  transition: color 0.2s;
+}
+.gnb-nav > a:not(.btn-demo):hover { color: var(--primary); }
+.gnb-dropdown { position: relative; }
+.gnb-dropdown-toggle {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-body);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  transition: color 0.2s;
+}
+.gnb-dropdown-toggle:hover { color: var(--primary); }
+.gnb-dropdown-toggle::after {
+  content: '';
+  display: inline-block;
+  width: 0; height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+}
+.gnb-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  padding: 12px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s;
+  z-index: 1001;
+}
+.gnb-dropdown:hover .gnb-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.gnb-dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.15s;
+}
+.gnb-dropdown-item:hover { background: var(--bg-light); }
+.gnb-dropdown-item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+.gnb-dropdown-item-desc {
+  font-size: 12px;
+  color: var(--text-light);
+}
+.btn-demo {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff !important;
+  background: var(--primary);
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.btn-demo:hover { background: var(--primary-dark); color: #ffffff !important; }
+
+/* ===== Hero ===== */
+.hero {
+  width: 100%;
+  aspect-ratio: 1120 / 377;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 64px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('../images/div.hero__overlay.png') center center / cover no-repeat;
+  z-index: 0;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.6) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 60px;
+  color: #fff;
+}
+.product-tag {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(255,255,255,0.9);
+  padding: 4px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+.hero-headline {
+  font-family: var(--font-head);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.hero-sub {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s;
+}
+.btn-hero-primary:hover { background: var(--primary-dark); }
+
+/* ===== Section Common ===== */
+.section {
+  width: 100%;
+  padding: 80px 0 50px;
+}
+.section-white { background: var(--bg-white); }
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.section-header h2 {
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 12px;
+}
+.section-header p {
+  font-size: 18px;
+  color: var(--text-body);
+  line-height: 1.7;
+}
+
+/* ===== 4채널 탭 ===== */
+.tab-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  justify-content: center;
+}
+.tab-btn {
+  padding: 12px 24px;
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-body);
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab-btn:hover, .tab-btn.active {
+  color: #fff;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.tab-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.tab-info h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.tab-info > p {
+  font-size: 15px;
+  color: var(--text-body);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.tab-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-body);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.tab-features li::before {
+  content: '✓';
+  color: var(--primary);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.tab-mockup {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/* ===== 2모드 배차 ===== */
+.mode-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.mode-card {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+}
+.mode-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.mode-card > p {
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.mode-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-body);
+  margin-bottom: 10px;
+}
+.mode-features li::before {
+  content: '✓';
+  color: var(--primary);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ===== Divider ===== */
+.section-divider {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 24px;
+  color: var(--border);
+}
+
+/* ===== 핵심 기능 Grid ===== */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.feature-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.feature-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+.feature-card-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(0,102,204,0.08);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+  color: var(--primary);
+}
+.feature-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.feature-card p {
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+/* ===== 도입사례 Grid ===== */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.case-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.case-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+.case-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-light);
+}
+.case-card-body {
+  padding: 16px 20px;
+}
+.case-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.case-card-impact {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ===== CTA ===== */
+.cta-band {
+  width: 100%;
+  padding: 64px 0;
+  background: var(--bg-dark);
+  text-align: center;
+}
+.cta-band h2 {
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.cta-band p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 28px;
+}
+.btn-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s;
+}
+.btn-cta-primary:hover { background: var(--primary-dark); }
+
+/* ===== Footer ===== */
+.footer {
+  width: 100%;
+  background: #1A1F2E;
+  color: rgba(255,255,255,0.7);
+  padding: 64px 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+.footer-logo-img {
+  height: 24px;
+  margin-bottom: 16px;
+  filter: brightness(0) invert(1);
+}
+.footer-company {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
+}
+.footer-info {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.8;
+}
+.footer-col h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .gnb-nav { display: none; }
+  .hero { aspect-ratio: auto; min-height: 360px; }
+  .hero-headline { font-size: 26px; }
+  .hero-content { padding: 0 20px; }
+  .tab-nav { flex-wrap: wrap; }
+  .tab-content { grid-template-columns: 1fr; }
+  .mode-split { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== GNB ===== -->
+<nav class="gnb">
+  <div class="gnb-inner">
+    <a href="../index.html" class="gnb-logo"><img src="../images/TRISEUP.png" alt="T-RiseUp"></a>
+    <div class="gnb-nav">
+      <div class="gnb-dropdown">
+        <button class="gnb-dropdown-toggle">제품</button>
+        <div class="gnb-dropdown-menu">
+          <a href="pms.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">PMS</div>
+            <div class="gnb-dropdown-item-desc">의전·수송 통합 관리</div>
+          </a>
+          <a href="tms.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">TMS</div>
+            <div class="gnb-dropdown-item-desc">셔틀·관광 티켓 관리</div>
+          </a>
+          <a href="license.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">면허 솔루션</div>
+            <div class="gnb-dropdown-item-desc">플랫폼운송사업 면허</div>
+          </a>
+          <a href="marketplace.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">Marketplace</div>
+            <div class="gnb-dropdown-item-desc">RIDEUS 통합 판매채널</div>
+          </a>
+        </div>
+      </div>
+      <a href="../index.html#cases">도입사례</a>
+      <a href="#">리소스</a>
+      <a href="demo.html" class="btn-demo">무료 데모 신청</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== S1. Hero ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="product-tag">PMS</span>
+    <h1 class="hero-headline">예약부터 정산까지,<br>수송 운영의 모든 것을 하나로</h1>
+    <p class="hero-sub">AI견적 95%+ · GPS 5초 갱신 · D2C 예약채널 · 자동정산<br>의전/수송 사업자를 위한 통합 자산 관리 시스템</p>
+    <a href="demo.html?product=pms" class="btn-hero-primary">PMS 데모 신청</a>
+  </div>
+</section>
+
+<!-- ===== S2. 4채널 아키텍처 ===== -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <h2>4채널 아키텍처</h2>
+      <p>4개의 전용 채널로 모든 이해관계자를 연결합니다.</p>
+    </div>
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab(0)">DISPATCH</button>
+      <button class="tab-btn" onclick="showTab(1)">CONCIERGE</button>
+      <button class="tab-btn" onclick="showTab(2)">PARTNERS</button>
+      <button class="tab-btn" onclick="showTab(3)">BOOKING</button>
+    </div>
+
+    <!-- DISPATCH -->
+    <div class="tab-panel" id="tab-0">
+      <div class="tab-content">
+        <div class="tab-info">
+          <h3>DISPATCH — 관리자 통합 대시보드</h3>
+          <p>예약·배차·관제·정산을 하나의 웹 화면에서 관리합니다.</p>
+          <ul class="tab-features">
+            <li>예약 접수 → 배차 → 운행 → 정산 원스톱</li>
+            <li>실시간 GPS 관제 (5초 갱신)</li>
+            <li>AI 자동 견적 (20개+ 변수, 95%+)</li>
+            <li>매출·운행 데이터 대시보드</li>
+          </ul>
+        </div>
+        <div class="tab-mockup">디스패치 대시보드 화면</div>
+      </div>
+    </div>
+
+    <!-- CONCIERGE -->
+    <div class="tab-panel" id="tab-1" style="display:none">
+      <div class="tab-content">
+        <div class="tab-info">
+          <h3>CONCIERGE — 기사 전용 앱</h3>
+          <p>기사가 모바일에서 배차를 확인하고 운행을 관리합니다.</p>
+          <ul class="tab-features">
+            <li>배차 알림 · 수락/거절</li>
+            <li>내비게이션 연동 · 경로 안내</li>
+            <li>운행 일지 자동 기록</li>
+            <li>고객 정보 · 특이사항 확인</li>
+          </ul>
+        </div>
+        <div class="tab-mockup">컨시어지 앱 화면</div>
+      </div>
+    </div>
+
+    <!-- PARTNERS -->
+    <div class="tab-panel" id="tab-2" style="display:none">
+      <div class="tab-content">
+        <div class="tab-info">
+          <h3>PARTNERS — 파트너사 연동</h3>
+          <p>외부 파트너사와 배차를 공유하고 협업합니다.</p>
+          <ul class="tab-features">
+            <li>파트너사 배차 요청 · 수락</li>
+            <li>차량·기사 풀 공유</li>
+            <li>정산 자동화</li>
+            <li>파트너 성과 리포트</li>
+          </ul>
+        </div>
+        <div class="tab-mockup">파트너스 화면</div>
+      </div>
+    </div>
+
+    <!-- BOOKING -->
+    <div class="tab-panel" id="tab-3" style="display:none">
+      <div class="tab-content">
+        <div class="tab-info">
+          <h3>BOOKING — D2C 고객 예약</h3>
+          <p>자사 브랜드 예약 페이지로 고객을 직접 유치합니다.</p>
+          <ul class="tab-features">
+            <li>다국어 예약 페이지 즉시 구축</li>
+            <li>글로벌 결제 8종 지원</li>
+            <li>브랜드 커스터마이징</li>
+            <li>해외 고객 D2C 직접 유치</li>
+          </ul>
+        </div>
+        <div class="tab-mockup">부킹 화면</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S3. 2모드 배차 방식 ===== -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <h2>2모드 배차 방식</h2>
+      <p>운영 규모와 서비스 유형에 맞는 최적의 배차 방식을 선택하세요.</p>
+    </div>
+    <div class="mode-split">
+      <div class="mode-card">
+        <h3>배차 요청형</h3>
+        <p>기사가 직접 요청을 수락하는 온디맨드 방식으로 소규모 운영에 적합합니다.</p>
+        <ul class="mode-features">
+          <li>배차 요청 → 기사 수락 → 배정 확정</li>
+          <li>소규모 관광대절 · 택시 최적</li>
+          <li>기사 부하 자동 분산</li>
+        </ul>
+      </div>
+      <div class="mode-card">
+        <h3>배차 확정형</h3>
+        <p>관리자가 직접 기사를 지정하는 방식으로 VIP 의전·대규모 운영에 적합합니다.</p>
+        <ul class="mode-features">
+          <li>관리자 직접 배차 지정</li>
+          <li>VIP 의전 전용 워크플로우</li>
+          <li>APEC 수송포탈 실적 검증</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider">·</div>
+
+<!-- ===== S4. 핵심 기능 ===== -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <h2>핵심 기능</h2>
+      <p>PMS의 강력한 기능으로 운영 효율을 극대화합니다</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card-icon">📊</div>
+        <h4>AI 자동 견적</h4>
+        <p>20개+ 변수를 분석하여 95%+ 정확도의 견적을 즉시 산출합니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">🚗</div>
+        <h4>AI 최적 배차</h4>
+        <p>기사 위치·차량 상태·고객 요구를 종합 분석하여 최적의 기사를 배치합니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">📍</div>
+        <h4>실시간 GPS (5초)</h4>
+        <p>5초 간격 GPS 갱신으로 모든 차량의 위치를 실시간 관제합니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">⚠️</div>
+        <h4>AI 돌발감지</h4>
+        <p>경로 이탈, 지연, 사고 위험을 AI가 감지하여 즉시 알림을 보냅니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">✈️</div>
+        <h4>항공편 연동</h4>
+        <p>항공편 실시간 상태를 연동하여 도착 지연 시 배차를 자동 조정합니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">🌐</div>
+        <h4>D2C 예약채널</h4>
+        <p>자사 브랜드 다국어 예약 페이지를 즉시 구축. 해외 고객 직접 유치.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S5. PMS 도입사례 ===== -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <h2>PMS 도입사례</h2>
+      <p>글로벌 VIP 의전부터 카지노 리무진까지, 검증된 레퍼런스</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-card-image">APEC 2025</div>
+        <div class="case-card-body">
+          <div class="case-card-title">APEC 2025 수송포탈</div>
+          <div class="case-card-impact">21개국 정상 수송</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-card-image">제주드림타워</div>
+        <div class="case-card-body">
+          <div class="case-card-title">제주드림타워</div>
+          <div class="case-card-impact">VIP 리무진 통합 관리</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-card-image">GB Limousine</div>
+        <div class="case-card-body">
+          <div class="case-card-title">GB Limousine Thailand</div>
+          <div class="case-card-impact">96% 시간 단축</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-card-image">AFC Awards</div>
+        <div class="case-card-body">
+          <div class="case-card-title">AFC Awards 2023</div>
+          <div class="case-card-impact">VIP 의전 무사고</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-card-image">ADB</div>
+        <div class="case-card-body">
+          <div class="case-card-title">ADB 연차총회</div>
+          <div class="case-card-impact">70대 차량 · 국제기구 공식</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-card-image">WTTC</div>
+        <div class="case-card-body">
+          <div class="case-card-title">부산세계탁구선수권대회</div>
+          <div class="case-card-impact">990회 · 백서 인용</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-band">
+  <div class="container">
+    <h2>PMS로 수송 운영을 혁신하세요</h2>
+    <p>맞춤 데모를 통해 귀사에 최적화된 솔루션을 확인하세요.</p>
+    <a href="demo.html?product=pms" class="btn-cta-primary">PMS 데모 신청</a>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="../images/TRISEUP.png" alt="T-RiseUp" class="footer-logo-img">
+        <p class="footer-company">(주)그라운드케이 | 대표이사: 홍길동</p>
+        <p class="footer-info">사업자등록번호: 000-00-00000<br>부산광역시 해운대구 센텀중앙로 00, 0층<br>TEL: 051-000-0000 | FAX: 051-000-0001<br>contact@groundk.co.kr</p>
+      </div>
+      <div class="footer-col">
+        <h4>제품</h4>
+        <ul>
+          <li><a href="pms.html">PMS — 의전·수송</a></li>
+          <li><a href="tms.html">TMS — 셔틀·관광</a></li>
+          <li><a href="license.html">면허 솔루션</a></li>
+          <li><a href="marketplace.html">Marketplace</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>회사</h4>
+        <ul>
+          <li><a href="cases.html">도입사례</a></li>
+          <li><a href="#">리소스</a></li>
+          <li><a href="#">회사소개</a></li>
+          <li><a href="#">채용</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>서비스</h4>
+        <ul>
+          <li><a href="demo.html">데모 신청</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">이용약관</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 GroundK. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<script>
+function showTab(index) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + index).style.display = 'block';
+  document.querySelectorAll('.tab-btn')[index].classList.add('active');
+}
+</script>
+
+</body>
+</html>

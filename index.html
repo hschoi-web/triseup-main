@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-RiseUp | 국내 유일 B2B 모빌리티 SaaS 플랫폼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Reset ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #1A1A2E;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== Design Tokens (Figma 2120px → 1060px @1x) ===== */
+:root {
+  --max-w: 1060px;
+  --primary: #0066CC;
+  --primary-dark: #004C99;
+  --text-dark: #1A1A2E;
+  --text-body: #4A4A68;
+  --text-light: #8888A0;
+  --bg-white: #ffffff;
+  --bg-light: #F7F8FC;
+  --bg-dark: #111827;
+  --border: #E2E4EA;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,0.10);
+  --font-head: 'Inter', 'Noto Sans KR', sans-serif;
+  --font-body: 'Noto Sans KR', 'Inter', sans-serif;
+}
+
+/* ===== Layout ===== */
+.main {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+}
+.container {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ===== GNB ===== */
+.gnb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gnb-inner {
+  width: 100%;
+  max-width: 1060px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gnb-logo img { height: 28px; }
+.gnb-nav { display: flex; gap: 32px; align-items: center; }
+.gnb-nav a {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-body);
+  transition: color 0.2s;
+}
+.gnb-nav a:hover { color: var(--primary); }
+.btn-demo {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary);
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.btn-demo:hover { background: var(--primary-dark); }
+
+/* ===== Hero ===== */
+.hero {
+  width: 100%;
+  aspect-ratio: 1120 / 377;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 64px;
+  overflow: hidden;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('images/div.hero__overlay.png') center center / cover no-repeat;
+  z-index: 0;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 60px;
+  color: #fff;
+}
+.hero-headline {
+  font-family: var(--font-head);
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.hero-sub {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.hero-btns { display: flex; gap: 12px; margin-bottom: 32px; }
+.btn-hero-primary {
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s;
+}
+.btn-hero-primary:hover { background: var(--primary-dark); }
+.btn-hero-outline {
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+.btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+.hero-stats {
+  display: flex;
+  gap: 32px;
+}
+.hero-stat { text-align: left; }
+.hero-stat-value {
+  font-family: var(--font-head);
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+}
+.hero-stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 2px;
+}
+
+/* ===== Sections Common ===== */
+.section {
+  width: 100%;
+  padding: 80px 0;
+}
+.section-white { background: var(--bg-white); }
+.section-light { background: var(--bg-light); }
+.section-dark { background: var(--bg-dark); color: #fff; }
+.section-title {
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+.section-subtitle {
+  font-size: 15px;
+  color: var(--text-body);
+  text-align: center;
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+
+/* ===== S2. Target Cards ===== */
+.target-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.target-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  text-align: center;
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.target-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+.target-card-title {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.target-card-desc {
+  font-size: 13px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+/* ===== S3. Product Split ===== */
+.product-desc {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.8;
+  margin-bottom: 48px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.product-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.product-card {
+  background: var(--bg-light);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+}
+.product-tag {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(0,102,204,0.08);
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+.product-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.product-features {
+  font-size: 13px;
+  color: var(--text-body);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.product-features li::before {
+  content: '·';
+  margin-right: 6px;
+  color: var(--primary);
+  font-weight: 700;
+}
+.product-mockup {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--border);
+  border-radius: var(--radius-md);
+}
+.btn-product {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  transition: gap 0.2s;
+}
+.btn-product:hover { gap: 8px; }
+
+/* ===== Full-width Image ===== */
+.full-image {
+  width: 100%;
+  aspect-ratio: 1120 / 280;
+  overflow: hidden;
+}
+.full-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== S5. Cases ===== */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.case-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.case-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+.case-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-light);
+}
+.case-body { padding: 20px; }
+.case-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+  background: rgba(0,102,204,0.08);
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+.case-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.case-impact {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* ===== S6. Metrics ===== */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.metric-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  text-align: center;
+}
+.metric-value {
+  font-family: var(--font-head);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+.metric-label {
+  font-size: 13px;
+  color: var(--text-body);
+}
+
+/* ===== S7. Partners ===== */
+.partners-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.partners-logos img {
+  height: 32px;
+  opacity: 0.5;
+  filter: grayscale(1);
+  transition: opacity 0.3s, filter 0.3s;
+}
+.partners-logos img:hover { opacity: 1; filter: none; }
+
+/* ===== CTA Band ===== */
+.cta-band {
+  width: 100%;
+  padding: 64px 0;
+  background: var(--bg-dark);
+  text-align: center;
+}
+.cta-band-title {
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.cta-band-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 28px;
+}
+.cta-band-btns { display: flex; gap: 12px; justify-content: center; }
+.btn-cta-primary {
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary);
+  border-radius: var(--radius-sm);
+}
+.btn-cta-outline {
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: var(--radius-sm);
+}
+
+/* ===== Footer ===== */
+.footer {
+  width: 100%;
+  background: #0A0F1A;
+  padding: 48px 0 32px;
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+}
+.footer-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.footer-col-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 12px;
+}
+.footer-col a {
+  display: block;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 6px;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .gnb-nav { display: none; }
+  .hero { aspect-ratio: auto; min-height: 400px; }
+  .hero-headline { font-size: 28px; }
+  .hero-content { padding: 0 20px; }
+  .hero-stats { gap: 16px; flex-wrap: wrap; }
+  .hero-stat-value { font-size: 18px; }
+  .section { padding: 48px 0; }
+  .section-title { font-size: 22px; }
+  .target-grid { grid-template-columns: 1fr 1fr; }
+  .product-split { grid-template-columns: 1fr; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { flex-direction: column; gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== GNB ===== -->
+<nav class="gnb">
+  <div class="gnb-inner">
+    <a href="#" class="gnb-logo"><img src="images/TRISEUP.png" alt="T-RiseUp"></a>
+    <div class="gnb-nav">
+      <a href="#products">기능</a>
+      <a href="#cases">도입사례</a>
+      <a href="#about">소개</a>
+      <a href="pages/demo.html" class="btn-demo">데모 신청</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== S1. Hero ===== -->
+<div class="main">
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1 class="hero-headline">Your Ground<br>Digital Partner</h1>
+    <p class="hero-sub">의전·수송·셔틀·관광 — 모든 운영을 하나의 플랫폼으로 통합 관리하세요.</p>
+    <div class="hero-btns">
+      <a href="pages/demo.html" class="btn-hero-primary">무료 상담 신청하기</a>
+      <a href="pages/pms.html" class="btn-hero-outline">PMS 자세히보기</a>
+      <a href="pages/tms.html" class="btn-hero-outline">TMS 자세히보기</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">50,000+</div>
+        <div class="hero-stat-label">월간 이용자</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">65%↑</div>
+        <div class="hero-stat-label">업무 효율</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">8초</div>
+        <div class="hero-stat-label">실시간 관제</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">7분</div>
+        <div class="hero-stat-label">배차 완료</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S2. 타깃 분기 카드 ===== -->
+<section class="section section-white" id="target">
+  <div class="container">
+    <h2 class="section-title">T-RiseUp은 현장에 최적화 된 올인원 모빌리티 솔루션입니다.</h2>
+    <p class="section-subtitle">T-RiseUp은 의전 수송부터 관광 셔틀까지 모빌리티 전 분야의 운영사에게<br>효율적인 자산관리와 비즈니스 확장을 지원하는 통합 솔루션입니다.</p>
+    <div class="target-grid">
+      <div class="target-card">
+        <div class="target-card-title">의전·수송</div>
+        <div class="target-card-desc">프리미엄 의전부터 수송까지<br>VIP 모빌리티를 전문적으로 관리합니다</div>
+      </div>
+      <div class="target-card">
+        <div class="target-card-title">셔틀·관광</div>
+        <div class="target-card-desc">통근·통학·관광 셔틀 노선을<br>체계적으로 운영합니다</div>
+      </div>
+      <div class="target-card">
+        <div class="target-card-title">플랫폼 연계</div>
+        <div class="target-card-desc">T-RiseUp과 연동하여<br>신규 플랫폼 사업을 시작합니다</div>
+      </div>
+      <div class="target-card">
+        <div class="target-card-title">T-RiseUp 파트너</div>
+        <div class="target-card-desc">T-RiseUp 고객의 배차를<br>파트너사로 연결합니다</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S3. 제품 소개 ===== -->
+<section class="section section-light" id="products">
+  <div class="container">
+    <h2 class="section-title">T-RiseUp은 모빌리티 운영의 전 과정을 빠르게 관리합니다.</h2>
+    <p class="product-desc">
+      예약, 배차, 정산의 반복적인 업무를 줄이고<br>
+      정교한 스케줄과 재고 관리 기능으로 최적의 배차 체계를 구축합니다.<br>
+      현장에서는 검표 앱으로 탑승처리를 간소화하고<br>
+      데이터로 실시간 확인되는 탑승현황은<br>
+      대규모 행사와 글로벌 이동 서비스에도 안정적인 운영 환경을 제공합니다.
+    </p>
+    <div class="product-split">
+      <div class="product-card">
+        <span class="product-tag">PMS</span>
+        <h3 class="product-card-title">예약 대리 건부 정산<br>4채널 바이채널로 운영 효율을 극대화합니다.</h3>
+        <ul class="product-features">
+          <li>AI 견적 자동화 · 95% 정확도</li>
+          <li>5초 GPS 갱신 실시간 관제</li>
+          <li>4채널 바이채널 운영</li>
+          <li>예약 → 배차 → 관제 → 정산 원스톱</li>
+        </ul>
+        <div class="product-mockup"></div>
+        <a href="pages/pms.html" class="btn-product">PMS 자세히보기 →</a>
+      </div>
+      <div class="product-card">
+        <span class="product-tag">TMS</span>
+        <h3 class="product-card-title">상품개발부터 예약 결제 QR검표 분석까지<br>원스톱 관리가 가능합니다.</h3>
+        <ul class="product-features">
+          <li>상품 개발 · 노선 설계</li>
+          <li>예약 · 발권 · QR 검표</li>
+          <li>다국어 지원 · 글로벌 결제 8종</li>
+          <li>탑승 데이터 분석 · 복합상품</li>
+        </ul>
+        <div class="product-mockup"></div>
+        <a href="pages/tms.html" class="btn-product">TMS 자세히보기 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Full-width Image ===== -->
+<section class="full-image">
+  <img src="images/div.hero__overlay.png" alt="교차로 항공뷰">
+</section>
+
+<!-- ===== S5. 도입 성공사례 ===== -->
+<section class="section section-white" id="cases">
+  <div class="container">
+    <h2 class="section-title">T-RiseUp 도입 성공사례</h2>
+    <p class="section-subtitle">교통을 시스템으로 관리하고 고객가치를 만든 사업자<br>성공적인 디지털 전환도 T-RiseUp이 도왔습니다.</p>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-thumb"></div>
+        <div class="case-body">
+          <span class="case-badge">PMS+TMS</span>
+          <div class="case-title">APEC 2025 수송포탈</div>
+          <div class="case-impact">21개국 정상 수송</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-thumb"></div>
+        <div class="case-body">
+          <span class="case-badge">PMS</span>
+          <div class="case-title">제주드림타워</div>
+          <div class="case-impact">VIP 리무진 통합 운영</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-thumb"></div>
+        <div class="case-body">
+          <span class="case-badge">TMS</span>
+          <div class="case-title">부산산단셔틀</div>
+          <div class="case-impact">월 50,000명 이용</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-thumb"></div>
+        <div class="case-body">
+          <span class="case-badge">TMS+Booking</span>
+          <div class="case-title">블랙핑크 월드투어</div>
+          <div class="case-impact">5,000명 · 14거점 · 다국어</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-thumb"></div>
+        <div class="case-body">
+          <span class="case-badge">TMS+TIS</span>
+          <div class="case-title">검암 로열파크씨티</div>
+          <div class="case-impact">4,805세대 일 2,000명+</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-thumb"></div>
+        <div class="case-body">
+          <span class="case-badge">TMS+Booking</span>
+          <div class="case-title">에버랜드</div>
+          <div class="case-impact">4거점 다국어 셔틀</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S6. 수치 지표 ===== -->
+<section class="section section-light">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">18+</div>
+        <div class="metric-label">도입 사례</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">50,000+</div>
+        <div class="metric-label">월간 이용자</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">96%</div>
+        <div class="metric-label">업무 시간 절감</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">7톤</div>
+        <div class="metric-label">CO₂ 감축</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S7. 파트너 ===== -->
+<section class="section section-white" id="about">
+  <div class="container">
+    <h2 class="section-title">T-RiseUp과 함께하는 파트너</h2>
+    <p class="section-subtitle">많은 기업들이 이미 T-RiseUp을 선택하셨습니다.</p>
+    <div class="partners-logos">
+      <!-- 파트너 로고 placeholder -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA Band ===== -->
+<section class="cta-band">
+  <div class="container">
+    <h2 class="cta-band-title">지금 바로 확인하세요</h2>
+    <p class="cta-band-sub">데모를 통해 T-RiseUp의 가치를 직접 경험해보세요.</p>
+    <div class="cta-band-btns">
+      <a href="pages/demo.html" class="btn-cta-primary">무료 상담 신청</a>
+      <a href="#" class="btn-cta-outline">실제 서비스 체험</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-col">
+        <div class="footer-col-title">T-RiseUp</div>
+        <a href="#">PMS</a>
+        <a href="#">TMS</a>
+        <a href="#">TIS</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">RIDEUS</div>
+        <a href="#">Booking</a>
+        <a href="#">My Channel</a>
+        <a href="#">Marketplace</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">도입안내</div>
+        <a href="#">도입사례</a>
+        <a href="#">데모 신청</a>
+        <a href="#">면허 솔루션</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">회사</div>
+        <a href="#">그라운드케이 소개</a>
+        <a href="#">채용</a>
+        <a href="#">블로그</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 GroundK Inc. All rights reserved.</span>
+      <span>서울특별시 강남구 테헤란로 | 대표이사 XXX | 사업자등록번호 XXX-XX-XXXXX</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.main -->
+
+</body>
+</html>

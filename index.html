@@ -292,7 +292,11 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 28px 24px;
-  text-align: center;
+  height: 300px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   transition: box-shadow 0.3s, transform 0.3s;
   cursor: pointer;
 }
@@ -307,7 +311,7 @@ img { max-width: 100%; display: block; }
   margin-bottom: 8px;
 }
 .target-card-desc {
-  font-size: 13px;
+  font-size: 18px;
   color: var(--text-body);
   line-height: 1.6;
 }

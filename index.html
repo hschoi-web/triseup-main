@@ -84,14 +84,14 @@ img { max-width: 100%; display: block; }
 }
 .gnb-logo img { height: 28px; }
 .gnb-nav { display: flex; gap: 28px; align-items: center; }
-.gnb-nav > a {
+.gnb-nav > a:not(.btn-demo) {
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 500;
   color: var(--text-body);
   transition: color 0.2s;
 }
-.gnb-nav > a:hover { color: var(--primary); }
+.gnb-nav > a:not(.btn-demo):hover { color: var(--primary); }
 
 /* Dropdown */
 .gnb-dropdown {

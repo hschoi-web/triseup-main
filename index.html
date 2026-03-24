@@ -398,16 +398,22 @@ img { max-width: 100%; display: block; }
 }
 
 /* ===== S5. Cases ===== */
+.cases-scroll-wrapper {
+  overflow: hidden;
+}
 .cases-scroll {
   display: flex;
   gap: 16px;
-  overflow-x: auto;
-  padding-bottom: 8px;
-  scroll-snap-type: x mandatory;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  width: max-content;
+  animation: scrollCases 25s linear infinite;
 }
-.cases-scroll::-webkit-scrollbar { display: none; }
+.cases-scroll:hover {
+  animation-play-state: paused;
+}
+@keyframes scrollCases {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 .case-card {
   flex: 0 0 200px;
   scroll-snap-align: start;
@@ -433,7 +439,7 @@ img { max-width: 100%; display: block; }
 }
 .case-logo {
   width: 100%;
-  height: 48px;
+  height: 60px;
   background: var(--bg-light);
   border-radius: 6px;
   margin-bottom: 16px;
@@ -778,46 +784,89 @@ img { max-width: 100%; display: block; }
   <div class="container">
     <h2 class="section-title">T-RiseUp 도입 성공사례</h2>
     <p class="section-subtitle">글로벌 스탠다드에 맞춘 완벽한 운영 솔루션<br>성공하는 프로젝트 뒤에는 언제나 T-RiseUp이 있습니다.</p>
-    <div class="cases-scroll">
-      <div class="case-card">
-        <span class="case-badge">PMS+TMS</span>
-        <div class="case-logo">로고</div>
-        <div class="case-title">APEC 2025 수송포탈</div>
-        <div class="case-impact">21개국 정상 · 7개 교통수단</div>
-        <div class="case-desc">21개 회원국 정상부터 대표단까지, 7개 수송수단을 하나의 포탈로 통합 관리</div>
-        <a href="#" class="case-link">자세히 보기 →</a>
-      </div>
-      <div class="case-card">
-        <span class="case-badge">PMS+TMS</span>
-        <div class="case-logo">로고</div>
-        <div class="case-title">부산세계탁구선수권대회</div>
-        <div class="case-impact">990회 운행 · 7톤 CO₂ 감축</div>
-        <div class="case-desc">AI 배차로 990회 운행, 7톤 CO₂ 감축, 공식 백서 실명 인용</div>
-        <a href="#" class="case-link">자세히 보기 →</a>
-      </div>
-      <div class="case-card">
-        <span class="case-badge">TMS</span>
-        <div class="case-logo">로고</div>
-        <div class="case-title">블랙핑크 2025 월드투어</div>
-        <div class="case-impact">5,000명 · 14거점 · 4개국어</div>
-        <div class="case-desc">전 세계 14개 거점, 4개국어 다국어 다이렉트 판 셔틀을</div>
-        <a href="#" class="case-link">자세히 보기 →</a>
-      </div>
-      <div class="case-card">
-        <span class="case-badge">TMS+TIS</span>
-        <div class="case-logo">로고</div>
-        <div class="case-title">부산산단셔틀</div>
-        <div class="case-impact">월 50,000명 · 50개 노선</div>
-        <div class="case-desc">50개 노선, 월 50,000명의 출퇴근을 모바일 QR로 관리</div>
-        <a href="#" class="case-link">자세히 보기 →</a>
-      </div>
-      <div class="case-card">
-        <span class="case-badge">TMS+TIS</span>
-        <div class="case-logo">로고</div>
-        <div class="case-title">검암 로열파크씨티</div>
-        <div class="case-impact">4,805세대 · 일 2,000명+</div>
-        <div class="case-desc">대단지 아파트 셔틀 운영, LG ThinQ 스마트홈 연동</div>
-        <a href="#" class="case-link">자세히 보기 →</a>
+    <div class="cases-scroll-wrapper">
+      <div class="cases-scroll">
+        <div class="case-card">
+          <span class="case-badge">PMS+TMS</span>
+          <div class="case-logo">로고</div>
+          <div class="case-title">APEC 2025 수송포탈</div>
+          <div class="case-impact">21개국 정상 · 7개 교통수단</div>
+          <div class="case-desc">21개 회원국 정상부터 대표단까지, 7개 수송수단을 하나의 포탈로 통합 관리</div>
+          <a href="#" class="case-link">자세히 보기 →</a>
+        </div>
+        <div class="case-card">
+          <span class="case-badge">PMS+TMS</span>
+          <div class="case-logo">로고</div>
+          <div class="case-title">부산세계탁구선수권대회</div>
+          <div class="case-impact">990회 운행 · 7톤 CO₂ 감축</div>
+          <div class="case-desc">AI 배차로 990회 운행, 7톤 CO₂ 감축, 공식 백서 실명 인용</div>
+          <a href="#" class="case-link">자세히 보기 →</a>
+        </div>
+        <div class="case-card">
+          <span class="case-badge">TMS</span>
+          <div class="case-logo">로고</div>
+          <div class="case-title">블랙핑크 2025 월드투어</div>
+          <div class="case-impact">5,000명 · 14거점 · 4개국어</div>
+          <div class="case-desc">전 세계 14개 거점, 4개국어 다국어 다이렉트 판 셔틀을</div>
+          <a href="#" class="case-link">자세히 보기 →</a>
+        </div>
+        <div class="case-card">
+          <span class="case-badge">TMS+TIS</span>
+          <div class="case-logo">로고</div>
+          <div class="case-title">부산산단셔틀</div>
+          <div class="case-impact">월 50,000명 · 50개 노선</div>
+          <div class="case-desc">50개 노선, 월 50,000명의 출퇴근을 모바일 QR로 관리</div>
+          <a href="#" class="case-link">자세히 보기 →</a>
+        </div>
+        <div class="case-card">
+          <span class="case-badge">TMS+TIS</span>
+          <div class="case-logo">로고</div>
+          <div class="case-title">검암 로열파크씨티</div>
+          <div class="case-impact">4,805세대 · 일 2,000명+</div>
+          <div class="case-desc">대단지 아파트 셔틀 운영, LG ThinQ 스마트홈 연동</div>
+          <a href="#" class="case-link">자세히 보기 →</a>
+        </div>
+        <!-- 복제 (무한 스크롤) -->
+        <div class="case-card">
+          <span class="case-badge">PMS+TMS</span>
+          <div class="case-logo">로고</div>
+          <div class="case-title">APEC 2025 수송포탈</div>
+          <div class="case-impact">21개국 정상 · 7개 교통수단</div>
+          <div class="case-desc">21개 회원국 정상부터 대표단까지, 7개 수송수단을 하나의 포탈로 통합 관리</div>
+          <a href="#" class="case-link">자세히 보기 →</a>
+        </div>
+        <div class="case-card">
+          <span class="case-badge">PMS+TMS</span>
+          <div class="case-logo">로고</div>
+          <div class="case-title">부산세계탁구선수권대회</div>
+          <div class="case-impact">990회 운행 · 7톤 CO₂ 감축</div>
+          <div class="case-desc">AI 배차로 990회 운행, 7톤 CO₂ 감축, 공식 백서 실명 인용</div>
+          <a href="#" class="case-link">자세히 보기 →</a>
+        </div>
+        <div class="case-card">
+          <span class="case-badge">TMS</span>
+          <div class="case-logo">로고</div>
+          <div class="case-title">블랙핑크 2025 월드투어</div>
+          <div class="case-impact">5,000명 · 14거점 · 4개국어</div>
+          <div class="case-desc">전 세계 14개 거점, 4개국어 다국어 다이렉트 판 셔틀을</div>
+          <a href="#" class="case-link">자세히 보기 →</a>
+        </div>
+        <div class="case-card">
+          <span class="case-badge">TMS+TIS</span>
+          <div class="case-logo">로고</div>
+          <div class="case-title">부산산단셔틀</div>
+          <div class="case-impact">월 50,000명 · 50개 노선</div>
+          <div class="case-desc">50개 노선, 월 50,000명의 출퇴근을 모바일 QR로 관리</div>
+          <a href="#" class="case-link">자세히 보기 →</a>
+        </div>
+        <div class="case-card">
+          <span class="case-badge">TMS+TIS</span>
+          <div class="case-logo">로고</div>
+          <div class="case-title">검암 로열파크씨티</div>
+          <div class="case-impact">4,805세대 · 일 2,000명+</div>
+          <div class="case-desc">대단지 아파트 셔틀 운영, LG ThinQ 스마트홈 연동</div>
+          <a href="#" class="case-link">자세히 보기 →</a>
+        </div>
       </div>
     </div>
     <div class="cases-more">
@@ -826,29 +875,6 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- ===== S6. 수치 지표 ===== -->
-<section class="section section-white">
-  <div class="container">
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <div class="metric-value">18+</div>
-        <div class="metric-label">도입 사례</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">50,000+</div>
-        <div class="metric-label">월간 이용자</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">96%</div>
-        <div class="metric-label">업무 시간 절감</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">7톤</div>
-        <div class="metric-label">CO₂ 감축</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ===== S7. 파트너 ===== -->
 <section class="section section-white" id="about">

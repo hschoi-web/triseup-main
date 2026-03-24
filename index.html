@@ -274,7 +274,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: -0.3px;
 }
 .section-subtitle {
-  font-size: 15px;
+  font-size: 18px;
   color: var(--text-body);
   text-align: center;
   line-height: 1.7;
@@ -311,7 +311,7 @@ img { max-width: 100%; display: block; }
   margin-bottom: 8px;
 }
 .target-card-desc {
-  font-size: 18px;
+  font-size: 15px;
   color: var(--text-body);
   line-height: 1.6;
 }
@@ -319,7 +319,7 @@ img { max-width: 100%; display: block; }
 /* ===== S3. Product Split ===== */
 .product-desc {
   text-align: center;
-  font-size: 14px;
+  font-size: 18px;
   color: var(--text-body);
   line-height: 1.8;
   margin-bottom: 48px;
@@ -403,12 +403,14 @@ img { max-width: 100%; display: block; }
   gap: 16px;
   overflow-x: auto;
   padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 .cases-scroll::-webkit-scrollbar { display: none; }
 .case-card {
   flex: 0 0 200px;
+  scroll-snap-align: start;
   background: var(--bg-white);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);

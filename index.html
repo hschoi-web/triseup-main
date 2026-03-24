@@ -83,15 +83,84 @@ img { max-width: 100%; display: block; }
   justify-content: space-between;
 }
 .gnb-logo img { height: 28px; }
-.gnb-nav { display: flex; gap: 32px; align-items: center; }
-.gnb-nav a {
+.gnb-nav { display: flex; gap: 28px; align-items: center; }
+.gnb-nav > a {
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 500;
   color: var(--text-body);
   transition: color 0.2s;
 }
-.gnb-nav a:hover { color: var(--primary); }
+.gnb-nav > a:hover { color: var(--primary); }
+
+/* Dropdown */
+.gnb-dropdown {
+  position: relative;
+}
+.gnb-dropdown-toggle {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-body);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  transition: color 0.2s;
+}
+.gnb-dropdown-toggle:hover { color: var(--primary); }
+.gnb-dropdown-toggle::after {
+  content: '';
+  display: inline-block;
+  width: 0; height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+  margin-top: 1px;
+}
+.gnb-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  padding: 12px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s;
+  z-index: 1001;
+}
+.gnb-dropdown:hover .gnb-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.gnb-dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.15s;
+}
+.gnb-dropdown-item:hover {
+  background: var(--bg-light);
+}
+.gnb-dropdown-item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+.gnb-dropdown-item-desc {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
 .btn-demo {
   display: inline-flex;
   align-items: center;
@@ -510,10 +579,30 @@ img { max-width: 100%; display: block; }
   <div class="gnb-inner">
     <a href="#" class="gnb-logo"><img src="images/TRISEUP.png" alt="T-RiseUp"></a>
     <div class="gnb-nav">
-      <a href="#products">기능</a>
+      <div class="gnb-dropdown">
+        <button class="gnb-dropdown-toggle">제품</button>
+        <div class="gnb-dropdown-menu">
+          <a href="pages/pms.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">PMS</div>
+            <div class="gnb-dropdown-item-desc">의전·수송 통합 관리</div>
+          </a>
+          <a href="pages/tms.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">TMS</div>
+            <div class="gnb-dropdown-item-desc">셔틀·관광 티켓 관리</div>
+          </a>
+          <a href="pages/license.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">면허 솔루션</div>
+            <div class="gnb-dropdown-item-desc">플랫폼운송사업 면허</div>
+          </a>
+          <a href="pages/marketplace.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">Marketplace</div>
+            <div class="gnb-dropdown-item-desc">RIDEUS 통합 판매채널</div>
+          </a>
+        </div>
+      </div>
       <a href="#cases">도입사례</a>
-      <a href="#about">소개</a>
-      <a href="pages/demo.html" class="btn-demo">데모 신청</a>
+      <a href="#about">리소스</a>
+      <a href="pages/demo.html" class="btn-demo">무료 데모 신청</a>
     </div>
   </div>
 </nav>

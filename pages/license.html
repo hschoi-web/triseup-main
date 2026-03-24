@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-RiseUp | 플랫폼운송사업 면허 솔루션</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { font-family: 'Noto Sans KR', sans-serif; color: #1A1A2E; background: #fff; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+img { max-width: 100%; display: block; }
+
+:root {
+  --max-w: 1060px;
+  --primary: #0066CC;
+  --primary-dark: #004C99;
+  --text-dark: #1A1A2E;
+  --text-body: #4A4A68;
+  --text-light: #8888A0;
+  --bg-white: #ffffff;
+  --bg-light: #F7F8FC;
+  --bg-dark: #111827;
+  --border: #E2E4EA;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,0.10);
+  --font-head: 'Inter', 'Noto Sans KR', sans-serif;
+  --font-body: 'Noto Sans KR', 'Inter', sans-serif;
+}
+
+.container { width: 100%; max-width: 1060px; margin: 0 auto; padding: 0 40px; }
+
+/* GNB */
+.gnb { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 1000; display: flex; align-items: center; justify-content: center; }
+.gnb-inner { width: 100%; max-width: 1060px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
+.gnb-logo img { height: 28px; }
+.gnb-nav { display: flex; gap: 28px; align-items: center; }
+.gnb-nav > a:not(.btn-demo) { font-family: var(--font-body); font-size: 14px; font-weight: 500; color: var(--text-body); transition: color 0.2s; }
+.gnb-nav > a:not(.btn-demo):hover { color: var(--primary); }
+.gnb-dropdown { position: relative; }
+.gnb-dropdown-toggle { font-family: var(--font-body); font-size: 14px; font-weight: 500; color: var(--text-body); background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 4px; padding: 0; transition: color 0.2s; }
+.gnb-dropdown-toggle:hover { color: var(--primary); }
+.gnb-dropdown-toggle::after { content: ''; display: inline-block; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid currentColor; }
+.gnb-dropdown-menu { position: absolute; top: calc(100% + 12px); left: 0; min-width: 200px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 12px 0; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.2s; z-index: 1001; }
+.gnb-dropdown:hover .gnb-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.gnb-dropdown-item { display: block; padding: 10px 20px; transition: background 0.15s; }
+.gnb-dropdown-item:hover { background: var(--bg-light); }
+.gnb-dropdown-item-title { font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+.gnb-dropdown-item-desc { font-size: 12px; color: var(--text-light); }
+.btn-demo { display: inline-flex; align-items: center; padding: 8px 20px; font-size: 13px; font-weight: 600; color: #ffffff !important; background: var(--primary); border-radius: 6px; transition: background 0.2s; }
+.btn-demo:hover { background: var(--primary-dark); color: #ffffff !important; }
+
+/* Hero */
+.hero { width: 100%; aspect-ratio: 1120 / 377; position: relative; display: flex; align-items: center; margin-top: 64px; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: url('../images/div.hero__overlay.png') center center / cover no-repeat; z-index: 0; }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.6) 100%); }
+.hero-content { position: relative; z-index: 1; padding: 0 60px; color: #fff; }
+.product-tag { display: inline-block; font-family: var(--font-head); font-size: 13px; font-weight: 700; color: var(--primary); background: rgba(255,255,255,0.9); padding: 4px 14px; border-radius: 4px; margin-bottom: 16px; }
+.hero-headline { font-family: var(--font-head); font-size: 36px; font-weight: 800; line-height: 1.3; letter-spacing: -0.5px; margin-bottom: 12px; }
+.hero-sub { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 24px; }
+.hero-btns { display: flex; gap: 12px; }
+.btn-hero-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; font-size: 14px; font-weight: 600; color: #fff; background: var(--primary); border-radius: var(--radius-sm); transition: background 0.2s; }
+.btn-hero-primary:hover { background: var(--primary-dark); }
+.btn-hero-outline { display: inline-flex; align-items: center; padding: 12px 28px; font-size: 14px; font-weight: 500; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.5); border-radius: var(--radius-sm); transition: all 0.2s; }
+.btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+/* Section */
+.section { width: 100%; padding: 80px 0 80px; }
+.section-white { background: var(--bg-white); }
+.section-light { background: var(--bg-light); }
+.section-header { text-align: center; margin-bottom: 48px; }
+.section-header h2 { font-family: var(--font-head); font-size: 28px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 12px; }
+.section-header p { font-size: 18px; color: var(--text-body); line-height: 1.7; }
+
+/* Problem Cards */
+.problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.problem-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px 24px; text-align: center; }
+.problem-icon { font-size: 32px; margin-bottom: 16px; }
+.problem-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.problem-card p { font-size: 14px; color: var(--text-body); line-height: 1.6; }
+.problem-highlight { font-size: 13px; font-weight: 600; color: #DC2626; margin-top: 8px; }
+
+/* 9 Areas Grid */
+.areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.area-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; display: flex; align-items: flex-start; gap: 16px; transition: box-shadow 0.3s, transform 0.3s; }
+.area-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+.area-num { width: 36px; height: 36px; background: rgba(0,102,204,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--primary); flex-shrink: 0; }
+.area-info h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.area-info p { font-size: 13px; color: var(--text-body); line-height: 1.5; }
+.area-check { color: var(--primary); font-size: 14px; margin-left: auto; flex-shrink: 0; }
+
+/* Compare Table */
+.compare-table { width: 100%; border-collapse: collapse; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); }
+.compare-table th, .compare-table td { padding: 16px 24px; text-align: center; font-size: 14px; }
+.compare-table thead th { background: var(--bg-light); font-weight: 700; color: var(--text-dark); border-bottom: 1px solid var(--border); }
+.compare-table thead th:first-child { text-align: left; }
+.compare-table tbody td { border-bottom: 1px solid var(--border); }
+.compare-table tbody td:first-child { text-align: left; font-weight: 600; }
+.compare-table .col-self { color: #DC2626; }
+.compare-table .col-triseup { color: var(--primary); font-weight: 700; }
+.compare-table tbody tr:last-child td { border-bottom: none; }
+
+/* Case Study */
+.case-study { background: var(--bg-light); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.case-study-badge { display: inline-block; font-size: 12px; font-weight: 600; color: #16A34A; background: rgba(22,163,74,0.08); padding: 4px 12px; border-radius: 4px; margin-bottom: 12px; }
+.case-study h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.case-study-sub { font-size: 15px; color: var(--text-body); margin-bottom: 20px; }
+.case-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.case-metric { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; text-align: center; }
+.case-metric-value { font-family: var(--font-head); font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+.case-metric-label { font-size: 13px; color: var(--text-body); }
+.case-study-visual { width: 100%; aspect-ratio: 4 / 3; background: var(--border); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-light); }
+
+/* CTA */
+.cta-band { width: 100%; padding: 64px 0; background: var(--bg-dark); text-align: center; }
+.cta-band h2 { font-family: var(--font-head); font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.cta-band p { font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; }
+.btn-cta-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; font-size: 14px; font-weight: 600; color: #fff; background: var(--primary); border-radius: var(--radius-sm); transition: background 0.2s; }
+.btn-cta-primary:hover { background: var(--primary-dark); }
+.btn-cta-outline { display: inline-flex; align-items: center; padding: 14px 32px; font-size: 14px; font-weight: 500; color: #fff; border: 1px solid rgba(255,255,255,0.3); border-radius: var(--radius-sm); transition: all 0.2s; }
+.btn-cta-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+/* Footer */
+.footer { width: 100%; background: #1A1F2E; color: rgba(255,255,255,0.7); padding: 64px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 48px; }
+.footer-logo-img { height: 24px; margin-bottom: 16px; filter: brightness(0) invert(1); }
+.footer-company { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+.footer-info { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.8; }
+.footer-col h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { font-size: 14px; color: rgba(255,255,255,0.5); transition: color 0.2s; }
+.footer-col ul li a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center; }
+.footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.3); }
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .gnb-nav { display: none; }
+  .hero { aspect-ratio: auto; min-height: 360px; }
+  .hero-headline { font-size: 26px; }
+  .hero-content { padding: 0 20px; }
+  .problem-grid { grid-template-columns: 1fr 1fr; }
+  .areas-grid { grid-template-columns: 1fr; }
+  .case-study { grid-template-columns: 1fr; padding: 32px; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- GNB -->
+<nav class="gnb">
+  <div class="gnb-inner">
+    <a href="../index.html" class="gnb-logo"><img src="../images/TRISEUP.png" alt="T-RiseUp"></a>
+    <div class="gnb-nav">
+      <div class="gnb-dropdown">
+        <button class="gnb-dropdown-toggle">제품</button>
+        <div class="gnb-dropdown-menu">
+          <a href="pms.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">PMS</div>
+            <div class="gnb-dropdown-item-desc">의전·수송 통합 관리</div>
+          </a>
+          <a href="tms.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">TMS</div>
+            <div class="gnb-dropdown-item-desc">셔틀·관광 티켓 관리</div>
+          </a>
+          <a href="license.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">면허 솔루션</div>
+            <div class="gnb-dropdown-item-desc">플랫폼운송사업 면허</div>
+          </a>
+          <a href="marketplace.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">Marketplace</div>
+            <div class="gnb-dropdown-item-desc">RIDEUS 통합 판매채널</div>
+          </a>
+        </div>
+      </div>
+      <a href="../index.html#cases">도입사례</a>
+      <a href="#">리소스</a>
+      <a href="demo.html" class="btn-demo">무료 데모 신청</a>
+    </div>
+  </div>
+</nav>
+
+<!-- S1. Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="product-tag">면허 솔루션</span>
+    <h1 class="hero-headline">타입1 면허,<br>자체개발 없이 준비하세요</h1>
+    <p class="hero-sub">국토부 심사 9개 영역을 T-RiseUp 하나로<br>수억 원 비용 절감, 1년 이상 기간 단축</p>
+    <div class="hero-btns">
+      <a href="demo.html?product=license" class="btn-hero-primary">면허 상담 신청</a>
+      <a href="#areas" class="btn-hero-outline">9개 영역 확인</a>
+    </div>
+  </div>
+</section>
+
+<!-- S2. 자체 개발의 문제점 -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <h2>자체 개발의 현실</h2>
+      <p>플랫폼운송사업 면허를 위한 시스템 자체개발, 이런 문제가 있습니다.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">💰</div>
+        <h4>수억 원 비용</h4>
+        <p>시스템 개발에만 막대한 비용이 소요됩니다.</p>
+        <div class="problem-highlight">3~5억 원+</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⏰</div>
+        <h4>1년 이상 기간</h4>
+        <p>개발부터 테스트까지 긴 시간이 필요합니다.</p>
+        <div class="problem-highlight">12~18개월</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">👥</div>
+        <h4>기술팀 필요</h4>
+        <p>개발자, 디자이너, PM 등 전문 인력이 필요합니다.</p>
+        <div class="problem-highlight">5명+</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">❓</div>
+        <h4>통과 불확실성</h4>
+        <p>자체개발 시스템의 심사 통과를 보장할 수 없습니다.</p>
+        <div class="problem-highlight">보장 불가</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3. 9개 심사 영역 -->
+<section class="section section-light" id="areas">
+  <div class="container">
+    <div class="section-header">
+      <h2>국토부 심사 9개 영역</h2>
+      <p>T-RiseUp은 모든 심사 영역을 충족합니다.</p>
+    </div>
+    <div class="areas-grid">
+      <div class="area-card">
+        <span class="area-num">1</span>
+        <div class="area-info">
+          <h4>운송정보 관리</h4>
+          <p>운송 데이터 수집·저장·관리 체계</p>
+        </div>
+        <span class="area-check"><i class="fas fa-check-circle"></i></span>
+      </div>
+      <div class="area-card">
+        <span class="area-num">2</span>
+        <div class="area-info">
+          <h4>차량 및 기사 관리</h4>
+          <p>차량 등록·기사 자격·운행이력 관리</p>
+        </div>
+        <span class="area-check"><i class="fas fa-check-circle"></i></span>
+      </div>
+      <div class="area-card">
+        <span class="area-num">3</span>
+        <div class="area-info">
+          <h4>배차 시스템</h4>
+          <p>자동 배차·수동 배차·배차 최적화</p>
+        </div>
+        <span class="area-check"><i class="fas fa-check-circle"></i></span>
+      </div>
+      <div class="area-card">
+        <span class="area-num">4</span>
+        <div class="area-info">
+          <h4>실시간 관제</h4>
+          <p>GPS 기반 차량 위치·운행 상태 모니터링</p>
+        </div>
+        <span class="area-check"><i class="fas fa-check-circle"></i></span>
+      </div>
+      <div class="area-card">
+        <span class="area-num">5</span>
+        <div class="area-info">
+          <h4>결제 시스템</h4>
+          <p>전자결제·요금 산정·결제 수단 관리</p>
+        </div>
+        <span class="area-check"><i class="fas fa-check-circle"></i></span>
+      </div>
+      <div class="area-card">
+        <span class="area-num">6</span>
+        <div class="area-info">
+          <h4>정산 시스템</h4>
+          <p>기사·파트너사 정산 자동화</p>
+        </div>
+        <span class="area-check"><i class="fas fa-check-circle"></i></span>
+      </div>
+      <div class="area-card">
+        <span class="area-num">7</span>
+        <div class="area-info">
+          <h4>안전 관리</h4>
+          <p>돌발 감지·사고 대응·안전 프로토콜</p>
+        </div>
+        <span class="area-check"><i class="fas fa-check-circle"></i></span>
+      </div>
+      <div class="area-card">
+        <span class="area-num">8</span>
+        <div class="area-info">
+          <h4>이용자 보호</h4>
+          <p>고객 정보 보호·불만 처리·서비스 품질</p>
+        </div>
+        <span class="area-check"><i class="fas fa-check-circle"></i></span>
+      </div>
+      <div class="area-card">
+        <span class="area-num">9</span>
+        <div class="area-info">
+          <h4>데이터 보안</h4>
+          <p>암호화·접근 제어·백업·보안 인증</p>
+        </div>
+        <span class="area-check"><i class="fas fa-check-circle"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S4. 비교표 -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <h2>자체개발 vs T-RiseUp</h2>
+      <p>비용, 기간, 인력, 심사 결과까지 비교해보세요.</p>
+    </div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th>자체개발</th>
+          <th>T-RiseUp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>비용</td>
+          <td class="col-self">3~5억 원+</td>
+          <td class="col-triseup">월정액</td>
+        </tr>
+        <tr>
+          <td>기간</td>
+          <td class="col-self">12~18개월</td>
+          <td class="col-triseup">1~2주</td>
+        </tr>
+        <tr>
+          <td>인력</td>
+          <td class="col-self">5명+</td>
+          <td class="col-triseup">0명</td>
+        </tr>
+        <tr>
+          <td>심사</td>
+          <td class="col-self">보장 불가</td>
+          <td class="col-triseup">검증 완료</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- S5. 성공 사례 -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header">
+      <h2>도입 성공사례</h2>
+      <p>T-RiseUp으로 면허 심사를 통과한 레퍼런스</p>
+    </div>
+    <div class="case-study">
+      <div>
+        <span class="case-study-badge">면허 심사 통과 완료</span>
+        <h3>WIZMO</h3>
+        <p class="case-study-sub">T-RiseUp 기반으로 타입1 면허 심사를 성공적으로 통과했습니다.</p>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <div class="case-metric-value">0원</div>
+            <div class="case-metric-label">자체개발 비용</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-value">100%</div>
+            <div class="case-metric-label">9개 영역 충족</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-value">2주</div>
+            <div class="case-metric-label">준비 기간</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-value">풀서포트</div>
+            <div class="case-metric-label">심사 대응 지원</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-study-visual">WIZMO 사례 이미지</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <h2>면허 준비, T-RiseUp과 함께하세요</h2>
+    <p>맞춤 상담을 통해 면허 취득 전략을 확인하세요.</p>
+    <div class="cta-btns">
+      <a href="demo.html?product=license" class="btn-cta-primary">면허 상담 신청</a>
+      <a href="#" class="btn-cta-outline">체크리스트 다운로드</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="../images/TRISEUP.png" alt="T-RiseUp" class="footer-logo-img">
+        <p class="footer-company">(주)그라운드케이 | 대표이사: 홍길동</p>
+        <p class="footer-info">사업자등록번호: 000-00-00000<br>부산광역시 해운대구 센텀중앙로 00, 0층<br>TEL: 051-000-0000 | FAX: 051-000-0001<br>contact@groundk.co.kr</p>
+      </div>
+      <div class="footer-col">
+        <h4>제품</h4>
+        <ul>
+          <li><a href="pms.html">PMS — 의전·수송</a></li>
+          <li><a href="tms.html">TMS — 셔틀·관광</a></li>
+          <li><a href="license.html">면허 솔루션</a></li>
+          <li><a href="marketplace.html">Marketplace</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>회사</h4>
+        <ul>
+          <li><a href="cases.html">도입사례</a></li>
+          <li><a href="#">리소스</a></li>
+          <li><a href="#">회사소개</a></li>
+          <li><a href="#">채용</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>서비스</h4>
+        <ul>
+          <li><a href="demo.html">데모 신청</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">이용약관</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 GroundK. All rights reserved.</p></div>
+  </div>
+</footer>
+
+</body>
+</html>

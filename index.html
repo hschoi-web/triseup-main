@@ -588,41 +588,54 @@ img { max-width: 100%; display: block; }
 /* ===== Footer ===== */
 .footer {
   width: 100%;
-  background: #0A0F1A;
-  padding: 48px 0 32px;
+  background: var(--bg-dark);
+  color: rgba(255,255,255,0.7);
+  padding: 64px 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+.footer-logo-img {
+  height: 24px;
+  margin-bottom: 16px;
+  filter: brightness(0) invert(1);
+}
+.footer-company {
+  font-size: 14px;
   color: rgba(255,255,255,0.5);
-  font-size: 12px;
-}
-.footer-inner {
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 32px;
-}
-.footer-col-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.8);
   margin-bottom: 12px;
 }
-.footer-col a {
-  display: block;
-  font-size: 12px;
+.footer-info {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.8;
+}
+.footer-col h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+.footer-col ul li a {
+  font-size: 14px;
   color: rgba(255,255,255,0.5);
-  margin-bottom: 6px;
   transition: color 0.2s;
 }
-.footer-col a:hover { color: #fff; }
+.footer-col ul li a:hover { color: #fff; }
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding-top: 24px;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
 }
 
 /* ===== Responsive ===== */
@@ -866,37 +879,41 @@ img { max-width: 100%; display: block; }
 
 <!-- ===== Footer ===== -->
 <footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
+  <div class="container">
+    <div class="footer-grid">
       <div class="footer-col">
-        <div class="footer-col-title">T-RiseUp</div>
-        <a href="#">PMS</a>
-        <a href="#">TMS</a>
-        <a href="#">TIS</a>
+        <img src="images/TRISEUP.png" alt="T-RiseUp" class="footer-logo-img">
+        <p class="footer-company">(주)그라운드케이 | 대표이사: 홍길동</p>
+        <p class="footer-info">사업자등록번호: 000-00-00000<br>부산광역시 해운대구 센텀중앙로 00, 0층<br>TEL: 051-000-0000 | FAX: 051-000-0001<br>contact@groundk.co.kr</p>
       </div>
       <div class="footer-col">
-        <div class="footer-col-title">RIDEUS</div>
-        <a href="#">Booking</a>
-        <a href="#">My Channel</a>
-        <a href="#">Marketplace</a>
+        <h4>제품</h4>
+        <ul>
+          <li><a href="pages/pms.html">PMS — 의전·수송</a></li>
+          <li><a href="pages/tms.html">TMS — 셔틀·관광</a></li>
+          <li><a href="pages/license.html">면허 솔루션</a></li>
+          <li><a href="pages/marketplace.html">Marketplace</a></li>
+        </ul>
       </div>
       <div class="footer-col">
-        <div class="footer-col-title">도입안내</div>
-        <a href="#">도입사례</a>
-        <a href="#">데모 신청</a>
-        <a href="#">면허 솔루션</a>
+        <h4>회사</h4>
+        <ul>
+          <li><a href="pages/cases.html">도입사례</a></li>
+          <li><a href="#">리소스</a></li>
+          <li><a href="#">회사소개</a></li>
+          <li><a href="#">채용</a></li>
+        </ul>
       </div>
       <div class="footer-col">
-        <div class="footer-col-title">회사</div>
-        <a href="#">그라운드케이 소개</a>
-        <a href="#">채용</a>
-        <a href="#">블로그</a>
+        <h4>서비스</h4>
+        <ul>
+          <li><a href="pages/demo.html">데모 신청</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">이용약관</a></li>
+        </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>&copy; 2025 GroundK Inc. All rights reserved.</span>
-      <span>서울특별시 강남구 테헤란로 | 대표이사 XXX | 사업자등록번호 XXX-XX-XXXXX</span>
-    </div>
+    <div class="footer-bottom"><p>&copy; 2026 GroundK. All rights reserved.</p></div>
   </div>
 </footer>
 

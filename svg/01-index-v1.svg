@@ -1,0 +1,282 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="2131" viewBox="0 0 1060 2131">
+  <defs>
+    <linearGradient id="ctaGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0066CC"/>
+      <stop offset="100%" stop-color="#004C99"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Full page white background -->
+  <rect width="1060" height="2131" fill="#ffffff"/>
+
+  <!-- ===== 1. GNB (0-64px) ===== -->
+  <rect width="1060" height="64" fill="#ffffff"/>
+  <line x1="0" y1="64" x2="1060" y2="64" stroke="#E2E4EA" stroke-width="1"/>
+  <!-- Logo -->
+  <text x="40" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="800" fill="#1A1A2E">T-Rise</text>
+  <text x="108" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="800" fill="#22C55E">Up</text>
+  <!-- Nav items -->
+  <text x="700" y="38" font-family="Arial, sans-serif" font-size="14" font-weight="500" fill="#4A4A68">제품 ▾</text>
+  <text x="770" y="38" font-family="Arial, sans-serif" font-size="14" font-weight="500" fill="#4A4A68">도입사례</text>
+  <!-- Demo button -->
+  <rect x="860" y="18" width="140" height="36" rx="6" fill="#0066CC"/>
+  <text x="930" y="41" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">무료 데모 신청</text>
+
+  <!-- ===== 2. HERO (64-441px, 377px height) ===== -->
+  <rect y="64" width="1060" height="377" fill="#2A2A3E"/>
+  <!-- Headline -->
+  <text x="530" y="195" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="#ffffff" text-anchor="middle">Your Ground</text>
+  <text x="530" y="255" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="#ffffff" text-anchor="middle">Digital Partner</text>
+  <!-- Subtitle -->
+  <text x="530" y="290" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" opacity="0.7" text-anchor="middle">의전·수송·셔틀·관광 — 모든 운영을 하나의 플랫폼으로 통합 관리하세요.</text>
+  <!-- Hero Buttons -->
+  <rect x="320" y="310" width="150" height="44" rx="6" fill="#0066CC"/>
+  <text x="395" y="337" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">무료 데모 신청</text>
+  <rect x="484" y="310" width="150" height="44" rx="6" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+  <text x="559" y="337" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">PMS 자세히보기</text>
+  <rect x="648" y="310" width="150" height="44" rx="6" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+  <text x="723" y="337" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">TMS 자세히보기</text>
+  <!-- Hero Stats -->
+  <g transform="translate(280,380)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#ffffff">50,000+</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" opacity="0.7">월간 이용자</text>
+  </g>
+  <g transform="translate(420,380)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#ffffff">65%↑</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" opacity="0.7">업무 효율</text>
+  </g>
+  <g transform="translate(540,380)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#ffffff">8초</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" opacity="0.7">실시간 관제</text>
+  </g>
+  <g transform="translate(640,380)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#ffffff">7분</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" opacity="0.7">배차 완료</text>
+  </g>
+
+  <!-- ===== 3. Target Cards (441-741px, 300px height) ===== -->
+  <rect y="441" width="1060" height="300" fill="#ffffff"/>
+  <!-- Section Title -->
+  <text x="530" y="496" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E" text-anchor="middle">T-RiseUp은 현장에 최적화 된 올인원 모빌리티 솔루션입니다.</text>
+  <!-- Section Subtitle -->
+  <text x="530" y="522" font-family="Arial, sans-serif" font-size="14" fill="#4A4A68" text-anchor="middle">T-RiseUp은 의전 수송부터 관광 셔틀까지 모빌리티 전 분야의 운영사에게 효율적인 자산관리와 비즈니스 확장을 지원하는 통합 솔루션입니다.</text>
+  <!-- Card 1: 의전·수송 -->
+  <g transform="translate(40,545)">
+    <rect width="230" height="180" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <text x="20" y="32" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#1A1A2E">의전·수송</text>
+    <text x="20" y="58" font-family="Arial, sans-serif" font-size="13" fill="#4A4A68">관광대절(쇼퍼·관광택시)</text>
+    <text x="20" y="78" font-family="Arial, sans-serif" font-size="13" fill="#4A4A68">카지노/리조트/기업총무팀/호텔</text>
+  </g>
+  <!-- Card 2: 셔틀·관광 -->
+  <g transform="translate(285,545)">
+    <rect width="230" height="180" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <text x="20" y="32" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#1A1A2E">셔틀·관광</text>
+    <text x="20" y="58" font-family="Arial, sans-serif" font-size="13" fill="#4A4A68">전세버스/통근/통학 셔틀</text>
+    <text x="20" y="78" font-family="Arial, sans-serif" font-size="13" fill="#4A4A68">여행사/지자체/테마파크</text>
+  </g>
+  <!-- Card 3: 플랫폼 면허 -->
+  <g transform="translate(530,545)">
+    <rect width="230" height="180" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <text x="20" y="32" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#1A1A2E">플랫폼 면허</text>
+    <text x="20" y="58" font-family="Arial, sans-serif" font-size="13" fill="#4A4A68">택시사업자 · 운수회사</text>
+    <text x="20" y="78" font-family="Arial, sans-serif" font-size="13" fill="#4A4A68">신규 모빌리티 사업 법인</text>
+  </g>
+  <!-- Card 4: T-RiseUp 파트너 -->
+  <g transform="translate(775,545)">
+    <rect width="230" height="180" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <text x="20" y="32" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#1A1A2E">T-RiseUp 파트너</text>
+    <text x="20" y="58" font-family="Arial, sans-serif" font-size="13" fill="#4A4A68">T-RiseUp 고객이라면</text>
+    <text x="20" y="78" font-family="Arial, sans-serif" font-size="13" fill="#4A4A68">RIDEUS Marketplace로 유통 확장</text>
+  </g>
+
+  <!-- ===== 4. Products (741-1141px, 400px height) ===== -->
+  <rect y="741" width="1060" height="400" fill="#ffffff"/>
+  <!-- Section Title -->
+  <text x="530" y="790" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E" text-anchor="middle">T-RiseUp은 모빌리티 운영의 전 과정을 빠르게 관리합니다.</text>
+  <!-- Description -->
+  <text x="530" y="816" font-family="Arial, sans-serif" font-size="15" fill="#4A4A68" text-anchor="middle">예약, 배차, 정산의 반복적인 업무를 줄이고 정교한 스케줄과 재고 관리 기능으로 최적의 배차 체계를 구축합니다.</text>
+  <text x="530" y="838" font-family="Arial, sans-serif" font-size="15" fill="#4A4A68" text-anchor="middle">현장에서는 검표 앱으로 탑승처리를 간소화하고 데이터로 실시간 확인되는 탑승현황은</text>
+  <text x="530" y="858" font-family="Arial, sans-serif" font-size="15" fill="#4A4A68" text-anchor="middle">대규모 행사와 글로벌 이동 서비스에도 안정적인 운영 환경을 제공합니다.</text>
+
+  <!-- PMS Card -->
+  <g transform="translate(40,880)">
+    <rect width="475" height="250" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <!-- PMS badge -->
+    <rect x="20" y="16" width="48" height="24" rx="12" fill="#0066CC" opacity="0.1"/>
+    <text x="44" y="33" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#0066CC" text-anchor="middle">PMS</text>
+    <!-- Title -->
+    <text x="20" y="66" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#1A1A2E">예약·배차·관제·정산</text>
+    <text x="20" y="88" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#1A1A2E">4채널 아키텍처로 운영 효율을 극대화합니다.</text>
+    <!-- Features -->
+    <text x="20" y="116" font-family="Arial, sans-serif" font-size="14" fill="#1A1A2E">✓ AI 견적 자동화 · 95% 정확도</text>
+    <text x="20" y="138" font-family="Arial, sans-serif" font-size="14" fill="#1A1A2E">✓ 5초 GPS 갱신 실시간 관제</text>
+    <text x="20" y="160" font-family="Arial, sans-serif" font-size="14" fill="#1A1A2E">✓ 4채널 바이채널 운영</text>
+    <text x="20" y="182" font-family="Arial, sans-serif" font-size="14" fill="#1A1A2E">✓ 예약 → 배차 → 관제 → 정산 원스톱</text>
+    <!-- Mockup placeholder -->
+    <rect x="20" y="196" width="435" height="20" rx="4" fill="#E2E4EA"/>
+    <!-- Link -->
+    <text x="20" y="240" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#0066CC">PMS 자세히보기 →</text>
+  </g>
+
+  <!-- TMS Card -->
+  <g transform="translate(540,880)">
+    <rect width="475" height="250" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <!-- TMS badge -->
+    <rect x="20" y="16" width="48" height="24" rx="12" fill="#0066CC" opacity="0.1"/>
+    <text x="44" y="33" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#0066CC" text-anchor="middle">TMS</text>
+    <!-- Title -->
+    <text x="20" y="66" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#1A1A2E">상품개발부터 예약 결제 QR검표 분석까지</text>
+    <text x="20" y="88" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#1A1A2E">원스톱 관리가 가능합니다.</text>
+    <!-- Features -->
+    <text x="20" y="116" font-family="Arial, sans-serif" font-size="14" fill="#1A1A2E">✓ 상품 개발 · 노선 설계</text>
+    <text x="20" y="138" font-family="Arial, sans-serif" font-size="14" fill="#1A1A2E">✓ 예약 · 발권 · QR 검표</text>
+    <text x="20" y="160" font-family="Arial, sans-serif" font-size="14" fill="#1A1A2E">✓ 다국어 지원 · 글로벌 결제 8종</text>
+    <text x="20" y="182" font-family="Arial, sans-serif" font-size="14" fill="#1A1A2E">✓ 탑승 데이터 분석 · 복합상품</text>
+    <!-- Mockup placeholder -->
+    <rect x="20" y="196" width="435" height="20" rx="4" fill="#E2E4EA"/>
+    <!-- Link -->
+    <text x="20" y="240" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#0066CC">TMS 자세히보기 →</text>
+  </g>
+
+  <!-- ===== 5. Full-width Image Band (1141-1241px, 100px) ===== -->
+  <rect y="1141" width="1060" height="100" fill="#E2E4EA"/>
+  <text x="530" y="1197" font-family="Arial, sans-serif" font-size="14" fill="#8888A0" text-anchor="middle">Rectangle.png (풀와이드 차량 이미지)</text>
+
+  <!-- ===== 6. Success Cases (1241-1641px, 400px) ===== -->
+  <rect y="1241" width="1060" height="400" fill="#ffffff"/>
+  <!-- Section Title -->
+  <text x="530" y="1290" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E" text-anchor="middle">T-RiseUp 도입 성공사례</text>
+  <text x="530" y="1315" font-family="Arial, sans-serif" font-size="15" fill="#4A4A68" text-anchor="middle">글로벌 스탠다드에 맞춘 완벽한 운영 솔루션</text>
+  <text x="530" y="1337" font-family="Arial, sans-serif" font-size="15" fill="#4A4A68" text-anchor="middle">성공하는 프로젝트 뒤에는 언제나 T-RiseUp이 있습니다.</text>
+
+  <!-- Case Card 1: APEC -->
+  <g transform="translate(40,1355)">
+    <rect width="185" height="220" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <rect x="12" y="12" width="60" height="20" rx="4" fill="#0066CC" opacity="0.08"/>
+    <text x="42" y="27" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#0066CC" text-anchor="middle">PMS+TMS</text>
+    <rect x="12" y="42" width="161" height="50" rx="6" fill="#E2E4EA"/>
+    <text x="92" y="72" font-family="Arial, sans-serif" font-size="11" fill="#8888A0" text-anchor="middle">로고</text>
+    <text x="12" y="114" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#1A1A2E">APEC 2025 수송포탈</text>
+    <text x="12" y="134" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#0066CC">21개국 정상 · 7개 교통수단</text>
+    <text x="12" y="155" font-family="Arial, sans-serif" font-size="11" fill="#4A4A68">21개 회원국 정상부터 대표단까지</text>
+    <text x="12" y="170" font-family="Arial, sans-serif" font-size="11" fill="#4A4A68">7개 수송수단 통합 관리</text>
+    <text x="12" y="200" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+
+  <!-- Case Card 2: 부산세계탁구 -->
+  <g transform="translate(240,1355)">
+    <rect width="185" height="220" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <rect x="12" y="12" width="60" height="20" rx="4" fill="#0066CC" opacity="0.08"/>
+    <text x="42" y="27" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#0066CC" text-anchor="middle">PMS+TMS</text>
+    <rect x="12" y="42" width="161" height="50" rx="6" fill="#E2E4EA"/>
+    <text x="92" y="72" font-family="Arial, sans-serif" font-size="11" fill="#8888A0" text-anchor="middle">로고</text>
+    <text x="12" y="114" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#1A1A2E">부산세계탁구선수권대회</text>
+    <text x="12" y="134" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#0066CC">990회 운행 · 7톤 CO2 감축</text>
+    <text x="12" y="155" font-family="Arial, sans-serif" font-size="11" fill="#4A4A68">AI 배차로 990회 운행</text>
+    <text x="12" y="170" font-family="Arial, sans-serif" font-size="11" fill="#4A4A68">공식 백서 실명 인용</text>
+    <text x="12" y="200" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+
+  <!-- Case Card 3: 블랙핑크 -->
+  <g transform="translate(440,1355)">
+    <rect width="185" height="220" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <rect x="12" y="12" width="36" height="20" rx="4" fill="#0066CC" opacity="0.08"/>
+    <text x="30" y="27" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#0066CC" text-anchor="middle">TMS</text>
+    <rect x="12" y="42" width="161" height="50" rx="6" fill="#E2E4EA"/>
+    <text x="92" y="72" font-family="Arial, sans-serif" font-size="11" fill="#8888A0" text-anchor="middle">로고</text>
+    <text x="12" y="114" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#1A1A2E">블랙핑크 2025 월드투어</text>
+    <text x="12" y="134" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#0066CC">5,000명 · 14거점 · 4개국어</text>
+    <text x="12" y="155" font-family="Arial, sans-serif" font-size="11" fill="#4A4A68">전 세계 14개 거점</text>
+    <text x="12" y="170" font-family="Arial, sans-serif" font-size="11" fill="#4A4A68">4개국어 다국어 셔틀</text>
+    <text x="12" y="200" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+
+  <!-- Case Card 4: 부산산단 -->
+  <g transform="translate(640,1355)">
+    <rect width="185" height="220" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <rect x="12" y="12" width="56" height="20" rx="4" fill="#0066CC" opacity="0.08"/>
+    <text x="40" y="27" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#0066CC" text-anchor="middle">TMS+TIS</text>
+    <rect x="12" y="42" width="161" height="50" rx="6" fill="#E2E4EA"/>
+    <text x="92" y="72" font-family="Arial, sans-serif" font-size="11" fill="#8888A0" text-anchor="middle">로고</text>
+    <text x="12" y="114" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#1A1A2E">부산산단셔틀</text>
+    <text x="12" y="134" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#0066CC">월 50,000명 · 50개 노선</text>
+    <text x="12" y="155" font-family="Arial, sans-serif" font-size="11" fill="#4A4A68">50개 노선, 월 50,000명</text>
+    <text x="12" y="170" font-family="Arial, sans-serif" font-size="11" fill="#4A4A68">모바일 QR로 관리</text>
+    <text x="12" y="200" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+
+  <!-- Case Card 5: 검암로열파크 -->
+  <g transform="translate(840,1355)">
+    <rect width="185" height="220" rx="12" fill="#ffffff" stroke="#E2E4EA" stroke-width="1"/>
+    <rect x="12" y="12" width="56" height="20" rx="4" fill="#0066CC" opacity="0.08"/>
+    <text x="40" y="27" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#0066CC" text-anchor="middle">TMS+TIS</text>
+    <rect x="12" y="42" width="161" height="50" rx="6" fill="#E2E4EA"/>
+    <text x="92" y="72" font-family="Arial, sans-serif" font-size="11" fill="#8888A0" text-anchor="middle">로고</text>
+    <text x="12" y="114" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#1A1A2E">검암 로열파크씨티</text>
+    <text x="12" y="134" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#0066CC">4,805세대 · 일 2,000명+</text>
+    <text x="12" y="155" font-family="Arial, sans-serif" font-size="11" fill="#4A4A68">대단지 아파트 셔틀 운영</text>
+    <text x="12" y="170" font-family="Arial, sans-serif" font-size="11" fill="#4A4A68">LG ThinQ 스마트홈 연동</text>
+    <text x="12" y="200" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+
+  <!-- Cases CTA button -->
+  <rect x="390" y="1595" width="280" height="40" rx="8" fill="none" stroke="#0066CC" stroke-width="1.5"/>
+  <text x="530" y="1620" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#0066CC" text-anchor="middle">전체 18건 사례 보기 →</text>
+
+  <!-- ===== 7. Partners (1641-1841px, 200px) ===== -->
+  <rect y="1641" width="1060" height="200" fill="#ffffff"/>
+  <text x="530" y="1700" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1A1A2E" text-anchor="middle">T-RiseUp과 함께하는 파트너</text>
+  <text x="530" y="1726" font-family="Arial, sans-serif" font-size="15" fill="#4A4A68" text-anchor="middle">많은 기업들이 이미 T-RiseUp을 선택하셨습니다.</text>
+  <!-- Logo row background -->
+  <rect x="40" y="1750" width="980" height="50" rx="8" fill="#F7F8FC"/>
+  <!-- Partner logos as text -->
+  <text x="80" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">에버랜드</text>
+  <text x="160" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">금호고속</text>
+  <text x="240" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">JW중외</text>
+  <text x="310" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">KCA</text>
+  <text x="365" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">SBS</text>
+  <text x="420" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">부산경제진흥원</text>
+  <text x="540" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">제주드림타워</text>
+  <text x="650" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">AFC</text>
+  <text x="700" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">Jpark</text>
+  <text x="760" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">제네시스</text>
+  <text x="840" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">ADB</text>
+  <text x="890" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">블랙핑크</text>
+  <text x="965" y="1781" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#8888A0">검암</text>
+
+  <!-- ===== 8. CTA Band (1841-1961px, 120px) ===== -->
+  <rect y="1841" width="1060" height="120" fill="url(#ctaGrad)"/>
+  <text x="530" y="1886" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff" text-anchor="middle">지금 바로 확인하세요</text>
+  <text x="530" y="1912" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" opacity="0.8" text-anchor="middle">데모를 통해 T-RiseUp의 가치를 직접 경험해보세요.</text>
+  <rect x="440" y="1925" width="180" height="44" rx="8" fill="#ffffff"/>
+  <text x="530" y="1952" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#0066CC" text-anchor="middle">무료 데모 신청</text>
+
+  <!-- ===== 9. Footer (1961-2131px, 170px) ===== -->
+  <rect y="1961" width="1060" height="170" fill="#1A1F2E"/>
+  <!-- Logo -->
+  <text x="40" y="2000" font-family="Arial, sans-serif" font-size="18" font-weight="800" fill="#ffffff">T-Rise</text>
+  <text x="104" y="2000" font-family="Arial, sans-serif" font-size="18" font-weight="800" fill="#22C55E">Up</text>
+  <!-- Company info -->
+  <text x="40" y="2024" font-family="Arial, sans-serif" font-size="13" fill="#ffffff" opacity="0.5">(주)그라운드케이 | 대표이사: 홍길동</text>
+  <text x="40" y="2044" font-family="Arial, sans-serif" font-size="13" fill="#ffffff" opacity="0.4">사업자등록번호: 000-00-00000</text>
+  <text x="40" y="2062" font-family="Arial, sans-serif" font-size="13" fill="#ffffff" opacity="0.4">부산광역시 해운대구 센텀중앙로 00, 0층</text>
+  <text x="40" y="2080" font-family="Arial, sans-serif" font-size="13" fill="#ffffff" opacity="0.4">TEL: 051-000-0000 | FAX: 051-000-0001</text>
+
+  <!-- Footer column: 제품 -->
+  <text x="500" y="2000" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">제품</text>
+  <text x="500" y="2024" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" opacity="0.5">PMS — 의전·수송</text>
+  <text x="500" y="2044" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" opacity="0.5">TMS — 셔틀·관광</text>
+  <text x="500" y="2064" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" opacity="0.5">면허 솔루션</text>
+  <text x="500" y="2084" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" opacity="0.5">Marketplace</text>
+
+  <!-- Footer column: 약관 -->
+  <text x="750" y="2000" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">약관</text>
+  <text x="750" y="2024" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" opacity="0.5">개인정보처리방침</text>
+  <text x="750" y="2044" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" opacity="0.5">이용약관</text>
+  <text x="750" y="2064" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" opacity="0.5">위치 기반 서비스 이용약관</text>
+
+  <!-- Divider line -->
+  <line x1="40" y1="2100" x2="1020" y2="2100" stroke="#ffffff" opacity="0.1" stroke-width="1"/>
+  <!-- Copyright -->
+  <text x="530" y="2122" font-family="Arial, sans-serif" font-size="13" fill="#ffffff" opacity="0.3" text-anchor="middle">© 2026 GroundK. All rights reserved.</text>
+</svg>

@@ -18,19 +18,25 @@ ul, ol { list-style: none; }
 img { max-width: 100%; display: block; }
 
 :root {
+  --max-w: 1060px;
   --primary: #0066CC;
   --primary-dark: #004C99;
   --text-dark: #1A1A2E;
   --text-body: #4A4A68;
   --text-light: #8888A0;
+  --bg-white: #ffffff;
   --bg-light: #F7F8FC;
+  --bg-dark: #111827;
   --border: #E2E4EA;
+  --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,0.10);
   --font-head: 'Inter', 'Noto Sans KR', sans-serif;
   --font-body: 'Noto Sans KR', 'Inter', sans-serif;
 }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
 
 /* ===== GNB ===== */
 .gnb {
@@ -39,7 +45,7 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--border); z-index: 1000;
   display: flex; align-items: center; justify-content: center;
 }
-.gnb-inner { width: 100%; max-width: 1200px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
+.gnb-inner { width: 100%; max-width: var(--max-w); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
 .gnb-logo img { height: 28px; }
 .gnb-nav { display: flex; gap: 28px; align-items: center; }
 .gnb-nav > a:not(.btn-demo) { font-family: var(--font-body); font-size: 14px; font-weight: 500; color: var(--text-body); transition: color 0.2s; }
@@ -268,9 +274,9 @@ img { max-width: 100%; display: block; }
   .demo-layout { grid-template-columns: 1fr; }
   .hero__content h1 { font-size: 28px; }
   .counter-row { grid-template-columns: repeat(3, 1fr); }
-  .footer__grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
   .container { padding: 0 20px; }
-  .gnb__nav > a:not(.btn-demo) { display: none; }
+  .gnb-nav > a:not(.btn-demo) { display: none; }
   .gnb-dropdown { display: none; }
 }
 
@@ -329,7 +335,7 @@ img { max-width: 100%; display: block; }
 <section class="hero--sub">
   <div class="container">
     <div class="hero__content">
-      <h1>직접 보시면 확신하실 겁니다</h1>
+      <h1>무료 데모 신청</h1>
       <p class="hero__sub">귀사의 운영 환경에 맞는 맞춤 데모를 준비해 드립니다.</p>
       <div class="hero__badges">
         <span class="hero__badge"><i class="fas fa-video"></i> 온라인(화상) 또는 방문</span>

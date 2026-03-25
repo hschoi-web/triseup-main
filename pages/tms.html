@@ -36,6 +36,7 @@ img { max-width: 100%; display: block; }
   --font-body: 'Noto Sans KR', 'Inter', sans-serif;
 }
 
+.main { width: 100%; max-width: var(--max-w); margin: 0 auto; display: flex; flex-direction: column; align-items: center; background-color: #fff; }
 .container { width: 100%; max-width: 1060px; margin: 0 auto; padding: 0 40px; }
 
 /* GNB */
@@ -59,7 +60,7 @@ img { max-width: 100%; display: block; }
 .btn-demo:hover { background: var(--primary-dark); color: #ffffff !important; }
 
 /* Hero */
-.hero { width: 100%; aspect-ratio: 1120 / 377; position: relative; display: flex; align-items: center; margin-top: 64px; overflow: hidden; }
+.hero { width: 100%; aspect-ratio: 1120 / 377; position: relative; display: flex; align-items: center; margin-top: 64px; overflow: hidden; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
 .hero-bg { position: absolute; inset: 0; background: url('../images/div.hero__overlay.png') center center / cover no-repeat; z-index: 0; }
 .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.6) 100%); }
 .hero-content { position: relative; z-index: 1; padding: 0 60px; color: #fff; }
@@ -185,6 +186,8 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </nav>
+
+<div class="main">
 
 <!-- S1. Hero -->
 <section class="hero">
@@ -427,6 +430,8 @@ img { max-width: 100%; display: block; }
     <div class="footer-bottom"><p>&copy; 2026 GroundK. All rights reserved.</p></div>
   </div>
 </footer>
+
+</div><!-- /.main -->
 
 </body>
 </html>

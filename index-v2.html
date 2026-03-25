@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-RiseUp | 예약·배차·관제·정산 — 모빌리티 운영의 전 과정을 하나로</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ===== Reset ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;color:#E8E8EE;background:#0B0E14;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+ul,ol{list-style:none}
+img{max-width:100%;display:block}
+
+:root{
+  --max-w:1200px;
+  --primary:#3B82F6;
+  --primary-dark:#2563EB;
+  --accent:#F59E0B;
+  --text-white:#F1F5F9;
+  --text-muted:#94A3B8;
+  --text-dim:#64748B;
+  --bg-dark:#0B0E14;
+  --bg-card:#131720;
+  --bg-card-hover:#1A1F2E;
+  --border:#1E293B;
+  --border-light:#334155;
+  --radius-sm:6px;
+  --radius-md:12px;
+  --radius-lg:20px;
+  --radius-xl:24px;
+  --shadow-card:0 2px 16px rgba(0,0,0,0.3);
+  --shadow-hover:0 8px 40px rgba(59,130,246,0.15);
+  --font-head:'Inter','Noto Sans KR',sans-serif;
+  --font-body:'Noto Sans KR','Inter',sans-serif;
+  --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ===== Layout ===== */
+.container{width:100%;max-width:var(--max-w);margin:0 auto;padding:0 40px}
+section{padding:100px 0}
+
+/* ===== Scroll Reveal ===== */
+.sr{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.sr.visible{opacity:1;transform:translateY(0)}
+
+/* ===== GNB ===== */
+.gnb{
+  position:fixed;top:0;left:0;right:0;height:64px;
+  background:rgba(11,14,20,0.85);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+}
+.gnb-inner{width:100%;max-width:var(--max-w);padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.gnb-logo img{height:28px;filter:brightness(0) invert(1)}
+.gnb-nav{display:flex;gap:28px;align-items:center}
+.gnb-nav>a:not(.btn-demo){font-size:14px;font-weight:500;color:var(--text-muted);transition:color 0.2s}
+.gnb-nav>a:not(.btn-demo):hover{color:#fff}
+.gnb-dropdown{position:relative}
+.gnb-dropdown-toggle{
+  font-size:14px;font-weight:500;color:var(--text-muted);background:none;border:none;
+  cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;transition:color 0.2s;
+}
+.gnb-dropdown-toggle:hover{color:#fff}
+.gnb-dropdown-toggle::after{content:'';display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid currentColor;margin-top:1px}
+.gnb-dropdown-menu{
+  position:absolute;top:calc(100% + 12px);left:0;min-width:220px;
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);
+  box-shadow:0 12px 40px rgba(0,0,0,0.5);padding:12px 0;
+  opacity:0;visibility:hidden;transform:translateY(-8px);transition:all 0.2s;z-index:1001;
+}
+.gnb-dropdown:hover .gnb-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.gnb-dropdown-item{display:block;padding:10px 20px;transition:background 0.15s}
+.gnb-dropdown-item:hover{background:var(--bg-card-hover)}
+.gnb-dropdown-item-title{font-size:14px;font-weight:600;color:var(--text-white);margin-bottom:2px}
+.gnb-dropdown-item-desc{font-size:12px;color:var(--text-dim)}
+.btn-demo{
+  display:inline-flex;align-items:center;padding:8px 20px;
+  font-size:13px;font-weight:600;color:#fff !important;
+  background:var(--primary);border-radius:var(--radius-sm);transition:background 0.2s;
+}
+.btn-demo:hover{background:var(--primary-dark)}
+
+/* ===== S1. Hero ===== */
+.hero{
+  min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
+  padding-top:64px;
+  background:radial-gradient(ellipse at 30% 50%,rgba(59,130,246,0.08) 0%,transparent 60%),
+             radial-gradient(ellipse at 70% 80%,rgba(245,158,11,0.05) 0%,transparent 50%),
+             var(--bg-dark);
+}
+.hero-content{max-width:760px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);
+  border-radius:100px;font-size:13px;font-weight:500;color:var(--primary);margin-bottom:24px;
+}
+.hero h1{
+  font-family:var(--font-head);font-size:52px;font-weight:800;
+  color:var(--text-white);line-height:1.2;letter-spacing:-0.02em;margin-bottom:20px;
+}
+.hero h1 span{color:var(--primary)}
+.hero-sub{font-size:18px;color:var(--text-muted);line-height:1.7;margin-bottom:36px}
+.hero-btns{display:flex;gap:12px;margin-bottom:48px}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 32px;font-size:16px;font-weight:600;color:#fff;
+  background:var(--primary);border-radius:var(--radius-md);transition:all var(--transition);
+}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(59,130,246,0.3)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 32px;font-size:16px;font-weight:600;color:var(--text-white);
+  background:transparent;border:1px solid var(--border-light);border-radius:var(--radius-md);transition:all var(--transition);
+}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.hero-stat{text-align:left}
+.hero-stat-num{font-family:var(--font-head);font-size:32px;font-weight:800;color:var(--text-white)}
+.hero-stat-num span{color:var(--primary)}
+.hero-stat-label{font-size:13px;color:var(--text-dim);margin-top:4px}
+
+/* ===== S2. Pipeline ===== */
+.pipeline-section{background:var(--bg-dark);border-top:1px solid var(--border)}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header h2{font-family:var(--font-head);font-size:36px;font-weight:800;color:var(--text-white);margin-bottom:12px;letter-spacing:-0.02em}
+.section-header p{font-size:18px;color:var(--text-muted);line-height:1.6}
+
+.pipeline{display:flex;gap:0;position:relative}
+.pipeline::before{
+  content:'';position:absolute;top:40px;left:60px;right:60px;height:2px;
+  background:linear-gradient(90deg,var(--border),var(--primary),var(--border));opacity:0.3;
+}
+.pipe-step{flex:1;text-align:center;position:relative;cursor:pointer;padding:0 8px}
+.pipe-dot{
+  width:20px;height:20px;border-radius:50%;background:var(--bg-card);border:2px solid var(--border-light);
+  margin:30px auto 20px;position:relative;z-index:1;transition:all var(--transition);
+}
+.pipe-step:hover .pipe-dot,.pipe-step.active .pipe-dot{background:var(--primary);border-color:var(--primary);box-shadow:0 0 20px rgba(59,130,246,0.4)}
+.pipe-icon{font-size:28px;color:var(--text-dim);margin-bottom:12px;transition:color var(--transition)}
+.pipe-step:hover .pipe-icon,.pipe-step.active .pipe-icon{color:var(--primary)}
+.pipe-title{font-size:15px;font-weight:700;color:var(--text-white);margin-bottom:4px}
+.pipe-en{font-size:12px;color:var(--text-dim);margin-bottom:12px}
+.pipe-desc{font-size:13px;color:var(--text-muted);line-height:1.6;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0}
+.pipe-step:hover .pipe-desc,.pipe-step.active .pipe-desc{max-height:200px;opacity:1}
+
+/* ===== S3. Two Solutions ===== */
+.solutions-section{background:var(--bg-dark)}
+.solutions-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.sol-card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);
+  padding:40px;transition:all var(--transition);position:relative;overflow:hidden;
+}
+.sol-card:hover{border-color:var(--primary);box-shadow:var(--shadow-hover)}
+.sol-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0;transition:opacity var(--transition);
+}
+.sol-card:hover::before{opacity:1}
+.sol-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:6px 14px;
+  font-size:14px;font-weight:700;color:var(--primary);
+  background:rgba(59,130,246,0.1);border-radius:var(--radius-sm);margin-bottom:16px;
+}
+.sol-card h3{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--text-white);margin-bottom:8px}
+.sol-summary{font-size:15px;color:var(--text-muted);margin-bottom:6px}
+.sol-target{font-size:13px;color:var(--text-dim);margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.sol-features{margin-bottom:24px}
+.sol-features li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:10px;
+}
+.sol-features li::before{content:'✓';color:var(--primary);font-weight:700;flex-shrink:0;margin-top:1px}
+.sol-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:14px;font-weight:600;color:var(--primary);transition:gap var(--transition);
+}
+.sol-cta:hover{gap:10px}
+
+/* ===== S4. For Your Business ===== */
+.business-section{background:linear-gradient(180deg,var(--bg-dark) 0%,#0D1117 100%)}
+.biz-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+.biz-tab{
+  padding:10px 20px;font-size:14px;font-weight:600;color:var(--text-dim);
+  background:var(--bg-card);border:1px solid var(--border);border-radius:100px;
+  cursor:pointer;transition:all var(--transition);
+}
+.biz-tab:hover{color:var(--text-white);border-color:var(--border-light)}
+.biz-tab.active{color:#fff;background:var(--primary);border-color:var(--primary)}
+.biz-content{display:none;animation:fadeUp 0.4s ease}
+.biz-content.active{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.biz-info h3{font-family:var(--font-head);font-size:24px;font-weight:800;color:var(--text-white);margin-bottom:12px}
+.biz-info .biz-rec{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 12px;
+  font-size:12px;font-weight:600;color:var(--accent);background:rgba(245,158,11,0.1);
+  border-radius:100px;margin-bottom:16px;
+}
+.biz-info p{font-size:16px;color:var(--text-muted);line-height:1.7;margin-bottom:20px}
+.biz-values{display:flex;flex-direction:column;gap:12px}
+.biz-value{
+  display:flex;align-items:flex-start;gap:12px;padding:16px;
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);
+}
+.biz-value i{color:var(--primary);font-size:18px;margin-top:2px}
+.biz-value span{font-size:14px;color:var(--text-muted);line-height:1.5}
+.biz-visual{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  height:320px;display:flex;align-items:center;justify-content:center;
+  color:var(--text-dim);font-size:14px;
+}
+
+/* ===== S5. Expand ===== */
+.expand-section{background:var(--bg-dark);border-top:1px solid var(--border)}
+.expand-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.expand-card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);
+  padding:36px;transition:all var(--transition);
+}
+.expand-card:hover{border-color:var(--border-light);transform:translateY(-4px)}
+.expand-card .expand-icon{font-size:32px;color:var(--accent);margin-bottom:16px}
+.expand-card h3{font-family:var(--font-head);font-size:20px;font-weight:800;color:var(--text-white);margin-bottom:8px}
+.expand-card p{font-size:15px;color:var(--text-muted);line-height:1.6;margin-bottom:16px}
+.expand-card a{font-size:14px;font-weight:600;color:var(--primary)}
+
+/* ===== S6. Cases ===== */
+.cases-section{background:var(--bg-dark)}
+.cases-scroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;-webkit-overflow-scrolling:touch}
+.cases-scroll::-webkit-scrollbar{height:6px}
+.cases-scroll::-webkit-scrollbar-track{background:var(--border)}
+.cases-scroll::-webkit-scrollbar-thumb{background:var(--text-dim);border-radius:3px}
+.case-card{
+  flex:0 0 280px;scroll-snap-align:start;
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:24px;transition:all var(--transition);
+}
+.case-card:hover{border-color:var(--primary);transform:translateY(-4px)}
+.case-badge{display:inline-block;padding:3px 10px;font-size:11px;font-weight:600;border-radius:4px;background:rgba(59,130,246,0.1);color:var(--primary);margin-bottom:12px}
+.case-logo{width:100%;height:60px;background:#1E293B;border-radius:8px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-dim)}
+.case-title{font-size:16px;font-weight:700;color:var(--text-white);margin-bottom:6px}
+.case-impact{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:8px}
+.case-desc{font-size:13px;color:var(--text-muted);line-height:1.5;margin-bottom:12px}
+.case-link{font-size:13px;font-weight:600;color:var(--primary)}
+.cases-more{text-align:center;margin-top:32px}
+
+/* ===== S7. Partners ===== */
+.partners-section{background:var(--bg-dark);padding:60px 0;border-top:1px solid var(--border)}
+.partners-section h2{text-align:center;font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--text-muted);margin-bottom:32px}
+.logo-scroll{overflow:hidden;position:relative}
+.logo-scroll::before,.logo-scroll::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:1}
+.logo-scroll::before{left:0;background:linear-gradient(90deg,var(--bg-dark),transparent)}
+.logo-scroll::after{right:0;background:linear-gradient(270deg,var(--bg-dark),transparent)}
+.logo-track{display:flex;gap:48px;animation:logoScroll 30s linear infinite;width:max-content}
+@keyframes logoScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.client-logo{
+  font-size:15px;font-weight:600;color:var(--text-dim);white-space:nowrap;
+  padding:12px 0;opacity:0.5;transition:opacity 0.3s;
+}
+.client-logo:hover{opacity:1}
+
+/* ===== S8. CTA ===== */
+.cta-section{
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
+  text-align:center;padding:80px 0;
+}
+.cta-section h2{font-family:var(--font-head);font-size:32px;font-weight:800;color:#fff;margin-bottom:12px}
+.cta-section p{font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:28px}
+.btn-cta-white{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:16px 36px;font-size:16px;font-weight:700;
+  color:var(--primary);background:#fff;border-radius:var(--radius-md);transition:all var(--transition);
+}
+.btn-cta-white:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.2)}
+
+/* ===== Footer ===== */
+.footer{background:#080A0F;color:rgba(255,255,255,0.4);padding:64px 0 32px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;margin-bottom:48px}
+.footer-logo-img{height:24px;margin-bottom:16px;filter:brightness(0) invert(1)}
+.footer-company{font-size:14px;color:rgba(255,255,255,0.4);margin-bottom:12px}
+.footer-info{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.8}
+.footer-col h4{font-size:14px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:16px}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,0.4);transition:color 0.2s}
+.footer-col ul li a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;text-align:center}
+.footer-bottom p{font-size:13px;color:rgba(255,255,255,0.2)}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+  .hero h1{font-size:32px}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:20px}
+  .pipeline{flex-direction:column;gap:16px}
+  .pipeline::before{display:none}
+  .pipe-desc{max-height:none;opacity:1}
+  .solutions-grid,.expand-grid{grid-template-columns:1fr}
+  .biz-content.active{grid-template-columns:1fr}
+  .cases-scroll{gap:12px}
+  .case-card{flex:0 0 260px}
+  .footer-grid{grid-template-columns:1fr}
+  .container{padding:0 20px}
+  section{padding:60px 0}
+  .gnb-nav>a:not(.btn-demo){display:none}
+  .gnb-dropdown{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== GNB ===== -->
+<nav class="gnb">
+  <div class="gnb-inner">
+    <a href="index-v2.html" class="gnb-logo"><img src="images/TRISEUP.png" alt="T-RiseUp"></a>
+    <div class="gnb-nav">
+      <div class="gnb-dropdown">
+        <button class="gnb-dropdown-toggle">제품</button>
+        <div class="gnb-dropdown-menu">
+          <a href="pages/pms.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">PMS</div>
+            <div class="gnb-dropdown-item-desc">의전·수송 통합 관리</div>
+          </a>
+          <a href="pages/tms.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">TMS</div>
+            <div class="gnb-dropdown-item-desc">셔틀·관광 티켓 관리</div>
+          </a>
+          <a href="pages/license.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">면허 솔루션</div>
+            <div class="gnb-dropdown-item-desc">플랫폼운송사업 면허</div>
+          </a>
+          <a href="pages/marketplace.html" class="gnb-dropdown-item">
+            <div class="gnb-dropdown-item-title">Marketplace</div>
+            <div class="gnb-dropdown-item-desc">RIDEUS 통합 판매채널</div>
+          </a>
+        </div>
+      </div>
+      <a href="pages/cases.html">도입사례</a>
+      <a href="pages/demo.html" class="btn-demo">무료 데모 신청</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== S1. Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><i class="fas fa-shield-halved"></i> 국내 유일 B2B 모빌리티 SaaS</div>
+      <h1>예약 · 배차 · 관제 · 정산<br><span>모빌리티 운영의 전 과정</span>을<br>하나로</h1>
+      <p class="hero-sub">의전·수송부터 관광 셔틀까지, 교통 운영사를 위한<br>올인원 운영관리 플랫폼</p>
+      <div class="hero-btns">
+        <a href="pages/demo.html" class="btn-primary"><i class="fas fa-paper-plane"></i> 무료 데모 신청</a>
+        <a href="#solutions" class="btn-secondary">솔루션 살펴보기 <i class="fas fa-arrow-down"></i></a>
+      </div>
+    </div>
+    <div class="hero-stats sr">
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span>50,000</span>+</div>
+        <div class="hero-stat-label">월간 이용자</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span>990</span>+</div>
+        <div class="hero-stat-label">대규모 행사 운행 건수</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span>15</span>+</div>
+        <div class="hero-stat-label">화이트라벨 파트너사</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span>21</span>개국</div>
+        <div class="hero-stat-label">글로벌 정상 의전 경험</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S2. Pipeline ===== -->
+<section class="pipeline-section" id="pipeline">
+  <div class="container">
+    <div class="section-header sr">
+      <h2>예약부터 정산까지, 끊김 없는 운영 프로세스</h2>
+      <p>5단계 파이프라인으로 모빌리티 운영의 모든 과정을 자동화합니다</p>
+    </div>
+    <div class="pipeline sr">
+      <div class="pipe-step active">
+        <div class="pipe-icon"><i class="fas fa-calendar-check"></i></div>
+        <div class="pipe-dot"></div>
+        <div class="pipe-title">예약 접수</div>
+        <div class="pipe-en">Booking</div>
+        <div class="pipe-desc">웹·앱·API·GNET 등 다채널 예약 통합 수신.<br>항공편 실시간 연동으로 픽업 시간 자동 조정</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon"><i class="fas fa-truck-fast"></i></div>
+        <div class="pipe-dot"></div>
+        <div class="pipe-title">배차 관리</div>
+        <div class="pipe-en">Dispatch</div>
+        <div class="pipe-desc">자사→제휴사→얼라이언스→GNET 자동 폴백 배차.<br>VIP 전담 기사 확정 배차 지원</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon"><i class="fas fa-satellite-dish"></i></div>
+        <div class="pipe-dot"></div>
+        <div class="pipe-title">실시간 관제</div>
+        <div class="pipe-en">Monitoring</div>
+        <div class="pipe-desc">GPS 5초 갱신 실시간 위치 추적.<br>기사 상태(이동/대기/운행) 실시간 모니터링</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon"><i class="fas fa-qrcode"></i></div>
+        <div class="pipe-dot"></div>
+        <div class="pipe-title">운행 완료</div>
+        <div class="pipe-en">Journey</div>
+        <div class="pipe-desc">QR 탑승 체크인, 경유지 관리,<br>운행 기록 자동 저장</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+        <div class="pipe-dot"></div>
+        <div class="pipe-title">정산 처리</div>
+        <div class="pipe-en">Settlement</div>
+        <div class="pipe-desc">다자간 정산(법인→운영사→제휴사→기사) 자동화.<br>구간별 요금·수수료 자동 계산</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S3. Two Solutions ===== -->
+<section class="solutions-section" id="solutions">
+  <div class="container">
+    <div class="section-header sr">
+      <h2>운영 관리와 비즈니스 확장을 동시에</h2>
+      <p>T-RiseUp은 운영사를 위한 PMS와 판매 채널을 위한 TMS, 두 개의 솔루션으로 구성됩니다</p>
+    </div>
+    <div class="solutions-grid sr">
+      <!-- PMS -->
+      <div class="sol-card">
+        <div class="sol-badge"><i class="fas fa-building"></i> PMS</div>
+        <h3>의전·수송 통합 운영관리 솔루션</h3>
+        <div class="sol-summary">Property Management System</div>
+        <div class="sol-target">교통 운영사 · 의전 서비스 · 법인 차량 관리</div>
+        <ul class="sol-features">
+          <li>예약 생성·수정·취소 (7가지 서비스 유형: 편도/시간제/일일/도착의전/출발의전/환승/프로토콜)</li>
+          <li>자동 배차 + VIP 전담 기사 확정 배차</li>
+          <li>항공편 실시간 연동 (11개 국내 공항 + Variflight API)</li>
+          <li>GPS 실시간 관제 + 지오펜싱</li>
+          <li>다자간 정산 자동화 (법인→운영사→제휴사→기사)</li>
+          <li>제휴사·얼라이언스·GNET 글로벌 네트워크 배차</li>
+          <li>기사/의전요원 모바일 앱 (Partners App, Concierge App)</li>
+        </ul>
+        <a href="pages/pms.html" class="sol-cta">PMS 자세히보기 <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <!-- TMS -->
+      <div class="sol-card">
+        <div class="sol-badge"><i class="fas fa-ticket"></i> TMS</div>
+        <h3>셔틀·관광 티켓 예약관리 플랫폼</h3>
+        <div class="sol-summary">Ticket Management System = RIDEUS</div>
+        <div class="sol-target">여행사 · 테마파크 · 리조트 · 이벤트 운영사 · 지자체</div>
+        <ul class="sol-features">
+          <li>노선 설계 → 스케줄 관리 → 좌석 예약 → QR 검표 원스톱</li>
+          <li>화이트라벨 멀티테넌시 (15+ 파트너사 독자 브랜드 운영)</li>
+          <li>17개 결제 게이트웨이 (국내 6대 간편결제 + PayPal/Eximbay)</li>
+          <li>셔틀 + 입장권 패키지 번들 판매</li>
+          <li>비회원 예약 지원 (가입 장벽 제거, 관광객 전환율 극대화)</li>
+          <li>실시간 GPS 추적 + QR 탑승 체크인</li>
+          <li>다국어 지원 (한/영/일/중) + 글로벌 결제</li>
+        </ul>
+        <a href="pages/tms.html" class="sol-cta">TMS 자세히보기 <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S4. For Your Business ===== -->
+<section class="business-section" id="business">
+  <div class="container">
+    <div class="section-header sr">
+      <h2>비즈니스 환경에 맞는 솔루션을 선택하세요</h2>
+      <p>고객 유형별 최적의 T-RiseUp 활용 방법을 안내합니다</p>
+    </div>
+    <div class="biz-tabs sr">
+      <button class="biz-tab active" data-tab="fleet">교통 운영사</button>
+      <button class="biz-tab" data-tab="corporate">법인 고객</button>
+      <button class="biz-tab" data-tab="travel">여행사·관광</button>
+      <button class="biz-tab" data-tab="event">이벤트·지자체</button>
+    </div>
+    <!-- Fleet -->
+    <div class="biz-content active" data-content="fleet">
+      <div class="biz-info">
+        <div class="biz-rec"><i class="fas fa-star"></i> 추천: PMS</div>
+        <h3>배차부터 정산까지 자동화하고,<br>제휴 네트워크로 배차율을 극대화하세요</h3>
+        <p>교통 운영사에게 필요한 예약 수신, 자동 배차, 실시간 관제, 다자간 정산을 하나의 플랫폼으로 통합합니다.</p>
+        <div class="biz-values">
+          <div class="biz-value"><i class="fas fa-bolt"></i><span>예약·배차·정산 전 과정 자동화</span></div>
+          <div class="biz-value"><i class="fas fa-network-wired"></i><span>제휴사·GNET 글로벌 배차 네트워크</span></div>
+          <div class="biz-value"><i class="fas fa-mobile-screen"></i><span>기사 앱으로 실시간 운행 관리</span></div>
+        </div>
+      </div>
+      <div class="biz-visual">PMS 대시보드 화면</div>
+    </div>
+    <!-- Corporate -->
+    <div class="biz-content" data-content="corporate">
+      <div class="biz-info">
+        <div class="biz-rec"><i class="fas fa-star"></i> 추천: PMS</div>
+        <h3>전담 기사 배정, 통합 청구,<br>법인 레퍼런스 번호로 대량 예약을 간편하게</h3>
+        <p>법인 고객을 위한 전용 예약 체계와 월 통합 정산으로 기업 수송을 효율화합니다.</p>
+        <div class="biz-values">
+          <div class="biz-value"><i class="fas fa-id-card"></i><span>법인 전용 예약 체계 + 레퍼런스 번호</span></div>
+          <div class="biz-value"><i class="fas fa-file-invoice"></i><span>월 통합 정산·청구서 자동 발행</span></div>
+          <div class="biz-value"><i class="fas fa-crown"></i><span>VIP 의전 + 공항 픽업 서비스</span></div>
+        </div>
+      </div>
+      <div class="biz-visual">법인 예약 화면</div>
+    </div>
+    <!-- Travel -->
+    <div class="biz-content" data-content="travel">
+      <div class="biz-info">
+        <div class="biz-rec"><i class="fas fa-star"></i> 추천: TMS</div>
+        <h3>노선 설계부터 QR 검표까지,<br>셔틀 상품을 만들고 바로 판매하세요</h3>
+        <p>여행사·관광 사업자가 화이트라벨로 자사 브랜드 셔틀 서비스를 즉시 구축할 수 있습니다.</p>
+        <div class="biz-values">
+          <div class="biz-value"><i class="fas fa-palette"></i><span>화이트라벨로 자사 브랜드 판매</span></div>
+          <div class="biz-value"><i class="fas fa-box-open"></i><span>셔틀 + 입장권 패키지 번들</span></div>
+          <div class="biz-value"><i class="fas fa-credit-card"></i><span>17개 결제수단 + 글로벌 결제</span></div>
+        </div>
+      </div>
+      <div class="biz-visual">TMS 상품 관리 화면</div>
+    </div>
+    <!-- Event -->
+    <div class="biz-content" data-content="event">
+      <div class="biz-info">
+        <div class="biz-rec"><i class="fas fa-star"></i> 추천: PMS + TMS</div>
+        <h3>대규모 국제 행사의 의전·수송·셔틀을<br>하나의 플랫폼으로 통합 운영</h3>
+        <p>APEC 2025, 부산세계탁구 등 글로벌 행사에서 검증된 운영 인프라를 제공합니다.</p>
+        <div class="biz-values">
+          <div class="biz-value"><i class="fas fa-trophy"></i><span>APEC 2025, 부산세계탁구 등 실전 검증</span></div>
+          <div class="biz-value"><i class="fas fa-globe"></i><span>다국어·다통화 지원</span></div>
+          <div class="biz-value"><i class="fas fa-satellite-dish"></i><span>실시간 관제 + 돌발 상황 대응</span></div>
+        </div>
+      </div>
+      <div class="biz-visual">행사 관제 대시보드</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S5. Expand ===== -->
+<section class="expand-section">
+  <div class="container">
+    <div class="section-header sr">
+      <h2>운영을 넘어, 비즈니스를 확장하세요</h2>
+      <p>면허 취득부터 판매 채널 확장까지, T-RiseUp 생태계가 지원합니다</p>
+    </div>
+    <div class="expand-grid sr">
+      <div class="expand-card">
+        <div class="expand-icon"><i class="fas fa-id-badge"></i></div>
+        <h3>면허 솔루션</h3>
+        <p>플랫폼운송사업 타입1 면허 취득에 필요한 국토부 심사 9개 영역을 T-RiseUp 하나로 충족하세요. 자체개발 없이 1~2주 내 준비 완료.</p>
+        <a href="pages/license.html">면허 솔루션 자세히보기 →</a>
+      </div>
+      <div class="expand-card">
+        <div class="expand-icon"><i class="fas fa-store"></i></div>
+        <h3>RIDEUS Marketplace</h3>
+        <p>T-RiseUp 고객이라면 RIDEUS 통합 판매채널을 통해 셔틀·관광 상품을 전국의 이용자에게 유통할 수 있습니다.</p>
+        <a href="pages/marketplace.html">Marketplace 자세히보기 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S6. Cases ===== -->
+<section class="cases-section">
+  <div class="container">
+    <div class="section-header sr">
+      <h2>성공하는 프로젝트 뒤에는 T-RiseUp이 있습니다</h2>
+      <p>다양한 업종에서 검증된 도입 사례를 확인하세요</p>
+    </div>
+    <div class="cases-scroll sr">
+      <div class="case-card">
+        <span class="case-badge">PMS+TMS</span>
+        <div class="case-logo">로고</div>
+        <div class="case-title">APEC 2025 수송포탈</div>
+        <div class="case-impact">21개국 정상 · 7개 교통수단</div>
+        <div class="case-desc">21개국 정상 의전부터 대중교통까지 하나의 포탈로 통합 관리</div>
+        <a href="#" class="case-link">자세히 보기 →</a>
+      </div>
+      <div class="case-card">
+        <span class="case-badge">PMS+TMS</span>
+        <div class="case-logo">로고</div>
+        <div class="case-title">부산세계탁구선수권대회</div>
+        <div class="case-impact">990회 운행 · 7톤 CO₂ 감축</div>
+        <div class="case-desc">AI 배차로 990회 운행, 공식 백서 실명 인용</div>
+        <a href="#" class="case-link">자세히 보기 →</a>
+      </div>
+      <div class="case-card">
+        <span class="case-badge">TMS+Booking</span>
+        <div class="case-logo">로고</div>
+        <div class="case-title">블랙핑크 2025 월드투어</div>
+        <div class="case-impact">5,000명 · 14거점 · 4개국어</div>
+        <div class="case-desc">전 세계 14개 거점 다국어 셔틀 운영</div>
+        <a href="#" class="case-link">자세히 보기 →</a>
+      </div>
+      <div class="case-card">
+        <span class="case-badge">TMS+TIS</span>
+        <div class="case-logo">로고</div>
+        <div class="case-title">부산산단셔틀</div>
+        <div class="case-impact">월 50,000명 · 50개 노선</div>
+        <div class="case-desc">50개 노선, 월 50,000명 출퇴근 QR 관리</div>
+        <a href="#" class="case-link">자세히 보기 →</a>
+      </div>
+      <div class="case-card">
+        <span class="case-badge">TMS+TIS+MC</span>
+        <div class="case-logo">로고</div>
+        <div class="case-title">검암 로열파크씨티</div>
+        <div class="case-impact">4,805세대 · 일 2,000명+</div>
+        <div class="case-desc">대단지 아파트 셔틀, LG ThinQ 스마트홈 연동</div>
+        <a href="#" class="case-link">자세히 보기 →</a>
+      </div>
+    </div>
+    <div class="cases-more"><a href="pages/cases.html" class="btn-secondary">전체 18건 사례 보기 →</a></div>
+  </div>
+</section>
+
+<!-- ===== S7. Partners ===== -->
+<section class="partners-section">
+  <div class="container">
+    <h2>T-RiseUp과 함께하는 파트너</h2>
+    <div class="logo-scroll">
+      <div class="logo-track">
+        <span class="client-logo">에버랜드</span><span class="client-logo">금호고속</span><span class="client-logo">JW중외</span><span class="client-logo">KCA</span><span class="client-logo">SBS</span><span class="client-logo">부산경제진흥원</span><span class="client-logo">제주드림타워</span><span class="client-logo">AFC</span><span class="client-logo">Jpark</span><span class="client-logo">제네시스</span><span class="client-logo">ADB</span><span class="client-logo">블랙핑크</span><span class="client-logo">검암로열파크</span>
+        <span class="client-logo">에버랜드</span><span class="client-logo">금호고속</span><span class="client-logo">JW중외</span><span class="client-logo">KCA</span><span class="client-logo">SBS</span><span class="client-logo">부산경제진흥원</span><span class="client-logo">제주드림타워</span><span class="client-logo">AFC</span><span class="client-logo">Jpark</span><span class="client-logo">제네시스</span><span class="client-logo">ADB</span><span class="client-logo">블랙핑크</span><span class="client-logo">검암로열파크</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S8. CTA ===== -->
+<section class="cta-section">
+  <div class="container">
+    <h2>지금 바로 T-RiseUp을 경험하세요</h2>
+    <p>맞춤 데모를 통해 귀사에 최적화된 솔루션을 확인하세요.</p>
+    <a href="pages/demo.html" class="btn-cta-white"><i class="fas fa-paper-plane"></i> 무료 데모 신청</a>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="images/TRISEUP.png" alt="T-RiseUp" class="footer-logo-img">
+        <p class="footer-company">(주)그라운드케이 | 대표이사: 홍길동</p>
+        <p class="footer-info">사업자등록번호: 000-00-00000<br>부산광역시 해운대구 센텀중앙로 00, 0층<br>TEL: 051-000-0000 | FAX: 051-000-0001<br>contact@groundk.co.kr</p>
+      </div>
+      <div class="footer-col">
+        <h4>제품</h4>
+        <ul>
+          <li><a href="pages/pms.html">PMS — 의전·수송</a></li>
+          <li><a href="pages/tms.html">TMS — 셔틀·관광</a></li>
+          <li><a href="pages/license.html">면허 솔루션</a></li>
+          <li><a href="pages/marketplace.html">Marketplace</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>약관</h4>
+        <ul>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">위치 기반 서비스 이용약관</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 GroundK. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<script>
+// Scroll Reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+}, {threshold: 0.1});
+document.querySelectorAll('.sr').forEach(el => observer.observe(el));
+
+// Business Tabs
+document.querySelectorAll('.biz-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.biz-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.biz-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`.biz-content[data-content="${tab.dataset.tab}"]`).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

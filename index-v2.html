@@ -4,1302 +4,417 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>T-RiseUp | B2B 모빌리티 SaaS 플랫폼</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <meta name="description" content="예약 · 배차 · 관제 · 정산, 모빌리티 운영의 전 과정을 하나로. 국내 유일 B2B 모빌리티 SaaS 플랫폼 T-RiseUp">
+
+  <!-- Pretendard Font -->
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#0066CC',
+              dark: '#004C99',
+            },
+            main: '#1A1A2E',
+            sub: '#6B7280',
+            muted: '#9CA3AF',
+            alt: '#F5F7FA',
+            border: '#E5E7EB',
+            footer: '#1A1F2E',
+          },
+          fontFamily: {
+            pretendard: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: {
+            container: '1200px',
+          },
+          letterSpacing: {
+            tight: '-0.02em',
+          },
+        },
+      },
+    }
+  </script>
+
   <style>
-    :root {
-      --color-bg: #FFFFFF;
-      --color-bg-alt: #F5F7FA;
-      --color-text: #1A1A2E;
-      --color-text-sub: #6B7280;
-      --color-text-muted: #9CA3AF;
-      --color-accent: #0066CC;
-      --color-accent-dark: #004C99;
-      --color-accent-light: rgba(0,102,204,0.08);
-      --color-border: #E5E7EB;
-      --color-border-light: #F3F4F6;
-      --max-w: 1200px;
-      --font: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    }
-
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--font);
-      color: var(--color-text);
-      background: var(--color-bg);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    ul, ol {
-      list-style: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* ==============================
-       GNB - Global Navigation Bar
-       ============================== */
-    .gnb {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--color-border-light);
-      height: 64px;
-      transition: box-shadow 0.3s;
-    }
-
-    .gnb.scrolled {
-      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-    }
-
-    .gnb__inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
-    }
-
-    .gnb__logo img {
-      height: 28px;
-    }
-
-    .gnb__nav {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .gnb__menu {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .gnb__item {
-      position: relative;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--color-text);
-      cursor: pointer;
-      padding: 8px 0;
-      transition: color 0.2s;
-    }
-
-    .gnb__item:hover {
-      color: var(--color-accent);
-    }
-
-    .gnb__item--has-dropdown::after {
-      content: '';
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-right: 1.5px solid currentColor;
-      border-bottom: 1.5px solid currentColor;
-      transform: rotate(45deg);
-      margin-left: 6px;
-      position: relative;
-      top: -2px;
-    }
-
-    .gnb__dropdown {
-      position: absolute;
-      top: calc(100% + 12px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: #fff;
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: 8px 0;
-      min-width: 180px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.2s, visibility 0.2s;
-    }
-
-    .gnb__item--has-dropdown:hover .gnb__dropdown {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .gnb__dropdown a {
-      display: block;
-      padding: 10px 20px;
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--color-text);
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .gnb__dropdown a:hover {
-      background: var(--color-accent-light);
-      color: var(--color-accent);
-    }
-
-    .gnb__cta {
-      display: inline-flex;
-      align-items: center;
-      padding: 9px 20px;
-      background: var(--color-accent);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-
-    .gnb__cta:hover {
-      background: var(--color-accent-dark);
-    }
-
-    /* ==============================
-       Section 1 - Hero
-       ============================== */
-    .hero {
-      position: relative;
-      height: 365px;
-      margin-top: 64px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .hero__overlay {
-      position: absolute;
-      inset: 0;
-      background: url('images/div.hero__overlay.png') center/cover no-repeat;
-    }
-
-    .hero__overlay::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-    }
-
-    .hero__content {
-      position: relative;
-      z-index: 2;
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 24px;
-      width: 100%;
-    }
-
-    .hero__headline {
-      font-size: 48px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-      white-space: pre-line;
-      margin-bottom: 16px;
-    }
-
-    .hero__sub {
-      font-size: 18px;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 32px;
-      font-weight: 400;
-    }
-
-    .hero__buttons {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 40px;
-    }
-
-    .hero__btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 32px;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 8px;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-    }
-
-    .hero__btn--primary {
-      background: #fff;
-      color: var(--color-accent);
-    }
-
-    .hero__btn--primary:hover {
-      background: #f0f0f0;
-    }
-
-    .hero__btn--secondary {
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.5);
-    }
-
-    .hero__btn--secondary:hover {
-      border-color: #fff;
-      background: rgba(255,255,255,0.1);
-    }
-
-    .hero__stats {
-      display: flex;
-      gap: 48px;
-    }
-
-    .hero__stat {
-      text-align: left;
-    }
-
-    .hero__stat-number {
-      font-size: 36px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-    }
-
-    .hero__stat-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.6);
-      margin-top: 2px;
-    }
-
-    /* ==============================
-       Shared Section Styles
-       ============================== */
-    .section {
-      padding: 120px 0;
-    }
-
-    .section--alt {
-      background: var(--color-bg-alt);
-    }
-
-    .section__title {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--color-text);
-      letter-spacing: -0.02em;
-      line-height: 1.3;
-      text-align: center;
-      margin-bottom: 16px;
-    }
-
-    .section__sub {
-      font-size: 17px;
-      color: var(--color-text-sub);
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 64px;
-      line-height: 1.7;
-    }
-
-    /* Scroll reveal */
+    /* ── Scroll reveal animation ── */
     .reveal {
       opacity: 0;
       transform: translateY(32px);
       transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
-
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* ==============================
-       Section 2 - Core Pipeline
-       ============================== */
-    .pipeline {
-      margin-top: 64px;
-    }
-
-    .pipeline__steps {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      position: relative;
-    }
-
-    .pipeline__line {
-      position: absolute;
-      top: 24px;
-      left: 60px;
-      right: 60px;
-      height: 2px;
-      background: var(--color-border);
-      z-index: 0;
-    }
-
-    .pipeline__step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      flex: 1;
-      position: relative;
-      z-index: 1;
-      cursor: pointer;
-      padding: 0 12px;
-    }
-
-    .pipeline__circle {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: #fff;
-      border: 2px solid var(--color-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--color-text-muted);
-      margin-bottom: 16px;
-      transition: all 0.3s;
-    }
-
-    .pipeline__step.active .pipeline__circle {
-      background: var(--color-accent);
-      border-color: var(--color-accent);
-      color: #fff;
-    }
-
-    .pipeline__title-kr {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--color-text);
-      margin-bottom: 4px;
-      transition: color 0.3s;
-    }
-
-    .pipeline__step.active .pipeline__title-kr {
-      color: var(--color-accent);
-    }
-
-    .pipeline__title-en {
-      font-size: 12px;
-      color: var(--color-text-muted);
-      margin-bottom: 12px;
-    }
-
-    .pipeline__desc {
-      font-size: 13px;
-      color: var(--color-text-sub);
-      line-height: 1.6;
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: max-height 0.4s, opacity 0.3s;
-    }
-
-    .pipeline__step.active .pipeline__desc {
-      max-height: 120px;
-      opacity: 1;
-    }
-
-    /* ==============================
-       Section 3 - Two Solutions
-       ============================== */
-    .solutions__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-
-    .solution-card {
-      background: #fff;
-      border: 1px solid var(--color-border);
-      border-radius: 16px;
-      padding: 48px 40px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-      transition: box-shadow 0.3s;
-    }
-
-    .solution-card:hover {
-      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-    }
-
-    .solution-card__badge {
-      display: inline-block;
-      background: var(--color-accent-light);
-      color: var(--color-accent);
-      font-size: 13px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 6px;
-      margin-bottom: 20px;
-    }
-
-    .solution-card__title {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--color-text);
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-
-    .solution-card__target {
-      font-size: 14px;
-      color: var(--color-text-muted);
-      margin-bottom: 28px;
-    }
-
-    .solution-card__features {
-      margin-bottom: 32px;
-    }
-
-    .solution-card__feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 9px 0;
-      font-size: 14px;
-      color: var(--color-text-sub);
-      line-height: 1.5;
-      border-bottom: 1px solid var(--color-border-light);
-    }
-
-    .solution-card__feature:last-child {
-      border-bottom: none;
-    }
-
-    .solution-card__bullet {
-      width: 5px;
-      height: 5px;
-      background: var(--color-accent);
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 8px;
-    }
-
-    .solution-card__cta {
-      display: inline-flex;
-      align-items: center;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--color-accent);
-      transition: gap 0.2s;
-      gap: 4px;
-    }
-
-    .solution-card__cta:hover {
-      gap: 8px;
-    }
-
-    /* ==============================
-       Section 4 - For Your Business
-       ============================== */
-    .biz-tabs {
-      margin-top: 64px;
-    }
-
-    .biz-tabs__nav {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 48px;
-    }
-
-    .biz-tabs__btn {
-      padding: 12px 28px;
-      border: 1px solid var(--color-border);
-      border-radius: 100px;
-      background: #fff;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--color-text-sub);
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: var(--font);
-    }
-
-    .biz-tabs__btn.active {
-      background: var(--color-accent);
-      border-color: var(--color-accent);
-      color: #fff;
-    }
-
-    .biz-tabs__btn:hover:not(.active) {
-      border-color: var(--color-accent);
-      color: var(--color-accent);
-    }
-
-    .biz-tabs__panel {
-      display: none;
-    }
-
-    .biz-tabs__panel.active {
-      display: block;
-    }
-
-    .biz-tabs__content {
-      background: #fff;
-      border: 1px solid var(--color-border);
-      border-radius: 16px;
-      padding: 56px 48px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-    }
-
-    .biz-tabs__label {
-      display: inline-block;
-      background: var(--color-accent-light);
-      color: var(--color-accent);
-      font-size: 13px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 6px;
-      margin-bottom: 20px;
-    }
-
-    .biz-tabs__title {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--color-text);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-
-    .biz-tabs__desc {
-      font-size: 16px;
-      color: var(--color-text-sub);
-      line-height: 1.7;
-      margin-bottom: 40px;
-      max-width: 640px;
-    }
-
-    .biz-tabs__values {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .biz-value {
-      padding: 24px;
-      background: var(--color-bg-alt);
-      border-radius: 12px;
-    }
-
-    .biz-value__num {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--color-accent);
-      margin-bottom: 8px;
-    }
-
-    .biz-value__title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--color-text);
-      margin-bottom: 6px;
-    }
-
-    .biz-value__desc {
-      font-size: 13px;
-      color: var(--color-text-sub);
-      line-height: 1.6;
-    }
-
-    /* ==============================
-       Section 5 - Business Expansion
-       ============================== */
-    .expansion__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-
-    .expansion-card {
-      background: #fff;
-      border: 1px solid var(--color-border);
-      border-radius: 16px;
-      padding: 48px 40px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-      transition: box-shadow 0.3s;
-    }
-
-    .expansion-card:hover {
-      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-    }
-
-    .expansion-card__num {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--color-accent);
-      margin-bottom: 16px;
-    }
-
-    .expansion-card__title {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--color-text);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-
-    .expansion-card__desc {
-      font-size: 15px;
-      color: var(--color-text-sub);
-      line-height: 1.7;
-      margin-bottom: 28px;
-    }
-
-    .expansion-card__cta {
-      display: inline-flex;
-      align-items: center;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--color-accent);
-      gap: 4px;
-      transition: gap 0.2s;
-    }
-
-    .expansion-card__cta:hover {
-      gap: 8px;
-    }
-
-    /* ==============================
-       Section 6 - Success Cases
-       ============================== */
-    .cases__scroll {
-      display: flex;
-      gap: 24px;
-      overflow-x: auto;
-      padding-bottom: 16px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .cases__scroll::-webkit-scrollbar {
-      height: 4px;
-    }
-
-    .cases__scroll::-webkit-scrollbar-track {
-      background: var(--color-border-light);
-      border-radius: 2px;
-    }
-
-    .cases__scroll::-webkit-scrollbar-thumb {
-      background: var(--color-border);
-      border-radius: 2px;
-    }
-
-    .case-card {
-      min-width: 300px;
-      max-width: 300px;
-      background: #fff;
-      border: 1px solid var(--color-border);
-      border-radius: 16px;
-      overflow: hidden;
-      scroll-snap-align: start;
-      flex-shrink: 0;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-      transition: box-shadow 0.3s;
-    }
-
-    .case-card:hover {
-      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-    }
-
-    .case-card__thumb {
-      height: 140px;
-      background: #E2E4EA;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-text-muted);
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .case-card__body {
-      padding: 24px;
-    }
-
-    .case-card__badge {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--color-accent);
-      background: var(--color-accent-light);
-      padding: 3px 10px;
-      border-radius: 4px;
-      margin-bottom: 12px;
-    }
-
-    .case-card__title {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--color-text);
-      letter-spacing: -0.02em;
-      margin-bottom: 6px;
-    }
-
-    .case-card__impact {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--color-accent);
-      margin-bottom: 8px;
-    }
-
-    .case-card__desc {
-      font-size: 13px;
-      color: var(--color-text-sub);
-      line-height: 1.6;
-    }
-
-    .cases__cta {
-      text-align: center;
-      margin-top: 48px;
-    }
-
-    .cases__cta a {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--color-accent);
-      transition: opacity 0.2s;
-    }
-
-    .cases__cta a:hover {
-      opacity: 0.7;
-    }
-
-    /* ==============================
-       Section 7 - Partners
-       ============================== */
-    .partners__track-wrap {
-      overflow: hidden;
-      margin-top: 48px;
-    }
-
-    .partners__track {
-      display: flex;
-      gap: 48px;
-      animation: partnerScroll 30s linear infinite;
-      width: max-content;
-    }
-
-    .partners__item {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 48px;
-      padding: 0 16px;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--color-text-muted);
-      white-space: nowrap;
-      background: #fff;
-      border: 1px solid var(--color-border-light);
-      border-radius: 8px;
-    }
-
-    @keyframes partnerScroll {
+    /* ── Partner infinite scroll ── */
+    @keyframes scroll-left {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-
-    /* ==============================
-       Section 8 - CTA Band
-       ============================== */
-    .cta-band {
-      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
-      padding: 80px 0;
-      text-align: center;
+    .partner-track {
+      animation: scroll-left 30s linear infinite;
+    }
+    .partner-track:hover {
+      animation-play-state: paused;
     }
 
-    .cta-band__title {
-      font-size: 36px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
+    /* ── Pipeline connector line ── */
+    .pipeline-line {
+      position: absolute;
+      top: 20px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: #E5E7EB;
+      z-index: 0;
     }
 
-    .cta-band__sub {
-      font-size: 17px;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 36px;
-    }
+    /* ── Smooth scrollbar ── */
+    html { scroll-behavior: smooth; }
 
-    .cta-band__btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 40px;
-      background: #fff;
-      color: var(--color-accent);
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 8px;
-      transition: background 0.2s;
-      font-family: var(--font);
-      border: none;
-      cursor: pointer;
-    }
+    /* ── Dropdown ── */
+    .nav-dropdown { display: none; }
+    .nav-dropdown.open { display: block; }
 
-    .cta-band__btn:hover {
-      background: #f0f0f0;
-    }
-
-    /* ==============================
-       Footer
-       ============================== */
-    .footer {
-      background: #1A1F2E;
-      padding: 64px 0 40px;
-      color: rgba(255,255,255,0.6);
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .footer__inner {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 48px;
-    }
-
-    .footer__logo {
-      height: 24px;
-      margin-bottom: 24px;
-      filter: brightness(0) invert(1);
-    }
-
-    .footer__info p {
-      margin-bottom: 2px;
-    }
-
-    .footer__col-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 20px;
-    }
-
-    .footer__link {
-      display: block;
-      color: rgba(255,255,255,0.5);
-      font-size: 13px;
-      padding: 4px 0;
-      transition: color 0.2s;
-    }
-
-    .footer__link:hover {
-      color: rgba(255,255,255,0.85);
-    }
-
-    .footer__bottom {
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      text-align: center;
-      font-size: 12px;
-      color: rgba(255,255,255,0.35);
-    }
-
-    /* ==============================
-       Responsive
-       ============================== */
-    @media (max-width: 960px) {
-      .hero__headline {
-        font-size: 32px;
-      }
-      .hero__stats {
-        gap: 24px;
-        flex-wrap: wrap;
-      }
-      .hero__stat-number {
-        font-size: 24px;
-      }
-      .section__title {
-        font-size: 28px;
-      }
-      .solutions__grid,
-      .expansion__grid {
-        grid-template-columns: 1fr;
-      }
-      .pipeline__steps {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 16px;
-      }
-      .pipeline__line {
-        display: none;
-      }
-      .pipeline__step {
-        flex-direction: row;
-        text-align: left;
-        gap: 16px;
-      }
-      .biz-tabs__nav {
-        flex-wrap: wrap;
-      }
-      .biz-tabs__values {
-        grid-template-columns: 1fr;
-      }
-      .footer__inner {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .gnb__menu {
-        display: none;
-      }
-      .hero {
-        height: auto;
-        min-height: 365px;
-        padding: 48px 0 32px;
-      }
-      .hero__headline {
-        font-size: 28px;
-      }
-      .hero__buttons {
-        flex-direction: column;
-      }
-      .hero__stats {
-        flex-direction: column;
-        gap: 16px;
-      }
-      .section {
-        padding: 80px 0;
-      }
-      .biz-tabs__content {
-        padding: 32px 24px;
-      }
-    }
+    /* ── Horizontal scroll cards ── */
+    .case-scroll::-webkit-scrollbar { height: 6px; }
+    .case-scroll::-webkit-scrollbar-track { background: #F5F7FA; border-radius: 3px; }
+    .case-scroll::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 3px; }
   </style>
 </head>
-<body>
 
-  <!-- ============================
-       GNB
-       ============================ -->
-  <header class="gnb" id="gnb">
-    <div class="gnb__inner">
-      <a href="/" class="gnb__logo">
-        <img src="images/TRISEUP.png" alt="T-RiseUp">
+<body class="font-pretendard text-main bg-white antialiased">
+
+  <!-- ============================================================
+       GNB — Fixed Top Navigation
+       ============================================================ -->
+  <nav id="gnb" class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur z-50 transition-shadow duration-300">
+    <div class="max-w-container mx-auto px-6 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="index-v2.html" class="flex-shrink-0">
+        <img src="images/TRISEUP.png" alt="T-RiseUp" class="h-7">
       </a>
-      <nav class="gnb__nav">
-        <ul class="gnb__menu">
-          <li class="gnb__item gnb__item--has-dropdown">
-            <span>제품</span>
-            <div class="gnb__dropdown">
-              <a href="pages/pms.html">PMS</a>
-              <a href="pages/tms.html">TMS</a>
-              <a href="pages/license.html">면허솔루션</a>
-              <a href="pages/marketplace.html">Marketplace</a>
-            </div>
-          </li>
-          <li class="gnb__item">
-            <a href="pages/cases.html">도입사례</a>
-          </li>
-        </ul>
-        <a href="pages/demo.html" class="gnb__cta">무료 데모 신청</a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- ============================
-       Section 1 - Hero
-       ============================ -->
-  <section class="hero">
-    <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <h1 class="hero__headline">예약 · 배차 · 관제 · 정산
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        <!-- 제품 Dropdown -->
+        <div class="relative" id="product-dropdown-wrapper">
+          <button id="product-dropdown-btn" class="text-sm font-medium text-main hover:text-brand transition-colors flex items-center gap-1">
+            제품
+            <svg class="w-4 h-4 text-sub" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="product-dropdown" class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white border border-border rounded-xl shadow-lg py-2">
+            <a href="pages/pms.html" class="block px-4 py-2 text-sm text-sub hover:text-brand hover:bg-alt transition-colors">PMS</a>
+            <a href="pages/tms.html" class="block px-4 py-2 text-sm text-sub hover:text-brand hover:bg-alt transition-colors">TMS</a>
+            <a href="pages/license.html" class="block px-4 py-2 text-sm text-sub hover:text-brand hover:bg-alt transition-colors">면허 솔루션</a>
+            <a href="pages/marketplace.html" class="block px-4 py-2 text-sm text-sub hover:text-brand hover:bg-alt transition-colors">Marketplace</a>
+          </div>
+        </div>
+
+        <a href="pages/cases.html" class="text-sm font-medium text-main hover:text-brand transition-colors">도입사례</a>
+
+        <a href="pages/demo.html" class="ml-2 px-5 py-2.5 bg-brand hover:bg-brand-dark text-white text-sm font-semibold rounded-lg transition-colors">
+          무료 데모 신청
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="mobile-menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2">
+        <span class="block w-5 h-0.5 bg-main transition-transform" id="ham-top"></span>
+        <span class="block w-5 h-0.5 bg-main transition-opacity" id="ham-mid"></span>
+        <span class="block w-5 h-0.5 bg-main transition-transform" id="ham-bot"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-border">
+      <div class="max-w-container mx-auto px-6 py-4 space-y-3">
+        <p class="text-xs font-semibold text-muted uppercase tracking-wider">제품</p>
+        <a href="pages/pms.html" class="block text-sm text-sub pl-3">PMS</a>
+        <a href="pages/tms.html" class="block text-sm text-sub pl-3">TMS</a>
+        <a href="pages/license.html" class="block text-sm text-sub pl-3">면허 솔루션</a>
+        <a href="pages/marketplace.html" class="block text-sm text-sub pl-3">Marketplace</a>
+        <hr class="border-border">
+        <a href="pages/cases.html" class="block text-sm font-medium text-main">도입사례</a>
+        <a href="pages/demo.html" class="block w-full text-center px-5 py-2.5 bg-brand text-white text-sm font-semibold rounded-lg">무료 데모 신청</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       Section 1: Hero
+       ============================================================ -->
+  <section class="relative w-full pt-16" style="height: calc(365px + 64px);">
+    <!-- Background Image + Overlay -->
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('images/div.hero__overlay.png');">
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+
+    <div class="relative z-10 max-w-container mx-auto px-6 h-full flex flex-col justify-center">
+      <!-- Headline -->
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight whitespace-pre-line" style="font-size: clamp(32px, 5vw, 48px);">
+예약 · 배차 · 관제 · 정산
 모빌리티 운영의 전 과정을 하나로</h1>
-      <p class="hero__sub">의전·수송부터 관광 셔틀까지, 국내 유일 B2B 모빌리티 SaaS 플랫폼</p>
-      <div class="hero__buttons">
-        <a href="pages/demo.html" class="hero__btn hero__btn--primary">무료 데모 신청</a>
-        <a href="#solutions" class="hero__btn hero__btn--secondary">솔루션 살펴보기</a>
-      </div>
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <div class="hero__stat-number">50,000+</div>
-          <div class="hero__stat-label">월간 이용자</div>
-        </div>
-        <div class="hero__stat">
-          <div class="hero__stat-number">990+</div>
-          <div class="hero__stat-label">행사 운행 건수</div>
-        </div>
-        <div class="hero__stat">
-          <div class="hero__stat-number">15+</div>
-          <div class="hero__stat-label">화이트라벨 파트너</div>
-        </div>
-        <div class="hero__stat">
-          <div class="hero__stat-number">21개국</div>
-          <div class="hero__stat-label">정상 의전</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============================
-       Section 2 - Core Pipeline
-       ============================ -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section__title reveal">예약부터 정산까지, 끊김 없는 운영 프로세스</h2>
-      <div class="pipeline reveal">
-        <div class="pipeline__steps">
-          <div class="pipeline__line"></div>
-          <div class="pipeline__step active" data-step="0">
-            <div class="pipeline__circle">01</div>
-            <div class="pipeline__title-kr">예약 접수</div>
-            <div class="pipeline__title-en">Booking</div>
-            <div class="pipeline__desc">웹·앱·API·GNET 등 다채널 예약 통합 수신. 항공편 실시간 연동으로 픽업 시간 자동 조정</div>
-          </div>
-          <div class="pipeline__step" data-step="1">
-            <div class="pipeline__circle">02</div>
-            <div class="pipeline__title-kr">배차 관리</div>
-            <div class="pipeline__title-en">Dispatch</div>
-            <div class="pipeline__desc">자사→제휴사→얼라이언스→GNET 자동 폴백 배차. VIP 전담 기사 확정 배차 지원</div>
-          </div>
-          <div class="pipeline__step" data-step="2">
-            <div class="pipeline__circle">03</div>
-            <div class="pipeline__title-kr">실시간 관제</div>
-            <div class="pipeline__title-en">Monitoring</div>
-            <div class="pipeline__desc">GPS 5초 갱신 실시간 위치 추적. 기사 상태 실시간 모니터링</div>
-          </div>
-          <div class="pipeline__step" data-step="3">
-            <div class="pipeline__circle">04</div>
-            <div class="pipeline__title-kr">운행 완료</div>
-            <div class="pipeline__title-en">Journey</div>
-            <div class="pipeline__desc">QR 탑승 체크인, 경유지 관리, 운행 기록 자동 저장</div>
-          </div>
-          <div class="pipeline__step" data-step="4">
-            <div class="pipeline__circle">05</div>
-            <div class="pipeline__title-kr">정산 처리</div>
-            <div class="pipeline__title-en">Settlement</div>
-            <div class="pipeline__desc">다자간 정산(법인→운영사→제휴사→기사) 자동화</div>
+      <!-- Subheadline -->
+      <p class="mt-4 text-base md:text-lg text-white/75 max-w-2xl" style="font-size: clamp(15px, 2vw, 18px);">
+        의전·수송부터 관광 셔틀까지, 국내 유일 B2B 모빌리티 SaaS 플랫폼
+      </p>
+
+      <!-- CTAs -->
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="pages/demo.html" class="px-7 py-3 bg-brand hover:bg-brand-dark text-white font-semibold rounded-lg transition-colors text-sm">
+          무료 데모 신청
+        </a>
+        <a href="#solutions" class="px-7 py-3 border border-white/60 hover:border-white text-white font-semibold rounded-lg transition-colors text-sm">
+          솔루션 살펴보기
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="absolute bottom-0 left-0 right-0">
+        <div class="max-w-container mx-auto px-6 pb-6">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            <div>
+              <p class="text-2xl md:text-3xl font-bold text-white">50,000+</p>
+              <p class="text-xs md:text-sm text-white/60 mt-1">월간 이용자</p>
+            </div>
+            <div>
+              <p class="text-2xl md:text-3xl font-bold text-white">990+</p>
+              <p class="text-xs md:text-sm text-white/60 mt-1">대규모 행사 운행</p>
+            </div>
+            <div>
+              <p class="text-2xl md:text-3xl font-bold text-white">15+</p>
+              <p class="text-xs md:text-sm text-white/60 mt-1">화이트라벨 파트너</p>
+            </div>
+            <div>
+              <p class="text-2xl md:text-3xl font-bold text-white">21개국</p>
+              <p class="text-xs md:text-sm text-white/60 mt-1">글로벌 의전</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================
-       Section 3 - Two Solutions
-       ============================ -->
-  <section class="section section--alt" id="solutions">
-    <div class="container">
-      <h2 class="section__title reveal">운영 관리와 비즈니스 확장을 동시에</h2>
-      <p class="section__sub reveal">T-RiseUp은 운영사를 위한 PMS와 판매 채널을 위한 TMS, 두 개의 솔루션으로 구성됩니다</p>
-      <div class="solutions__grid">
-        <div class="solution-card reveal">
-          <span class="solution-card__badge">PMS</span>
-          <h3 class="solution-card__title">의전·수송 통합 운영관리 솔루션</h3>
-          <p class="solution-card__target">교통 운영사 · 의전 서비스 · 법인 차량 관리</p>
-          <div class="solution-card__features">
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>예약 생성·수정·취소 — 7가지 서비스 유형</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>자동 배차 + VIP 전담 기사 확정 배차</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>항공편 실시간 연동 (11개 국내 공항)</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>GPS 실시간 관제 + 지오펜싱</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>다자간 정산 자동화</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>제휴사·얼라이언스·GNET 글로벌 네트워크</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>기사/의전요원 모바일 앱</span>
-            </div>
-          </div>
-          <a href="pages/pms.html" class="solution-card__cta">PMS 자세히보기 →</a>
+
+  <!-- ============================================================
+       Section 2: Core Pipeline
+       ============================================================ -->
+  <section class="py-20 md:py-[120px] bg-white">
+    <div class="max-w-container mx-auto px-6">
+      <!-- Title -->
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">예약부터 정산까지, 끊김 없는 운영 프로세스</h2>
+      </div>
+
+      <!-- Pipeline Steps -->
+      <div class="relative reveal">
+        <!-- Connector Line (desktop only) -->
+        <div class="pipeline-line hidden md:block"></div>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-4 relative z-10">
+          <!-- Step 01 -->
+          <button class="pipeline-step group text-center cursor-pointer" data-step="0">
+            <div class="w-10 h-10 mx-auto rounded-full bg-white border-2 border-border group-hover:border-brand transition-colors flex items-center justify-center text-sm font-bold text-sub group-hover:text-brand">01</div>
+            <p class="mt-3 text-sm font-semibold text-main">예약 접수</p>
+            <p class="text-xs text-muted mt-0.5">Booking</p>
+          </button>
+          <!-- Step 02 -->
+          <button class="pipeline-step group text-center cursor-pointer" data-step="1">
+            <div class="w-10 h-10 mx-auto rounded-full bg-white border-2 border-border group-hover:border-brand transition-colors flex items-center justify-center text-sm font-bold text-sub group-hover:text-brand">02</div>
+            <p class="mt-3 text-sm font-semibold text-main">배차 관리</p>
+            <p class="text-xs text-muted mt-0.5">Dispatch</p>
+          </button>
+          <!-- Step 03 -->
+          <button class="pipeline-step group text-center cursor-pointer" data-step="2">
+            <div class="w-10 h-10 mx-auto rounded-full bg-white border-2 border-border group-hover:border-brand transition-colors flex items-center justify-center text-sm font-bold text-sub group-hover:text-brand">03</div>
+            <p class="mt-3 text-sm font-semibold text-main">실시간 관제</p>
+            <p class="text-xs text-muted mt-0.5">Monitoring</p>
+          </button>
+          <!-- Step 04 -->
+          <button class="pipeline-step group text-center cursor-pointer" data-step="3">
+            <div class="w-10 h-10 mx-auto rounded-full bg-white border-2 border-border group-hover:border-brand transition-colors flex items-center justify-center text-sm font-bold text-sub group-hover:text-brand">04</div>
+            <p class="mt-3 text-sm font-semibold text-main">운행 완료</p>
+            <p class="text-xs text-muted mt-0.5">Journey</p>
+          </button>
+          <!-- Step 05 -->
+          <button class="pipeline-step group text-center cursor-pointer col-span-2 md:col-span-1" data-step="4">
+            <div class="w-10 h-10 mx-auto rounded-full bg-white border-2 border-border group-hover:border-brand transition-colors flex items-center justify-center text-sm font-bold text-sub group-hover:text-brand">05</div>
+            <p class="mt-3 text-sm font-semibold text-main">정산 처리</p>
+            <p class="text-xs text-muted mt-0.5">Settlement</p>
+          </button>
         </div>
-        <div class="solution-card reveal">
-          <span class="solution-card__badge">TMS</span>
-          <h3 class="solution-card__title">셔틀·관광 티켓 예약관리 플랫폼</h3>
-          <p class="solution-card__target">여행사 · 테마파크 · 리조트 · 이벤트 · 지자체</p>
-          <div class="solution-card__features">
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>노선 설계 → 스케줄 → 좌석 예약 → QR 검표</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>화이트라벨 멀티테넌시 (15+ 파트너사)</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>17개 결제 게이트웨이</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>셔틀 + 입장권 패키지 번들 판매</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>비회원 예약 지원</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>실시간 GPS + QR 탑승 체크인</span>
-            </div>
-            <div class="solution-card__feature">
-              <span class="solution-card__bullet"></span>
-              <span>다국어 (한/영/일/중) + 글로벌 결제</span>
-            </div>
-          </div>
-          <a href="pages/tms.html" class="solution-card__cta">TMS 자세히보기 →</a>
+      </div>
+
+      <!-- Step Description (toggle) -->
+      <div id="pipeline-desc" class="mt-10 text-center reveal">
+        <div class="inline-block bg-alt rounded-2xl px-8 py-6 max-w-xl transition-all duration-300" id="pipeline-desc-box" style="display:none;">
+          <p id="pipeline-desc-text" class="text-sm text-sub leading-relaxed whitespace-pre-line"></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================
-       Section 4 - For Your Business
-       ============================ -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section__title reveal">비즈니스 환경에 맞는 솔루션을 선택하세요</h2>
-      <div class="biz-tabs reveal">
-        <div class="biz-tabs__nav">
-          <button class="biz-tabs__btn active" data-tab="0">교통 운영사</button>
-          <button class="biz-tabs__btn" data-tab="1">법인 고객</button>
-          <button class="biz-tabs__btn" data-tab="2">여행사·관광</button>
-          <button class="biz-tabs__btn" data-tab="3">이벤트·지자체</button>
+
+  <!-- ============================================================
+       Section 3: Two Solutions (PMS & TMS)
+       ============================================================ -->
+  <section id="solutions" class="py-20 md:py-[120px] bg-alt">
+    <div class="max-w-container mx-auto px-6">
+      <!-- Title -->
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">운영 관리와 비즈니스 확장을 동시에</h2>
+        <p class="mt-4 text-sub max-w-2xl mx-auto">T-RiseUp은 운영사를 위한 PMS와 판매 채널을 위한 TMS, 두 개의 솔루션으로 구성됩니다</p>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="grid md:grid-cols-2 gap-6 reveal">
+        <!-- PMS Card -->
+        <div class="bg-white border border-border rounded-2xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+          <span class="inline-block px-3 py-1 bg-brand/10 text-brand text-xs font-bold rounded-full">PMS</span>
+          <h3 class="mt-4 text-xl md:text-2xl font-bold tracking-tight">의전·수송 통합 운영관리 솔루션</h3>
+          <p class="mt-2 text-sm text-muted">교통 운영사 · 의전 서비스 · 법인 차량 관리</p>
+
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>예약 생성·수정·취소 &mdash; 7가지 서비스 유형</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>자동 배차 + VIP 전담 기사 확정 배차</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>항공편 실시간 연동 (11개 국내 공항)</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>GPS 실시간 관제 + 지오펜싱</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>다자간 정산 자동화</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>제휴사·얼라이언스·GNET 글로벌 배차</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>기사/의전요원 모바일 앱</li>
+          </ul>
+
+          <a href="pages/pms.html" class="inline-block mt-8 text-sm font-semibold text-brand hover:text-brand-dark transition-colors">
+            PMS 자세히보기 &rarr;
+          </a>
         </div>
-        <div class="biz-tabs__panel active" data-panel="0">
-          <div class="biz-tabs__content">
-            <span class="biz-tabs__label">PMS 추천</span>
-            <h3 class="biz-tabs__title">교통 운영사</h3>
-            <p class="biz-tabs__desc">배차부터 정산까지 자동화하고, 제휴 네트워크로 배차율을 극대화하세요</p>
-            <div class="biz-tabs__values">
-              <div class="biz-value">
-                <div class="biz-value__num">01</div>
-                <div class="biz-value__title">자동 배차 시스템</div>
-                <div class="biz-value__desc">자사 기사 우선 → 제휴사 → 얼라이언스 → GNET 순서로 자동 폴백 배차</div>
+
+        <!-- TMS Card -->
+        <div class="bg-white border border-border rounded-2xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+          <span class="inline-block px-3 py-1 bg-brand/10 text-brand text-xs font-bold rounded-full">TMS</span>
+          <h3 class="mt-4 text-xl md:text-2xl font-bold tracking-tight">셔틀·관광 티켓 예약관리 플랫폼</h3>
+          <p class="mt-2 text-sm text-muted">여행사 · 테마파크 · 리조트 · 이벤트 · 지자체</p>
+
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>노선 설계 &rarr; 스케줄 &rarr; 좌석 예약 &rarr; QR 검표 원스톱</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>화이트라벨 멀티테넌시 (15+ 파트너)</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>17개 결제 게이트웨이</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>셔틀 + 입장권 패키지 번들</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>비회원 예약 지원</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>실시간 GPS + QR 탑승 체크인</li>
+            <li class="flex items-start gap-2 text-sm text-sub"><span class="text-brand mt-0.5 flex-shrink-0">-</span>다국어 (한/영/일/중) + 글로벌 결제</li>
+          </ul>
+
+          <a href="pages/tms.html" class="inline-block mt-8 text-sm font-semibold text-brand hover:text-brand-dark transition-colors">
+            TMS 자세히보기 &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       Section 4: For Your Business
+       ============================================================ -->
+  <section class="py-20 md:py-[120px] bg-white">
+    <div class="max-w-container mx-auto px-6">
+      <!-- Title -->
+      <div class="text-center mb-12 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">비즈니스 환경에 맞는 솔루션을 선택하세요</h2>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="flex flex-wrap justify-center gap-2 mb-10 reveal">
+        <button class="biz-tab px-5 py-2.5 rounded-full text-sm font-medium transition-colors border" data-tab="0">교통 운영사</button>
+        <button class="biz-tab px-5 py-2.5 rounded-full text-sm font-medium transition-colors border" data-tab="1">법인 고객</button>
+        <button class="biz-tab px-5 py-2.5 rounded-full text-sm font-medium transition-colors border" data-tab="2">여행사·관광</button>
+        <button class="biz-tab px-5 py-2.5 rounded-full text-sm font-medium transition-colors border" data-tab="3">이벤트·지자체</button>
+      </div>
+
+      <!-- Tab Panels -->
+      <div class="reveal">
+        <!-- Panel 0 -->
+        <div class="biz-panel hidden" data-panel="0">
+          <div class="bg-alt border border-border rounded-2xl p-8 md:p-12 max-w-3xl mx-auto text-center">
+            <span class="inline-block px-3 py-1 bg-brand/10 text-brand text-xs font-bold rounded-full mb-4">PMS 추천</span>
+            <p class="text-lg md:text-xl font-semibold text-main tracking-tight">배차부터 정산까지 자동화하고, 제휴 네트워크로 배차율을 극대화하세요</p>
+            <div class="mt-8 grid sm:grid-cols-3 gap-4">
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">예약·배차·정산 자동화</p>
               </div>
-              <div class="biz-value">
-                <div class="biz-value__num">02</div>
-                <div class="biz-value__title">실시간 관제</div>
-                <div class="biz-value__desc">GPS 기반 5초 갱신 위치 추적과 기사 상태 실시간 모니터링</div>
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">제휴사·GNET 글로벌 배차</p>
               </div>
-              <div class="biz-value">
-                <div class="biz-value__num">03</div>
-                <div class="biz-value__title">다자간 정산 자동화</div>
-                <div class="biz-value__desc">법인→운영사→제휴사→기사 간 복잡한 정산을 자동으로 처리</div>
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">기사 앱 실시간 관리</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="biz-tabs__panel" data-panel="1">
-          <div class="biz-tabs__content">
-            <span class="biz-tabs__label">PMS 추천</span>
-            <h3 class="biz-tabs__title">법인 고객</h3>
-            <p class="biz-tabs__desc">전담 기사 배정, 통합 청구, 법인 레퍼런스 번호로 대량 예약을 간편하게</p>
-            <div class="biz-tabs__values">
-              <div class="biz-value">
-                <div class="biz-value__num">01</div>
-                <div class="biz-value__title">VIP 전담 배차</div>
-                <div class="biz-value__desc">VIP 고객별 전담 기사를 지정하고 확정 배차로 품질을 보장합니다</div>
+
+        <!-- Panel 1 -->
+        <div class="biz-panel hidden" data-panel="1">
+          <div class="bg-alt border border-border rounded-2xl p-8 md:p-12 max-w-3xl mx-auto text-center">
+            <span class="inline-block px-3 py-1 bg-brand/10 text-brand text-xs font-bold rounded-full mb-4">PMS 추천</span>
+            <p class="text-lg md:text-xl font-semibold text-main tracking-tight">전담 기사 배정, 통합 청구, 법인 레퍼런스 번호로 대량 예약을 간편하게</p>
+            <div class="mt-8 grid sm:grid-cols-3 gap-4">
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">법인 전용 예약 체계</p>
               </div>
-              <div class="biz-value">
-                <div class="biz-value__num">02</div>
-                <div class="biz-value__title">법인 통합 청구</div>
-                <div class="biz-value__desc">법인 레퍼런스 번호로 대량 예약을 일괄 관리하고 통합 청구합니다</div>
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">월 통합 정산·청구서</p>
               </div>
-              <div class="biz-value">
-                <div class="biz-value__num">03</div>
-                <div class="biz-value__title">운행 리포트</div>
-                <div class="biz-value__desc">월별 이용 현황, 비용 분석, 기사 평가 등 상세 리포트를 제공합니다</div>
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">VIP 의전 + 공항 서비스</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="biz-tabs__panel" data-panel="2">
-          <div class="biz-tabs__content">
-            <span class="biz-tabs__label">TMS 추천</span>
-            <h3 class="biz-tabs__title">여행사·관광</h3>
-            <p class="biz-tabs__desc">노선 설계부터 QR 검표까지, 셔틀 상품을 만들고 바로 판매하세요</p>
-            <div class="biz-tabs__values">
-              <div class="biz-value">
-                <div class="biz-value__num">01</div>
-                <div class="biz-value__title">셔틀 상품 설계</div>
-                <div class="biz-value__desc">노선·정류장·스케줄을 설정하고 좌석 예약 상품을 즉시 생성합니다</div>
+
+        <!-- Panel 2 -->
+        <div class="biz-panel hidden" data-panel="2">
+          <div class="bg-alt border border-border rounded-2xl p-8 md:p-12 max-w-3xl mx-auto text-center">
+            <span class="inline-block px-3 py-1 bg-brand/10 text-brand text-xs font-bold rounded-full mb-4">TMS 추천</span>
+            <p class="text-lg md:text-xl font-semibold text-main tracking-tight">노선 설계부터 QR 검표까지, 셔틀 상품을 만들고 바로 판매하세요</p>
+            <div class="mt-8 grid sm:grid-cols-3 gap-4">
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">화이트라벨 자사 브랜드</p>
               </div>
-              <div class="biz-value">
-                <div class="biz-value__num">02</div>
-                <div class="biz-value__title">패키지 번들 판매</div>
-                <div class="biz-value__desc">셔틀 + 입장권을 패키지로 묶어 하나의 티켓으로 판매합니다</div>
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">셔틀+입장권 패키지</p>
               </div>
-              <div class="biz-value">
-                <div class="biz-value__num">03</div>
-                <div class="biz-value__title">다국어·글로벌 결제</div>
-                <div class="biz-value__desc">한/영/일/중 다국어 지원과 17개 결제 게이트웨이로 글로벌 판매</div>
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">17개 결제수단</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="biz-tabs__panel" data-panel="3">
-          <div class="biz-tabs__content">
-            <span class="biz-tabs__label">PMS + TMS 추천</span>
-            <h3 class="biz-tabs__title">이벤트·지자체</h3>
-            <p class="biz-tabs__desc">대규모 국제 행사의 의전·수송·셔틀을 하나의 플랫폼으로 통합 운영</p>
-            <div class="biz-tabs__values">
-              <div class="biz-value">
-                <div class="biz-value__num">01</div>
-                <div class="biz-value__title">의전·수송 통합</div>
-                <div class="biz-value__desc">VIP 의전, 일반 수송, 셔틀을 하나의 관제 화면에서 통합 관리합니다</div>
+
+        <!-- Panel 3 -->
+        <div class="biz-panel hidden" data-panel="3">
+          <div class="bg-alt border border-border rounded-2xl p-8 md:p-12 max-w-3xl mx-auto text-center">
+            <span class="inline-block px-3 py-1 bg-brand/10 text-brand text-xs font-bold rounded-full mb-4">PMS+TMS 추천</span>
+            <p class="text-lg md:text-xl font-semibold text-main tracking-tight">대규모 국제 행사의 의전·수송·셔틀을 하나의 플랫폼으로 통합 운영</p>
+            <div class="mt-8 grid sm:grid-cols-3 gap-4">
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">APEC 2025 등 실전 검증</p>
               </div>
-              <div class="biz-value">
-                <div class="biz-value__num">02</div>
-                <div class="biz-value__title">대규모 행사 운영</div>
-                <div class="biz-value__desc">수백 대 차량, 수천 명 탑승객의 실시간 운영을 안정적으로 처리합니다</div>
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">다국어·다통화</p>
               </div>
-              <div class="biz-value">
-                <div class="biz-value__num">03</div>
-                <div class="biz-value__title">다중 교통수단</div>
-                <div class="biz-value__desc">세단, 버스, 밴 등 다양한 교통수단을 하나의 시스템에서 운영합니다</div>
+              <div class="bg-white rounded-xl p-5 border border-border">
+                <p class="text-sm font-semibold text-main">실시간 관제</p>
               </div>
             </div>
           </div>
@@ -1308,242 +423,370 @@
     </div>
   </section>
 
-  <!-- ============================
-       Section 5 - Business Expansion
-       ============================ -->
-  <section class="section section--alt">
-    <div class="container">
-      <h2 class="section__title reveal">운영을 넘어, 비즈니스를 확장하세요</h2>
-      <p class="section__sub reveal"></p>
-      <div class="expansion__grid">
-        <div class="expansion-card reveal">
-          <div class="expansion-card__num">01</div>
-          <h3 class="expansion-card__title">면허 솔루션</h3>
-          <p class="expansion-card__desc">플랫폼운송사업 면허 취득 지원. 시스템 구축부터 행정 절차까지 원스톱으로 지원합니다.</p>
-          <a href="pages/license.html" class="expansion-card__cta">자세히보기 →</a>
+
+  <!-- ============================================================
+       Section 5: Business Expansion
+       ============================================================ -->
+  <section class="py-20 md:py-[120px] bg-alt">
+    <div class="max-w-container mx-auto px-6">
+      <!-- Title -->
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">운영을 넘어, 비즈니스를 확장하세요</h2>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid md:grid-cols-2 gap-6 reveal">
+        <!-- 면허 솔루션 -->
+        <div class="bg-white border border-border rounded-2xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl md:text-2xl font-bold tracking-tight">면허 솔루션</h3>
+          <p class="mt-3 text-base font-semibold text-main">플랫폼운송사업 면허 취득 지원</p>
+          <p class="mt-2 text-sm text-sub leading-relaxed">자체개발 없이 국토부 심사 9개 영역 즉시 충족</p>
+          <a href="pages/license.html" class="inline-block mt-6 text-sm font-semibold text-brand hover:text-brand-dark transition-colors">
+            자세히보기 &rarr;
+          </a>
         </div>
-        <div class="expansion-card reveal">
-          <div class="expansion-card__num">02</div>
-          <h3 class="expansion-card__title">RIDEUS Marketplace</h3>
-          <p class="expansion-card__desc">통합 판매채널로 유통 확장. 다양한 판매 채널에 셔틀·관광 상품을 노출하세요.</p>
-          <a href="pages/marketplace.html" class="expansion-card__cta">자세히보기 →</a>
+
+        <!-- RIDEUS Marketplace -->
+        <div class="bg-white border border-border rounded-2xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl md:text-2xl font-bold tracking-tight">RIDEUS Marketplace</h3>
+          <p class="mt-3 text-base font-semibold text-main">T-RiseUp 고객이라면 RIDEUS 통합 판매채널로 유통 확장</p>
+          <p class="mt-2 text-sm text-sub leading-relaxed">추가 개발 없이 RIDEUS를 통해 더 많은 고객에게 상품을 노출하세요</p>
+          <a href="pages/marketplace.html" class="inline-block mt-6 text-sm font-semibold text-brand hover:text-brand-dark transition-colors">
+            자세히보기 &rarr;
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================
-       Section 6 - Success Cases
-       ============================ -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section__title reveal">성공하는 프로젝트 뒤에는 T-RiseUp이 있습니다</h2>
-      <p class="section__sub reveal"></p>
-      <div class="cases__scroll reveal">
-        <div class="case-card">
-          <div class="case-card__thumb">APEC 2025</div>
-          <div class="case-card__body">
-            <span class="case-card__badge">PMS + TMS</span>
-            <h4 class="case-card__title">APEC 2025</h4>
-            <p class="case-card__impact">21개국 정상 · 7개 교통수단</p>
-            <p class="case-card__desc">21개국 정상급 VIP 의전과 대규모 수송을 하나의 플랫폼으로 통합 운영한 글로벌 프로젝트</p>
-          </div>
-        </div>
-        <div class="case-card">
-          <div class="case-card__thumb">부산세계탁구선수권대회</div>
-          <div class="case-card__body">
-            <span class="case-card__badge">PMS + TMS</span>
-            <h4 class="case-card__title">부산세계탁구선수권대회</h4>
-            <p class="case-card__impact">990회 운행 · AI 배차</p>
-            <p class="case-card__desc">AI 기반 자동 배차로 990회 이상의 운행을 효율적으로 관리한 국제 스포츠 행사</p>
-          </div>
-        </div>
-        <div class="case-card">
-          <div class="case-card__thumb">블랙핑크 2025 월드투어</div>
-          <div class="case-card__body">
-            <span class="case-card__badge">TMS</span>
-            <h4 class="case-card__title">블랙핑크 2025 월드투어</h4>
-            <p class="case-card__impact">5,000명 · 14거점 · 4개국어</p>
-            <p class="case-card__desc">전국 14개 거점에서 5,000명의 팬을 4개 국어로 지원하는 대규모 셔틀 운영</p>
-          </div>
-        </div>
-        <div class="case-card">
-          <div class="case-card__thumb">부산산단셔틀</div>
-          <div class="case-card__body">
-            <span class="case-card__badge">TMS</span>
-            <h4 class="case-card__title">부산산단셔틀</h4>
-            <p class="case-card__impact">월 50,000명 · 50개 노선</p>
-            <p class="case-card__desc">50개 노선에서 월 50,000명의 산업단지 통근자를 위한 정기 셔틀 서비스</p>
-          </div>
-        </div>
-        <div class="case-card">
-          <div class="case-card__thumb">검암 로열파크씨티</div>
-          <div class="case-card__body">
-            <span class="case-card__badge">TMS</span>
-            <h4 class="case-card__title">검암 로열파크씨티</h4>
-            <p class="case-card__impact">4,805세대 · 일 2,000명+</p>
-            <p class="case-card__desc">4,805세대 대규모 단지의 주민 통근 셔틀을 QR 기반으로 운영</p>
-          </div>
-        </div>
-      </div>
-      <div class="cases__cta reveal">
-        <a href="pages/cases.html">전체 사례 보기 →</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============================
-       Section 7 - Partners
-       ============================ -->
-  <section class="section section--alt">
-    <div class="container">
-      <h2 class="section__title reveal">T-RiseUp과 함께하는 파트너</h2>
-      <div class="partners__track-wrap reveal">
-        <div class="partners__track">
-          <div class="partners__item">에버랜드</div>
-          <div class="partners__item">금호고속</div>
-          <div class="partners__item">JW중외</div>
-          <div class="partners__item">KCA</div>
-          <div class="partners__item">SBS</div>
-          <div class="partners__item">부산경제진흥원</div>
-          <div class="partners__item">제주드림타워</div>
-          <div class="partners__item">AFC</div>
-          <div class="partners__item">Jpark</div>
-          <div class="partners__item">제네시스</div>
-          <div class="partners__item">ADB</div>
-          <div class="partners__item">블랙핑크</div>
-          <div class="partners__item">검암로열파크</div>
-          <div class="partners__item">에버랜드</div>
-          <div class="partners__item">금호고속</div>
-          <div class="partners__item">JW중외</div>
-          <div class="partners__item">KCA</div>
-          <div class="partners__item">SBS</div>
-          <div class="partners__item">부산경제진흥원</div>
-          <div class="partners__item">제주드림타워</div>
-          <div class="partners__item">AFC</div>
-          <div class="partners__item">Jpark</div>
-          <div class="partners__item">제네시스</div>
-          <div class="partners__item">ADB</div>
-          <div class="partners__item">블랙핑크</div>
-          <div class="partners__item">검암로열파크</div>
+  <!-- ============================================================
+       Section 6: Success Cases
+       ============================================================ -->
+  <section class="py-20 md:py-[120px] bg-white">
+    <div class="max-w-container mx-auto px-6">
+      <!-- Title -->
+      <div class="text-center mb-12 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">성공하는 프로젝트 뒤에는 T-RiseUp이 있습니다</h2>
+      </div>
+
+      <!-- Horizontal Scrollable Cards -->
+      <div class="case-scroll overflow-x-auto pb-4 -mx-6 px-6 reveal">
+        <div class="flex gap-5" style="min-width: max-content;">
+
+          <!-- Case 1 -->
+          <div class="w-72 flex-shrink-0 bg-white border border-border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-16 bg-[#E2E4EA] rounded-lg flex items-center justify-center mb-4">
+              <span class="text-xs text-muted">APEC 2025</span>
+            </div>
+            <span class="inline-block px-2 py-0.5 bg-brand/10 text-brand text-xs font-bold rounded mb-2">PMS+TMS</span>
+            <h4 class="text-base font-bold text-main">APEC 2025 수송포탈</h4>
+            <p class="mt-1 text-xs font-semibold text-brand">21개국 정상 · 7개 교통수단</p>
+            <p class="mt-2 text-xs text-sub leading-relaxed">21개국 정상급 의전과 7개 교통수단을 하나의 플랫폼에서 통합 운영</p>
+          </div>
+
+          <!-- Case 2 -->
+          <div class="w-72 flex-shrink-0 bg-white border border-border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-16 bg-[#E2E4EA] rounded-lg flex items-center justify-center mb-4">
+              <span class="text-xs text-muted">세계탁구선수권대회</span>
+            </div>
+            <span class="inline-block px-2 py-0.5 bg-brand/10 text-brand text-xs font-bold rounded mb-2">PMS+TMS</span>
+            <h4 class="text-base font-bold text-main">부산세계탁구선수권대회</h4>
+            <p class="mt-1 text-xs font-semibold text-brand">990회 운행 · AI 배차</p>
+            <p class="mt-2 text-xs text-sub leading-relaxed">990회 이상의 대규모 운행을 AI 배차로 효율적으로 운영</p>
+          </div>
+
+          <!-- Case 3 -->
+          <div class="w-72 flex-shrink-0 bg-white border border-border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-16 bg-[#E2E4EA] rounded-lg flex items-center justify-center mb-4">
+              <span class="text-xs text-muted">BLACKPINK</span>
+            </div>
+            <span class="inline-block px-2 py-0.5 bg-brand/10 text-brand text-xs font-bold rounded mb-2">TMS</span>
+            <h4 class="text-base font-bold text-main">블랙핑크 2025 월드투어</h4>
+            <p class="mt-1 text-xs font-semibold text-brand">5,000명 · 14거점 · 4개국어</p>
+            <p class="mt-2 text-xs text-sub leading-relaxed">5,000명 규모 팬 셔틀을 14개 거점에서 4개국어로 운영</p>
+          </div>
+
+          <!-- Case 4 -->
+          <div class="w-72 flex-shrink-0 bg-white border border-border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-16 bg-[#E2E4EA] rounded-lg flex items-center justify-center mb-4">
+              <span class="text-xs text-muted">부산산단셔틀</span>
+            </div>
+            <span class="inline-block px-2 py-0.5 bg-brand/10 text-brand text-xs font-bold rounded mb-2">TMS</span>
+            <h4 class="text-base font-bold text-main">부산산단셔틀</h4>
+            <p class="mt-1 text-xs font-semibold text-brand">월 50,000명 · 50개 노선</p>
+            <p class="mt-2 text-xs text-sub leading-relaxed">월 50,000명이 이용하는 50개 노선 산업단지 셔틀 운영</p>
+          </div>
+
+          <!-- Case 5 -->
+          <div class="w-72 flex-shrink-0 bg-white border border-border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-16 bg-[#E2E4EA] rounded-lg flex items-center justify-center mb-4">
+              <span class="text-xs text-muted">검암 로열파크씨티</span>
+            </div>
+            <span class="inline-block px-2 py-0.5 bg-brand/10 text-brand text-xs font-bold rounded mb-2">TMS</span>
+            <h4 class="text-base font-bold text-main">검암 로열파크씨티</h4>
+            <p class="mt-1 text-xs font-semibold text-brand">4,805세대 · 일 2,000명+</p>
+            <p class="mt-2 text-xs text-sub leading-relaxed">4,805세대 대단지 커뮤니티 셔틀을 일 2,000명 이상 운영</p>
+          </div>
         </div>
+      </div>
+
+      <!-- View All -->
+      <div class="text-center mt-8 reveal">
+        <a href="pages/cases.html" class="text-sm font-semibold text-brand hover:text-brand-dark transition-colors">
+          전체 사례 보기 &rarr;
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ============================
-       Section 8 - CTA Band
-       ============================ -->
-  <section class="cta-band">
-    <div class="container">
-      <h2 class="cta-band__title">지금 바로 T-RiseUp을 경험하세요</h2>
-      <p class="cta-band__sub">데모를 통해 T-RiseUp의 가치를 직접 경험해보세요.</p>
-      <a href="pages/demo.html" class="cta-band__btn">무료 데모 신청</a>
+
+  <!-- ============================================================
+       Section 7: Partners
+       ============================================================ -->
+  <section class="py-20 md:py-[120px] bg-alt overflow-hidden">
+    <div class="max-w-container mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">T-RiseUp과 함께하는 주요 고객사</h2>
+      </div>
+    </div>
+
+    <!-- Infinite Scroll Track -->
+    <div class="relative w-full overflow-hidden reveal">
+      <div class="partner-track flex items-center gap-12 whitespace-nowrap" style="width: max-content;">
+        <!-- First set -->
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">에버랜드</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">금호고속</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">JW중외</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">KCA</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">SBS</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">부산경제진흥원</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">제주드림타워</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">AFC</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">Jpark</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">제네시스</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">ADB</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">블랙핑크</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">검암로열파크</span>
+        <!-- Duplicate set for seamless loop -->
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">에버랜드</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">금호고속</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">JW중외</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">KCA</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">SBS</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">부산경제진흥원</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">제주드림타워</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">AFC</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">Jpark</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">제네시스</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">ADB</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">블랙핑크</span>
+        <span class="inline-block px-6 py-3 text-sm font-medium text-muted">검암로열파크</span>
+      </div>
     </div>
   </section>
 
-  <!-- ============================
+
+  <!-- ============================================================
+       Section 8: CTA Band
+       ============================================================ -->
+  <section class="py-20 md:py-24 bg-gradient-to-r from-brand to-brand-dark">
+    <div class="max-w-container mx-auto px-6 text-center reveal">
+      <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">지금 바로 T-RiseUp을 경험하세요</h2>
+      <p class="mt-4 text-white/75">데모를 통해 T-RiseUp의 가치를 직접 경험해보세요.</p>
+      <a href="pages/demo.html" class="inline-block mt-8 px-8 py-3.5 bg-white text-brand font-semibold rounded-lg hover:bg-gray-50 transition-colors text-sm">
+        무료 데모 신청
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
        Footer
-       ============================ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-        <div class="footer__company">
-          <img src="images/TRISEUP.png" alt="T-RiseUp" class="footer__logo">
-          <div class="footer__info">
+       ============================================================ -->
+  <footer class="bg-footer py-16">
+    <div class="max-w-container mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-10">
+        <!-- Logo + Company Info -->
+        <div class="md:col-span-2">
+          <img src="images/TRISEUP.png" alt="T-RiseUp" class="h-6 brightness-0 invert mb-6">
+          <div class="text-xs text-gray-400 leading-relaxed space-y-1">
             <p>(주)그라운드케이 | 대표이사: 홍길동</p>
             <p>사업자등록번호: 000-00-00000</p>
-            <p>부산광역시 해운대구</p>
-            <p>TEL: 000-0000-0000 | FAX: 000-0000-0000</p>
-            <p>Email: contact@groundk.co.kr</p>
+            <p>부산광역시 해운대구 센텀중앙로 00, 0층</p>
+            <p>TEL: 051-000-0000 | FAX: 051-000-0001</p>
+            <p>contact@groundk.co.kr</p>
           </div>
         </div>
-        <div class="footer__col">
-          <h4 class="footer__col-title">제품</h4>
-          <a href="pages/pms.html" class="footer__link">PMS</a>
-          <a href="pages/tms.html" class="footer__link">TMS</a>
-          <a href="pages/license.html" class="footer__link">면허솔루션</a>
-          <a href="pages/marketplace.html" class="footer__link">Marketplace</a>
+
+        <!-- Product Links -->
+        <div>
+          <p class="text-xs font-semibold text-gray-300 uppercase tracking-wider mb-4">제품</p>
+          <ul class="space-y-2">
+            <li><a href="pages/pms.html" class="text-xs text-gray-400 hover:text-white transition-colors">PMS</a></li>
+            <li><a href="pages/tms.html" class="text-xs text-gray-400 hover:text-white transition-colors">TMS</a></li>
+            <li><a href="pages/license.html" class="text-xs text-gray-400 hover:text-white transition-colors">면허 솔루션</a></li>
+            <li><a href="pages/marketplace.html" class="text-xs text-gray-400 hover:text-white transition-colors">Marketplace</a></li>
+          </ul>
+
+          <p class="text-xs font-semibold text-gray-300 uppercase tracking-wider mb-4 mt-8">도입사례</p>
+          <ul class="space-y-2">
+            <li><a href="pages/cases.html" class="text-xs text-gray-400 hover:text-white transition-colors">전체 사례 보기</a></li>
+          </ul>
         </div>
-        <div class="footer__col">
-          <h4 class="footer__col-title">약관</h4>
-          <a href="#" class="footer__link">개인정보처리방침</a>
-          <a href="#" class="footer__link">이용약관</a>
-          <a href="#" class="footer__link">위치기반서비스이용약관</a>
+
+        <!-- Legal Links -->
+        <div>
+          <p class="text-xs font-semibold text-gray-300 uppercase tracking-wider mb-4">약관</p>
+          <ul class="space-y-2">
+            <li><a href="pages/privacy.html" class="text-xs text-gray-400 hover:text-white transition-colors">개인정보처리방침</a></li>
+            <li><a href="pages/terms.html" class="text-xs text-gray-400 hover:text-white transition-colors">이용약관</a></li>
+            <li><a href="pages/location-terms.html" class="text-xs text-gray-400 hover:text-white transition-colors">위치기반서비스이용약관</a></li>
+          </ul>
         </div>
       </div>
-      <div class="footer__bottom">
-        &copy; 2026 GroundK
+
+      <!-- Copyright -->
+      <div class="mt-12 pt-8 border-t border-gray-700">
+        <p class="text-xs text-gray-500">&copy; 2026 GroundK. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- ============================
+
+  <!-- ============================================================
        JavaScript
-       ============================ -->
+       ============================================================ -->
   <script>
-    (function() {
-      // GNB scroll shadow
-      var gnb = document.getElementById('gnb');
-      window.addEventListener('scroll', function() {
+    document.addEventListener('DOMContentLoaded', function () {
+
+      /* ── GNB scroll shadow ── */
+      const gnb = document.getElementById('gnb');
+      window.addEventListener('scroll', function () {
         if (window.scrollY > 10) {
-          gnb.classList.add('scrolled');
+          gnb.classList.add('shadow-md');
         } else {
-          gnb.classList.remove('scrolled');
+          gnb.classList.remove('shadow-md');
         }
       });
 
-      // Pipeline step click handler
-      var pipelineSteps = document.querySelectorAll('.pipeline__step');
-      pipelineSteps.forEach(function(step) {
-        step.addEventListener('click', function() {
-          pipelineSteps.forEach(function(s) {
-            s.classList.remove('active');
-          });
-          step.classList.add('active');
+      /* ── Product dropdown toggle ── */
+      const dropdownBtn = document.getElementById('product-dropdown-btn');
+      const dropdown = document.getElementById('product-dropdown');
+      const dropdownWrapper = document.getElementById('product-dropdown-wrapper');
+
+      dropdownBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+      });
+      document.addEventListener('click', function (e) {
+        if (!dropdownWrapper.contains(e.target)) {
+          dropdown.classList.remove('open');
+        }
+      });
+
+      /* ── Mobile menu toggle ── */
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      let mobileOpen = false;
+
+      mobileBtn.addEventListener('click', function () {
+        mobileOpen = !mobileOpen;
+        mobileMenu.classList.toggle('hidden', !mobileOpen);
+        document.getElementById('ham-top').style.transform = mobileOpen ? 'rotate(45deg) translateY(4px)' : '';
+        document.getElementById('ham-mid').style.opacity = mobileOpen ? '0' : '1';
+        document.getElementById('ham-bot').style.transform = mobileOpen ? 'rotate(-45deg) translateY(-4px)' : '';
+      });
+
+      /* ── Pipeline step toggle ── */
+      const pipelineDescriptions = [
+        "\uc6f9\u00b7\uc571\u00b7API\u00b7GNET \ub4f1 \ub2e4\ucc44\ub110 \uc608\uc57d \ud1b5\ud569 \uc218\uc2e0\n\ud56d\uacf5\ud3b8 \uc2e4\uc2dc\uac04 \uc5f0\ub3d9\uc73c\ub85c \ud53d\uc5c5 \uc2dc\uac04 \uc790\ub3d9 \uc870\uc815",
+        "\uc790\uc0ac\u2192\uc81c\ud734\uc0ac\u2192\uc5bc\ub77c\uc774\uc5b8\uc2a4\u2192GNET \uc790\ub3d9 \ud3f4\ubc31 \ubc30\ucc28\nVIP \uc804\ub2f4 \uae30\uc0ac \ud655\uc815 \ubc30\ucc28 \uc9c0\uc6d0",
+        "GPS 5\ucd08 \uac31\uc2e0 \uc2e4\uc2dc\uac04 \uc704\uce58 \ucd94\uc801\n\uae30\uc0ac \uc0c1\ud0dc(\uc774\ub3d9 \uc911/\ub300\uae30/\uc6b4\ud589 \uc911) \uc2e4\uc2dc\uac04 \ubaa8\ub2c8\ud130\ub9c1",
+        "QR \ud0d1\uc2b9 \uccb4\ud06c\uc778, \uacbd\uc720\uc9c0 \uad00\ub9ac\n\uc6b4\ud589 \uae30\ub85d \uc790\ub3d9 \uc800\uc7a5",
+        "\ub2e4\uc790\uac04 \uc815\uc0b0(\ubc95\uc778\u2192\uc6b4\uc601\uc0ac\u2192\uc81c\ud734\uc0ac\u2192\uae30\uc0ac) \uc790\ub3d9\ud654\n\uad6c\uac04\ubcc4 \uace0\uc815 \uc694\uae08\u00b7\uc218\uc218\ub8cc \uc790\ub3d9 \uacc4\uc0b0"
+      ];
+      let activeStep = -1;
+      const descBox = document.getElementById('pipeline-desc-box');
+      const descText = document.getElementById('pipeline-desc-text');
+      const steps = document.querySelectorAll('.pipeline-step');
+
+      steps.forEach(function (step) {
+        step.addEventListener('click', function () {
+          const idx = parseInt(this.dataset.step);
+          if (activeStep === idx) {
+            activeStep = -1;
+            descBox.style.display = 'none';
+            steps.forEach(function (s) {
+              const circle = s.querySelector('div');
+              circle.classList.remove('border-brand', 'text-brand');
+              circle.classList.add('border-border', 'text-sub');
+            });
+          } else {
+            activeStep = idx;
+            descText.textContent = pipelineDescriptions[idx];
+            descBox.style.display = 'inline-block';
+            steps.forEach(function (s) {
+              const circle = s.querySelector('div');
+              if (parseInt(s.dataset.step) === idx) {
+                circle.classList.remove('border-border', 'text-sub');
+                circle.classList.add('border-brand', 'text-brand');
+              } else {
+                circle.classList.remove('border-brand', 'text-brand');
+                circle.classList.add('border-border', 'text-sub');
+              }
+            });
+          }
         });
       });
 
-      // Business tabs click handler
-      var tabBtns = document.querySelectorAll('.biz-tabs__btn');
-      var tabPanels = document.querySelectorAll('.biz-tabs__panel');
-      tabBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var tabIndex = btn.getAttribute('data-tab');
-          tabBtns.forEach(function(b) {
-            b.classList.remove('active');
-          });
-          tabPanels.forEach(function(p) {
-            p.classList.remove('active');
-          });
-          btn.classList.add('active');
-          document.querySelector('.biz-tabs__panel[data-panel="' + tabIndex + '"]').classList.add('active');
-        });
-      });
+      /* ── Business tab switching ── */
+      const bizTabs = document.querySelectorAll('.biz-tab');
+      const bizPanels = document.querySelectorAll('.biz-panel');
 
-      // IntersectionObserver scroll reveal
-      var revealElements = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, {
-          threshold: 0.15,
-          rootMargin: '0px 0px -40px 0px'
+      function activateTab(idx) {
+        bizTabs.forEach(function (tab, i) {
+          if (i === idx) {
+            tab.classList.add('bg-brand', 'text-white', 'border-brand');
+            tab.classList.remove('bg-white', 'text-sub', 'border-border');
+          } else {
+            tab.classList.remove('bg-brand', 'text-white', 'border-brand');
+            tab.classList.add('bg-white', 'text-sub', 'border-border');
+          }
         });
-        revealElements.forEach(function(el) {
-          observer.observe(el);
-        });
-      } else {
-        revealElements.forEach(function(el) {
-          el.classList.add('visible');
+        bizPanels.forEach(function (panel, i) {
+          panel.classList.toggle('hidden', i !== idx);
         });
       }
-    })();
+
+      bizTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          activateTab(parseInt(this.dataset.tab));
+        });
+      });
+
+      // Default first tab active
+      activateTab(0);
+
+      /* ── IntersectionObserver scroll reveal ── */
+      const revealEls = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      revealEls.forEach(function (el) {
+        observer.observe(el);
+      });
+
+    });
   </script>
+
 </body>
 </html>

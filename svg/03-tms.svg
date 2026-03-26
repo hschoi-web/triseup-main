@@ -1,0 +1,246 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="3200" viewBox="0 0 1060 3200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap');
+      .font-head { font-family: 'Inter', 'Noto Sans KR', sans-serif; }
+      .font-body { font-family: 'Noto Sans KR', 'Inter', sans-serif; }
+    </style>
+    <linearGradient id="heroBg" x1="0" y1="0" x2="1060" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1A1A2E" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#1A1A2E" stop-opacity="0.45"/>
+    </linearGradient>
+    <linearGradient id="ctaGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0066CC"/>
+      <stop offset="100%" stop-color="#004C99"/>
+    </linearGradient>
+  </defs>
+
+  <!-- BG -->
+  <rect width="1060" height="3200" fill="#fff"/>
+
+  <!-- ===== GNB ===== -->
+  <rect width="1060" height="64" fill="#fff" stroke="#E2E4EA" stroke-width="1"/>
+  <text x="40" y="38" class="font-head" font-size="20" font-weight="800" fill="#1A1A2E">T-Rise<tspan fill="#22C55E">Up</tspan></text>
+  <text x="670" y="37" class="font-body" font-size="14" font-weight="500" fill="#4A4A68">제품 ▾</text>
+  <text x="740" y="37" class="font-body" font-size="14" font-weight="500" fill="#4A4A68">도입사례</text>
+  <rect x="840" y="20" width="120" height="32" rx="6" fill="#0066CC"/>
+  <text x="872" y="41" class="font-body" font-size="13" font-weight="600" fill="#fff">무료 데모 신청</text>
+
+  <!-- ===== HERO (64~460) ===== -->
+  <rect y="64" width="1060" height="396" fill="#2a2a3e"/>
+  <rect y="64" width="1060" height="396" fill="url(#heroBg)"/>
+  <rect x="0" y="440" width="1060" height="20" rx="20" fill="#fff"/>
+  <!-- TMS Badge -->
+  <rect x="480" y="130" width="100" height="30" rx="15" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <text x="530" y="150" class="font-head" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">TMS</text>
+  <!-- Title -->
+  <text x="530" y="210" class="font-head" font-size="36" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="-0.02em">상품 개발부터 QR 검표까지</text>
+  <text x="530" y="258" class="font-head" font-size="36" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="-0.02em">티켓 판매의 전 과정을 하나로</text>
+  <!-- Sub -->
+  <text x="530" y="298" class="font-body" font-size="15" fill="rgba(255,255,255,0.7)" text-anchor="middle">WL 즉시 구축 · 글로벌 결제 · QR 검표 · 노선관리</text>
+  <text x="530" y="323" class="font-body" font-size="15" fill="rgba(255,255,255,0.55)" text-anchor="middle">셔틀/관광/통근 전용 티켓 관리 시스템</text>
+  <!-- CTA -->
+  <rect x="450" y="350" width="160" height="44" rx="8" fill="#0066CC"/>
+  <text x="530" y="377" class="font-body" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">TMS 데모 신청</text>
+
+  <!-- ===== S1. 핵심 기능 (480~830) ===== -->
+  <text x="530" y="520" class="font-head" font-size="26" font-weight="800" fill="#1A1A2E" text-anchor="middle">핵심 기능</text>
+  <text x="530" y="550" class="font-body" font-size="15" fill="#4A4A68" text-anchor="middle">티켓 판매 운영에 필요한 모든 기능을 하나의 플랫폼에서 제공합니다.</text>
+  <!-- Row 1 -->
+  <g transform="translate(40,575)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="16" fill="#0066CC" text-anchor="middle">DEV</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">상품 개발</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">노선·일정·좌석·가격 설정</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">유연한 상품 구성 · 시즌별 관리</text>
+  </g>
+  <g transform="translate(377,575)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="16" fill="#0066CC" text-anchor="middle">TKT</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">예약·발권</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">온라인 예약 · 자동 발권</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">QR 티켓 · 실시간 재고 관리</text>
+  </g>
+  <g transform="translate(714,575)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="16" fill="#0066CC" text-anchor="middle">QR</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">QR 검표</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">현장 QR 스캔 탑승 처리</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">실시간 탑승 현황 · 오프라인 지원</text>
+  </g>
+  <!-- Row 2 -->
+  <g transform="translate(40,710)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="14" fill="#0066CC" text-anchor="middle">RTE</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">노선 관리</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">구간별 정류장·시간표 설정</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">다중 노선 · 유연한 경유지 관리</text>
+  </g>
+  <g transform="translate(377,710)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="14" fill="#0066CC" text-anchor="middle">DATA</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">데이터 분석</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">매출·탑승률·노선별 통계</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">대시보드 · 리포트 자동 생성</text>
+  </g>
+  <g transform="translate(714,710)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="14" fill="#0066CC" text-anchor="middle">PKG</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">복합상품</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">교통+관광+숙박 패키지</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">번들 상품 · 크로스셀링</text>
+  </g>
+
+  <!-- ===== S2. RIDEUS Booking (860~1100) ===== -->
+  <rect y="860" width="1060" height="240" fill="#F7F8FC"/>
+  <text x="530" y="900" class="font-head" font-size="26" font-weight="800" fill="#1A1A2E" text-anchor="middle">RIDEUS Booking</text>
+  <text x="530" y="930" class="font-body" font-size="15" fill="#4A4A68" text-anchor="middle">자사 브랜드의 다국어 예약 페이지를 즉시 구축하세요.</text>
+  <!-- Card 1 -->
+  <g transform="translate(40,955)">
+    <rect width="475" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="50" height="50" rx="10" fill="#E2E4EA"/>
+    <text x="82" y="42" class="font-body" font-size="16" font-weight="700" fill="#1A1A2E">다국어 예약 페이지</text>
+    <text x="82" y="64" class="font-body" font-size="13" fill="#4A4A68">한·영·일·중 4개국어 자동 전환</text>
+    <text x="82" y="84" class="font-body" font-size="13" fill="#4A4A68">화이트라벨 브랜딩 · 즉시 배포</text>
+    <text x="82" y="106" class="font-body" font-size="12" font-weight="600" fill="#0066CC">Live 사이트 보기 →</text>
+  </g>
+  <!-- Card 2 -->
+  <g transform="translate(545,955)">
+    <rect width="475" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="50" height="50" rx="10" fill="#E2E4EA"/>
+    <text x="82" y="42" class="font-body" font-size="16" font-weight="700" fill="#1A1A2E">글로벌 결제 8종</text>
+    <text x="82" y="64" class="font-body" font-size="13" fill="#4A4A68">신용카드·PayPal·Alipay·WeChat Pay 등</text>
+    <text x="82" y="84" class="font-body" font-size="13" fill="#4A4A68">PG 연동 · 자동 정산</text>
+    <text x="82" y="106" class="font-body" font-size="12" font-weight="600" fill="#0066CC">결제 연동 안내 →</text>
+  </g>
+
+  <!-- ===== S3. RIDEUS My Channel (1120~1390) ===== -->
+  <text x="530" y="1150" class="font-head" font-size="26" font-weight="800" fill="#1A1A2E" text-anchor="middle">RIDEUS My Channel</text>
+  <text x="530" y="1180" class="font-body" font-size="15" fill="#4A4A68" text-anchor="middle">고객과의 접점을 강화하는 자사 채널을 운영하세요.</text>
+  <!-- 3 Cards -->
+  <g transform="translate(40,1205)">
+    <rect width="305" height="150" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="14" fill="#0066CC" text-anchor="middle">INFO</text>
+    <text x="76" y="38" class="font-body" font-size="16" font-weight="700" fill="#1A1A2E">정보 제공</text>
+    <text x="76" y="60" class="font-body" font-size="13" fill="#4A4A68">노선·시간표·정류장 안내</text>
+    <text x="16" y="100" class="font-body" font-size="12" fill="#8888A0">실시간 운행 정보 · 공지사항 관리</text>
+    <text x="16" y="130" class="font-body" font-size="12" fill="#8888A0">자사 브랜드 정보 포털</text>
+  </g>
+  <g transform="translate(377,1205)">
+    <rect width="305" height="150" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="14" fill="#0066CC" text-anchor="middle">USR</text>
+    <text x="76" y="38" class="font-body" font-size="16" font-weight="700" fill="#1A1A2E">회원 관리</text>
+    <text x="76" y="60" class="font-body" font-size="13" fill="#4A4A68">회원가입·로그인·탑승 이력</text>
+    <text x="16" y="100" class="font-body" font-size="12" fill="#8888A0">정기권 · 포인트 · 쿠폰 관리</text>
+    <text x="16" y="130" class="font-body" font-size="12" fill="#8888A0">CRM 기반 고객 세분화</text>
+  </g>
+  <g transform="translate(714,1205)">
+    <rect width="305" height="150" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="14" fill="#0066CC" text-anchor="middle">AD</text>
+    <text x="76" y="38" class="font-body" font-size="16" font-weight="700" fill="#1A1A2E">홍보</text>
+    <text x="76" y="60" class="font-body" font-size="13" fill="#4A4A68">프로모션·이벤트·배너 관리</text>
+    <text x="16" y="100" class="font-body" font-size="12" fill="#8888A0">푸시 알림 · SNS 연동</text>
+    <text x="16" y="130" class="font-body" font-size="12" fill="#8888A0">마케팅 캠페인 관리</text>
+  </g>
+
+  <!-- ===== S4. TIS (1380~1600) ===== -->
+  <rect y="1390" width="1060" height="220" fill="#F7F8FC"/>
+  <text x="530" y="1430" class="font-head" font-size="26" font-weight="800" fill="#1A1A2E" text-anchor="middle">TIS (Ticketing Inspection System)</text>
+  <text x="530" y="1460" class="font-body" font-size="15" fill="#4A4A68" text-anchor="middle">현장 검표 앱으로 탑승 처리를 간소화합니다.</text>
+  <!-- 2 Cards -->
+  <g transform="translate(40,1485)">
+    <rect width="475" height="110" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="50" height="50" rx="10" fill="#E2E4EA"/>
+    <text x="82" y="40" class="font-body" font-size="16" font-weight="700" fill="#1A1A2E">이용자용</text>
+    <text x="82" y="62" class="font-body" font-size="13" fill="#4A4A68">QR 티켓 제시 · 탑승 확인 · 이력 조회</text>
+    <text x="82" y="82" class="font-body" font-size="13" fill="#4A4A68">모바일 앱 기반 간편 탑승</text>
+  </g>
+  <g transform="translate(545,1485)">
+    <rect width="475" height="110" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="50" height="50" rx="10" fill="#E2E4EA"/>
+    <text x="82" y="40" class="font-body" font-size="16" font-weight="700" fill="#1A1A2E">운영자용</text>
+    <text x="82" y="62" class="font-body" font-size="13" fill="#4A4A68">QR 스캔 검표 · 탑승 현황 실시간</text>
+    <text x="82" y="82" class="font-body" font-size="13" fill="#4A4A68">오프라인 지원 · 대시보드 연동</text>
+  </g>
+
+  <!-- ===== S5. TMS 도입사례 (1640~2060) ===== -->
+  <text x="530" y="1670" class="font-head" font-size="26" font-weight="800" fill="#1A1A2E" text-anchor="middle">TMS 도입사례</text>
+  <text x="530" y="1700" class="font-body" font-size="15" fill="#4A4A68" text-anchor="middle">다양한 산업에서 검증된 TMS의 실적을 확인하세요.</text>
+  <!-- Row 1 -->
+  <g transform="translate(40,1725)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">블랙핑크 월드투어</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">5,000명 · 14거점 · 4개국어</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+  <g transform="translate(377,1725)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">부산산단셔틀</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">월 50,000명 · 50개 노선</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+  <g transform="translate(714,1725)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">에버랜드 셔틀</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">주말 10,000명+ 수송</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+  <!-- Row 2 -->
+  <g transform="translate(40,1880)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">검암로열파크 셔틀</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">아파트 통근 셔틀</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+  <g transform="translate(377,1880)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">금호고속 관광</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">전세 관광 · 예약 자동화</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+  <g transform="translate(714,1880)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">제주 관광셔틀</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">다국어 예약 · 글로벌 결제</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+
+  <!-- ===== CTA Band ===== -->
+  <rect y="2080" width="1060" height="140" fill="url(#ctaGrad)"/>
+  <text x="530" y="2135" class="font-head" font-size="28" font-weight="800" fill="#fff" text-anchor="middle">TMS로 티켓 운영을 혁신하세요</text>
+  <text x="530" y="2165" class="font-body" font-size="16" fill="rgba(255,255,255,0.8)" text-anchor="middle">맞춤 데모를 통해 TMS의 가치를 직접 경험해보세요.</text>
+  <rect x="440" y="2180" width="180" height="44" rx="10" fill="#fff"/>
+  <text x="530" y="2207" class="font-body" font-size="16" font-weight="600" fill="#0066CC" text-anchor="middle">TMS 데모 신청</text>
+
+  <!-- ===== Footer ===== -->
+  <rect y="2260" width="1060" height="170" fill="#1A1F2E"/>
+  <text x="40" y="2300" class="font-head" font-size="18" font-weight="800" fill="#fff">T-Rise<tspan fill="#22C55E">Up</tspan></text>
+  <text x="40" y="2325" class="font-body" font-size="13" fill="rgba(255,255,255,0.5)">(주)그라운드케이 | 대표이사: 홍길동</text>
+  <text x="40" y="2345" class="font-body" font-size="13" fill="rgba(255,255,255,0.4)">부산광역시 해운대구 | TEL: 051-000-0000</text>
+  <text x="500" y="2300" class="font-body" font-size="14" font-weight="700" fill="#fff">제품</text>
+  <text x="500" y="2325" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">PMS — 의전·수송</text>
+  <text x="500" y="2345" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">TMS — 셔틀·관광</text>
+  <text x="500" y="2365" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">면허 솔루션</text>
+  <text x="500" y="2385" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">Marketplace</text>
+  <text x="750" y="2300" class="font-body" font-size="14" font-weight="700" fill="#fff">약관</text>
+  <text x="750" y="2325" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">개인정보처리방침</text>
+  <text x="750" y="2345" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">이용약관</text>
+  <text x="750" y="2365" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">위치 기반 서비스 이용약관</text>
+  <line x1="40" y1="2400" x2="1020" y2="2400" stroke="rgba(255,255,255,0.1)"/>
+  <text x="530" y="2422" class="font-body" font-size="13" fill="rgba(255,255,255,0.3)" text-anchor="middle">© 2026 GroundK. All rights reserved.</text>
+</svg>

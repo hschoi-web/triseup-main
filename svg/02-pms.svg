@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="2800" viewBox="0 0 1060 2800">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap');
+      .font-head { font-family: 'Inter', 'Noto Sans KR', sans-serif; }
+      .font-body { font-family: 'Noto Sans KR', 'Inter', sans-serif; }
+    </style>
+    <linearGradient id="heroBg" x1="0" y1="0" x2="1060" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1A1A2E" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#1A1A2E" stop-opacity="0.45"/>
+    </linearGradient>
+    <linearGradient id="ctaGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0066CC"/>
+      <stop offset="100%" stop-color="#004C99"/>
+    </linearGradient>
+  </defs>
+
+  <!-- BG -->
+  <rect width="1060" height="2800" fill="#fff"/>
+
+  <!-- ===== GNB (64px) ===== -->
+  <rect width="1060" height="64" fill="#fff" stroke="#E2E4EA" stroke-width="1"/>
+  <text x="40" y="38" class="font-head" font-size="20" font-weight="800" fill="#1A1A2E">T-Rise<tspan fill="#22C55E">Up</tspan></text>
+  <text x="670" y="37" class="font-body" font-size="14" font-weight="500" fill="#4A4A68">제품 ▾</text>
+  <text x="740" y="37" class="font-body" font-size="14" font-weight="500" fill="#4A4A68">도입사례</text>
+  <rect x="840" y="20" width="120" height="32" rx="6" fill="#0066CC"/>
+  <text x="872" y="41" class="font-body" font-size="13" font-weight="600" fill="#fff">무료 데모 신청</text>
+
+  <!-- ===== HERO (64~460) ===== -->
+  <rect y="64" width="1060" height="396" fill="#2a2a3e"/>
+  <rect y="64" width="1060" height="396" fill="url(#heroBg)"/>
+  <rect x="0" y="440" width="1060" height="20" rx="20" fill="#fff"/>
+  <!-- PMS Badge -->
+  <rect x="480" y="130" width="100" height="30" rx="15" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <text x="530" y="150" class="font-head" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">PMS</text>
+  <!-- Hero Title -->
+  <text x="530" y="210" class="font-head" font-size="38" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="-0.02em">예약부터 정산까지,</text>
+  <text x="530" y="260" class="font-head" font-size="38" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="-0.02em">수송 운영의 모든 것을 하나로</text>
+  <!-- Hero Sub -->
+  <text x="530" y="300" class="font-body" font-size="15" fill="rgba(255,255,255,0.7)" text-anchor="middle">AI견적 95%+ · GPS 5초 갱신 · D2C 예약채널 · 자동정산</text>
+  <text x="530" y="325" class="font-body" font-size="15" fill="rgba(255,255,255,0.55)" text-anchor="middle">의전/수송 사업자를 위한 통합 자산 관리 시스템</text>
+  <!-- Hero CTA -->
+  <rect x="450" y="350" width="160" height="44" rx="8" fill="#0066CC"/>
+  <text x="530" y="377" class="font-body" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">PMS 데모 신청</text>
+  <!-- Hero Stats -->
+  <text x="310" y="430" class="font-head" font-size="24" font-weight="800" fill="#fff">95%+</text>
+  <text x="310" y="448" class="font-body" font-size="11" fill="rgba(255,255,255,0.6)">AI 견적 정확도</text>
+  <text x="460" y="430" class="font-head" font-size="24" font-weight="800" fill="#fff">5초</text>
+  <text x="460" y="448" class="font-body" font-size="11" fill="rgba(255,255,255,0.6)">GPS 갱신 주기</text>
+  <text x="580" y="430" class="font-head" font-size="24" font-weight="800" fill="#fff">D2C</text>
+  <text x="580" y="448" class="font-body" font-size="11" fill="rgba(255,255,255,0.6)">예약 채널</text>
+  <text x="700" y="430" class="font-head" font-size="24" font-weight="800" fill="#fff">자동</text>
+  <text x="700" y="448" class="font-body" font-size="11" fill="rgba(255,255,255,0.6)">정산 처리</text>
+
+  <!-- ===== S1. 4채널 아키텍처 (480~760) ===== -->
+  <text x="530" y="520" class="font-head" font-size="26" font-weight="800" fill="#1A1A2E" text-anchor="middle">4채널 아키텍처</text>
+  <text x="530" y="550" class="font-body" font-size="15" fill="#4A4A68" text-anchor="middle">배차·의전·파트너·예약 — 4개 전용 채널로 역할별 최적의 워크플로를 제공합니다.</text>
+  <!-- Tab Nav -->
+  <rect x="40" y="575" width="980" height="48" rx="10" fill="#F7F8FC"/>
+  <rect x="44" y="579" width="240" height="40" rx="8" fill="#0066CC"/>
+  <text x="164" y="604" class="font-body" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">DISPATCH</text>
+  <text x="405" y="604" class="font-body" font-size="14" font-weight="500" fill="#4A4A68" text-anchor="middle">CONCIERGE</text>
+  <text x="650" y="604" class="font-body" font-size="14" font-weight="500" fill="#4A4A68" text-anchor="middle">PARTNERS</text>
+  <text x="895" y="604" class="font-body" font-size="14" font-weight="500" fill="#4A4A68" text-anchor="middle">BOOKING</text>
+  <!-- Tab Content Placeholder -->
+  <rect x="40" y="635" width="980" height="120" rx="12" fill="#F7F8FC" stroke="#E2E4EA"/>
+  <text x="530" y="700" class="font-body" font-size="14" fill="#8888A0" text-anchor="middle">[DISPATCH 채널 화면 — 배차 요청/확인/관제 대시보드]</text>
+
+  <!-- ===== S2. 2모드 배차 (780~960) ===== -->
+  <text x="530" y="810" class="font-head" font-size="26" font-weight="800" fill="#1A1A2E" text-anchor="middle">2모드 배차</text>
+  <text x="530" y="840" class="font-body" font-size="15" fill="#4A4A68" text-anchor="middle">운영 상황에 맞게 배차 요청형과 배차 확정형 중 선택하세요.</text>
+  <!-- Card 1 -->
+  <g transform="translate(40,865)">
+    <rect width="475" height="100" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="68" height="68" rx="10" fill="#E2E4EA"/>
+    <text x="100" y="42" class="font-body" font-size="16" font-weight="700" fill="#1A1A2E">배차 요청형</text>
+    <text x="100" y="64" class="font-body" font-size="13" fill="#4A4A68">운행사에게 배차를 요청하고 응답을 받아 확정합니다.</text>
+    <text x="100" y="84" class="font-body" font-size="13" fill="#4A4A68">유연한 배차 · 운행사 선택 가능</text>
+  </g>
+  <!-- Card 2 -->
+  <g transform="translate(545,865)">
+    <rect width="475" height="100" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="68" height="68" rx="10" fill="#E2E4EA"/>
+    <text x="100" y="42" class="font-body" font-size="16" font-weight="700" fill="#1A1A2E">배차 확정형</text>
+    <text x="100" y="64" class="font-body" font-size="13" fill="#4A4A68">자체 차량에 직접 배차를 확정하여 즉시 운행합니다.</text>
+    <text x="100" y="84" class="font-body" font-size="13" fill="#4A4A68">빠른 확정 · 자체 관리</text>
+  </g>
+
+  <!-- ===== S3. 핵심 기능 (990~1340) ===== -->
+  <text x="530" y="1020" class="font-head" font-size="26" font-weight="800" fill="#1A1A2E" text-anchor="middle">핵심 기능</text>
+  <text x="530" y="1050" class="font-body" font-size="15" fill="#4A4A68" text-anchor="middle">AI와 실시간 기술로 수송 운영의 핵심 과제를 해결합니다.</text>
+  <!-- Row 1 -->
+  <g transform="translate(40,1075)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="18" fill="#0066CC" text-anchor="middle">AI</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">AI 자동 견적</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">과거 데이터 기반 95%+ 정확도</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">차종·거리·시간대·시즌 자동 반영</text>
+  </g>
+  <g transform="translate(377,1075)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="18" fill="#0066CC" text-anchor="middle">&#x1F504;</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">AI 최적 배차</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">차량·기사 스케줄 최적 매칭</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">빈 차량 최소화 · 자동 배정</text>
+  </g>
+  <g transform="translate(714,1075)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="16" fill="#0066CC" text-anchor="middle">GPS</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">실시간 GPS</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">5초 갱신 실시간 차량 관제</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">위치 추적 · 운행 경로 기록</text>
+  </g>
+  <!-- Row 2 -->
+  <g transform="translate(40,1210)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="16" fill="#0066CC" text-anchor="middle">!</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">AI 돌발감지</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">이상 운행 패턴 실시간 알림</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">경로 이탈 · 지연 자동 감지</text>
+  </g>
+  <g transform="translate(377,1210)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="15" fill="#0066CC" text-anchor="middle">FLT</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">항공편 연동</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">실시간 도착 정보 자동 반영</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">지연·결항 자동 대응</text>
+  </g>
+  <g transform="translate(714,1210)">
+    <rect width="305" height="120" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="44" height="44" rx="10" fill="rgba(0,102,204,0.08)"/>
+    <text x="38" y="44" class="font-head" font-size="14" fill="#0066CC" text-anchor="middle">D2C</text>
+    <text x="76" y="38" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">D2C 예약채널</text>
+    <text x="76" y="58" class="font-body" font-size="13" fill="#4A4A68">자사 브랜드 예약 페이지 구축</text>
+    <text x="16" y="95" class="font-body" font-size="12" fill="#8888A0">화이트라벨 · 다국어 지원</text>
+  </g>
+
+  <!-- ===== S4. PMS 도입사례 (1360~1780) ===== -->
+  <text x="530" y="1390" class="font-head" font-size="26" font-weight="800" fill="#1A1A2E" text-anchor="middle">PMS 도입사례</text>
+  <text x="530" y="1420" class="font-body" font-size="15" fill="#4A4A68" text-anchor="middle">다양한 현장에서 검증된 PMS의 성과를 확인하세요.</text>
+  <!-- Row 1 -->
+  <g transform="translate(40,1445)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">APEC 2025</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">21개국 정상 · 100% 정시율</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+  <g transform="translate(377,1445)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">제주드림타워</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">VIP 의전 · 월 2,000건+</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+  <g transform="translate(714,1445)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">GB Limousine</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">해외 수송 · 글로벌 운영</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+  <!-- Row 2 -->
+  <g transform="translate(40,1600)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">AFC Awards</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">국제행사 · 아시아축구연맹</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+  <g transform="translate(377,1600)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">ADB 연차총회</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">다국적 VIP · 대규모 수송</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+  <g transform="translate(714,1600)">
+    <rect width="305" height="140" rx="12" fill="#fff" stroke="#E2E4EA"/>
+    <rect x="16" y="16" width="80" height="40" rx="6" fill="#E2E4EA"/>
+    <text x="16" y="80" class="font-body" font-size="15" font-weight="700" fill="#1A1A2E">부산세계탁구선수권대회</text>
+    <text x="16" y="100" class="font-body" font-size="13" fill="#0066CC">990회 운행 · AI 배차</text>
+    <text x="16" y="122" class="font-body" font-size="12" font-weight="600" fill="#0066CC">자세히 보기 →</text>
+  </g>
+
+  <!-- ===== S5. CTA Band (1780~1920) ===== -->
+  <rect y="1800" width="1060" height="140" fill="url(#ctaGrad)"/>
+  <text x="530" y="1855" class="font-head" font-size="28" font-weight="800" fill="#fff" text-anchor="middle">PMS로 수송 운영을 혁신하세요</text>
+  <text x="530" y="1885" class="font-body" font-size="16" fill="rgba(255,255,255,0.8)" text-anchor="middle">맞춤 데모를 통해 PMS의 가치를 직접 경험해보세요.</text>
+  <rect x="440" y="1900" width="180" height="44" rx="10" fill="#fff"/>
+  <text x="530" y="1927" class="font-body" font-size="16" font-weight="600" fill="#0066CC" text-anchor="middle">PMS 데모 신청</text>
+
+  <!-- ===== Footer ===== -->
+  <rect y="1980" width="1060" height="170" fill="#1A1F2E"/>
+  <text x="40" y="2020" class="font-head" font-size="18" font-weight="800" fill="#fff">T-Rise<tspan fill="#22C55E">Up</tspan></text>
+  <text x="40" y="2045" class="font-body" font-size="13" fill="rgba(255,255,255,0.5)">(주)그라운드케이 | 대표이사: 홍길동</text>
+  <text x="40" y="2065" class="font-body" font-size="13" fill="rgba(255,255,255,0.4)">부산광역시 해운대구 | TEL: 051-000-0000</text>
+  <text x="500" y="2020" class="font-body" font-size="14" font-weight="700" fill="#fff">제품</text>
+  <text x="500" y="2045" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">PMS — 의전·수송</text>
+  <text x="500" y="2065" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">TMS — 셔틀·관광</text>
+  <text x="500" y="2085" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">면허 솔루션</text>
+  <text x="500" y="2105" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">Marketplace</text>
+  <text x="750" y="2020" class="font-body" font-size="14" font-weight="700" fill="#fff">약관</text>
+  <text x="750" y="2045" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">개인정보처리방침</text>
+  <text x="750" y="2065" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">이용약관</text>
+  <text x="750" y="2085" class="font-body" font-size="14" fill="rgba(255,255,255,0.5)">위치 기반 서비스 이용약관</text>
+  <line x1="40" y1="2120" x2="1020" y2="2120" stroke="rgba(255,255,255,0.1)"/>
+  <text x="530" y="2142" class="font-body" font-size="13" fill="rgba(255,255,255,0.3)" text-anchor="middle">© 2026 GroundK. All rights reserved.</text>
+</svg>

@@ -449,7 +449,6 @@ section { width: 100%; }
 }
 .cases-scroll-wrap {
   position: relative;
-  overflow: hidden;
 }
 .cases-scroll {
   display: flex;
@@ -459,8 +458,31 @@ section { width: 100%; }
   -webkit-overflow-scrolling: touch;
   padding-bottom: 16px;
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 .cases-scroll::-webkit-scrollbar { display: none; }
+.cases-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-80%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s;
+  font-size: 18px;
+  color: var(--text-dark);
+}
+.cases-nav:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.cases-nav.prev { left: -20px; }
+.cases-nav.next { right: -20px; }
 .case-card {
   flex: 0 0 300px;
   scroll-snap-align: start;
@@ -902,6 +924,8 @@ section { width: 100%; }
     <p class="section-sub">성공하는 프로젝트 뒤에는 언제나 T-RiseUp이 있습니다.</p>
 
     <div class="cases-scroll-wrap">
+      <button class="cases-nav prev" onclick="document.getElementById('casesScroll').scrollBy({left:-320,behavior:'smooth'})">&#8249;</button>
+      <button class="cases-nav next" onclick="document.getElementById('casesScroll').scrollBy({left:320,behavior:'smooth'})">&#8250;</button>
       <div class="cases-scroll" id="casesScroll">
         <div class="case-card">
           <div class="case-card-img">

@@ -158,16 +158,13 @@ section { width: 100%; }
 /* ===== Hero ===== */
 .hero {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   min-height: 377px;
   margin-top: 64px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  text-align: left;
+  align-items: center;
   overflow: hidden;
-  padding: 50px 40px 40px;
 }
 .hero-bg {
   position: absolute;
@@ -184,7 +181,11 @@ section { width: 100%; }
 .hero-content {
   position: relative;
   z-index: 1;
+  width: 100%;
   max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 50px 40px 40px;
+  text-align: left;
 }
 .hero h1 {
   font-family: var(--font-head);

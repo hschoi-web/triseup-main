@@ -163,11 +163,11 @@ section { width: 100%; }
   margin-top: 64px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   overflow: hidden;
-  padding: 50px 20px 40px;
+  padding: 50px 40px 40px;
 }
 .hero-bg {
   position: absolute;
@@ -203,7 +203,7 @@ section { width: 100%; }
 .hero-buttons {
   display: flex;
   gap: 12px;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   margin-bottom: 36px;
 }
@@ -242,10 +242,10 @@ section { width: 100%; }
 .hero-stats {
   display: flex;
   gap: 40px;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
-.hero-stat { text-align: center; }
+.hero-stat { text-align: left; }
 .hero-stat-value {
   font-family: var(--font-head);
   font-size: 28px;
@@ -278,7 +278,7 @@ section { width: 100%; }
   line-height: 1.7;
   margin-bottom: 36px;
 }
-.section-sub.center { text-align: center; }
+.section-sub.center { text-align: left; }
 .cards-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -535,22 +535,24 @@ section { width: 100%; }
 }
 .scroll-indicator {
   width: 100%;
-  height: 4px;
+  height: 6px;
   background: #e2e4ea;
-  border-radius: 2px;
-  margin-top: 16px;
+  border-radius: 3px;
+  margin-top: 20px;
   position: relative;
-  overflow: hidden;
+  cursor: pointer;
 }
 .scroll-indicator-thumb {
   width: 30%;
   height: 100%;
-  background: #aaa;
-  border-radius: 2px;
+  background: var(--primary);
+  border-radius: 3px;
   position: absolute;
   left: 0; top: 0;
-  transition: left 0.15s;
+  cursor: grab;
+  transition: left 0.05s;
 }
+.scroll-indicator-thumb:active { cursor: grabbing; }
 .cases-link {
   display: inline-block;
   margin-top: 20px;
@@ -1085,11 +1087,13 @@ section { width: 100%; }
   els.forEach(function(el){ obs.observe(el); });
 })();
 
-/* ===== Cases Scroll Indicator ===== */
+/* ===== Cases Scroll Indicator + Drag ===== */
 (function(){
   var scroll = document.getElementById('casesScroll');
   var thumb = document.getElementById('scrollThumb');
-  if(!scroll || !thumb) return;
+  var track = thumb ? thumb.parentElement : null;
+  if(!scroll || !thumb || !track) return;
+
   function update(){
     var maxScroll = scroll.scrollWidth - scroll.clientWidth;
     if(maxScroll <= 0){ thumb.style.width = '100%'; thumb.style.left = '0'; return; }
@@ -1101,6 +1105,53 @@ section { width: 100%; }
   scroll.addEventListener('scroll', update);
   window.addEventListener('resize', update);
   update();
+
+  /* Drag thumb */
+  var dragging = false, startX = 0, startLeft = 0;
+  thumb.addEventListener('mousedown', function(e){
+    dragging = true;
+    startX = e.clientX;
+    startLeft = thumb.offsetLeft;
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', function(e){
+    if(!dragging) return;
+    var dx = e.clientX - startX;
+    var trackW = track.offsetWidth;
+    var thumbW = thumb.offsetWidth;
+    var maxLeft = trackW - thumbW;
+    var newLeft = Math.max(0, Math.min(maxLeft, startLeft + dx));
+    var ratio = newLeft / maxLeft;
+    scroll.scrollLeft = ratio * (scroll.scrollWidth - scroll.clientWidth);
+  });
+  document.addEventListener('mouseup', function(){ dragging = false; });
+
+  /* Click track to jump */
+  track.addEventListener('click', function(e){
+    if(e.target === thumb) return;
+    var rect = track.getBoundingClientRect();
+    var clickX = e.clientX - rect.left;
+    var ratio = clickX / rect.width;
+    scroll.scrollLeft = ratio * (scroll.scrollWidth - scroll.clientWidth);
+  });
+
+  /* Touch drag */
+  thumb.addEventListener('touchstart', function(e){
+    dragging = true;
+    startX = e.touches[0].clientX;
+    startLeft = thumb.offsetLeft;
+  }, {passive: true});
+  document.addEventListener('touchmove', function(e){
+    if(!dragging) return;
+    var dx = e.touches[0].clientX - startX;
+    var trackW = track.offsetWidth;
+    var thumbW = thumb.offsetWidth;
+    var maxLeft = trackW - thumbW;
+    var newLeft = Math.max(0, Math.min(maxLeft, startLeft + dx));
+    var ratio = newLeft / maxLeft;
+    scroll.scrollLeft = ratio * (scroll.scrollWidth - scroll.clientWidth);
+  }, {passive: true});
+  document.addEventListener('touchend', function(){ dragging = false; });
 })();
 </script>
 </body>
